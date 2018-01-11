@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>react - redux | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="createStore - redux中最核心的API12import &amp;#123; createStore &amp;#125; from &amp;apos;redux&amp;apos;;const store = createStore(fn);  Store  保存数据的地方 – 可以把它看成一个容器 –整个应用只能有一个 Store 1 - createStore函数接受另一个函数作为参数，返回新生成的 St">
+<meta property="og:type" content="website">
+<meta property="og:title" content="react - redux">
+<meta property="og:url" content="http://yoursite.com/react/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="createStore - redux中最核心的API12import &amp;#123; createStore &amp;#125; from &amp;apos;redux&amp;apos;;const store = createStore(fn);  Store  保存数据的地方 – 可以把它看成一个容器 –整个应用只能有一个 Store 1 - createStore函数接受另一个函数作为参数，返回新生成的 St">
+<meta property="og:updated_time" content="2018-01-11T11:25:28.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react - redux">
+<meta name="twitter:description" content="createStore - redux中最核心的API12import &amp;#123; createStore &amp;#125; from &amp;apos;redux&amp;apos;;const store = createStore(fn);  Store  保存数据的地方 – 可以把它看成一个容器 –整个应用只能有一个 Store 1 - createStore函数接受另一个函数作为参数，返回新生成的 St">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/react/index.html" class="article-date">
+  <time datetime="2018-01-11T11:23:51.000Z" itemprop="datePublished">2018-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react - redux
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="createStore-redux中最核心的API"><a href="#createStore-redux中最核心的API" class="headerlink" title="createStore - redux中最核心的API"></a>createStore - redux中最核心的API</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from &apos;redux&apos;;</span><br><span class="line">const store = createStore(fn);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Store</code>  保存数据的地方 – 可以把它看成一个容器 –整个应用只能有一个 Store</p>
+<h5 id="1-createStore函数接受另一个函数作为参数，返回新生成的-Store-对象。"><a href="#1-createStore函数接受另一个函数作为参数，返回新生成的-Store-对象。" class="headerlink" title="1 - createStore函数接受另一个函数作为参数，返回新生成的 Store 对象。"></a>1 - <code>createStore</code>函数接受另一个函数作为参数，返回新生成的 Store 对象。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; import &#123;</span><br><span class="line">&gt;   applyMiddleware,</span><br><span class="line">&gt;   createStore,</span><br><span class="line">&gt; &#125; from &apos;redux&apos;;</span><br><span class="line">&gt;</span><br><span class="line">&gt; import logger from &apos;redux-logger&apos;;</span><br><span class="line">&gt; import thunk from &apos;redux-thunk&apos;;</span><br><span class="line">&gt; import promise from &apos;redux-promise-middleware&apos;;</span><br><span class="line">&gt; import reducer from &apos;./reducers&apos;;</span><br><span class="line">&gt;</span><br><span class="line">&gt; // const middleware = applyMiddleware(promise(), thunk);   //完成编码去掉logger</span><br><span class="line">&gt; const middleware = applyMiddleware(promise(), thunk, logger()); //开发时加上logger</span><br><span class="line">&gt; export default createStore(reducer, middleware);</span><br><span class="line">&gt; // reducer为一个函数，计算state的变化，返回新state</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<h5 id="2-createStore方法还可以接受第二个参数，表示-State-的最初状态。这通常是服务器给出的"><a href="#2-createStore方法还可以接受第二个参数，表示-State-的最初状态。这通常是服务器给出的" class="headerlink" title="2 - createStore方法还可以接受第二个参数，表示 State 的最初状态。这通常是服务器给出的"></a>2 - <code>createStore</code>方法还可以接受第二个参数，表示 State 的最初状态。这通常是服务器给出的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; let store = createStore(todoApp, window.STATE_FROM_SERVER)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>上面代码中，<code>window.STATE_FROM_SERVER</code>就是整个应用的状态初始值。注意，如果提供了这个参数，它会覆盖 Reducer 函数的默认初始值，我们一般不这样，通常情况下还是将默认这写在对应的Reducer函数中去。<code>所以第二个参数我们一般省略</code></p>
+<h5 id="3-createStore方法还可以接受第三个参数applyMiddleware"><a href="#3-createStore方法还可以接受第三个参数applyMiddleware" class="headerlink" title="3 - createStore方法还可以接受第三个参数applyMiddleware"></a>3 - <code>createStore</code>方法还可以接受第三个参数applyMiddleware</h5><p><code>applyMiddleware</code>是redux原生方法，将所有中间件组成一个数组并依次执行</p>
+<p>中间件就是一个函数，对<code>store.dispatch</code>方法进行了改造，在发出 Action 和执行 Reducer 这两步之间，添加了其他功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; const store = createStore(</span><br><span class="line">&gt;   reducer,</span><br><span class="line">&gt;   applyMiddleware(thunk, promise, logger)</span><br><span class="line">&gt; );</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li><h5 id="thunk-即为-redux-thunk中间件"><a href="#thunk-即为-redux-thunk中间件" class="headerlink" title="thunk 即为 redux-thunk中间件"></a>thunk 即为 redux-thunk中间件</h5><p><strong>Action 是由store.dispatch方法发送的,而store.dispatch方法正常情况下，参数只能是对象，不能是函数。</strong>所以需要使用中间件redux-thunk来改造store.dispatch，使其可以接受函数作为参数</p>
+<p>为什么要让参数可以接受函数呢？？？</p>
+<p>这就要说到异步操作的问题了，异步操作的思路：</p>
+<blockquote>
+<p>开始就发送Action（PENDING状态），自动执行reducer函数-将fetching设置为true，返回新的state，View重新渲染，表明异步请求开始</p>
+<p>接着执行异步操作，异步请求成功-（成功拿到后台返回的数据后）处理返回的数据-发送第二个Action（FULFILLED），自动执行reducer函数-将fetching设置为false，返回新的state，View重新渲染。异步请求结束</p>
+<p>如果异步失败，可在catch（error）{}方法中发送失败状态的Action（REJECTED）,自动执行reducer函数-将fetching设置为false，返回新的state，View重新渲染</p>
+</blockquote>
+<p>同步操作只要发出一种 Action 即可，异步操作的差别是它会有三种 Action，至少会发送两种Action，应为需要在Action中发送dispatch，所以Action需要返回一个函数，将dispatch作为参数传递进去。—–所以才会需要redux-thunk改造store.dispatch，使其可以接受函数作为参数</p>
+<p>实例代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt;   export function addVideo(values) &#123;</span><br><span class="line">&gt;     return function (dispatch) &#123;</span><br><span class="line">&gt;       dispatch(&#123;</span><br><span class="line">&gt;         type: &apos;ADD_VIDEO_PENDING&apos;,</span><br><span class="line">&gt;       &#125;);</span><br><span class="line">&gt;       axios(&#123;</span><br><span class="line">&gt;         method: &apos;get&apos;,</span><br><span class="line">&gt;         url: `$&#123;ENV.api&#125;/video/addVideo.do`,</span><br><span class="line">&gt;         params: values,</span><br><span class="line">&gt;       &#125;).then((res) =&gt; &#123;</span><br><span class="line">&gt;         dispatch(&#123;</span><br><span class="line">&gt;           type: &apos;ADD_VIDEO_FULFILLED&apos;,</span><br><span class="line">&gt;         &#125;);</span><br><span class="line">&gt;       &#125;).catch((error) =&gt; &#123;</span><br><span class="line">&gt;         dispatch(&#123;</span><br><span class="line">&gt;           type: &apos;ADD_VIDEO_REJECTED&apos;,</span><br><span class="line">&gt;         &#125;);</span><br><span class="line">&gt;       &#125;);</span><br><span class="line">&gt;     &#125;;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li><h5 id="promise-redux-promise-中间件"><a href="#promise-redux-promise-中间件" class="headerlink" title="promise - redux-promise 中间件"></a>promise - redux-promise 中间件</h5><p>使用 redux-promise中间件，它会自动为异步请求生成3中状态的Action（PENDING, FULFILLED,REJECTED）,    不需要手动的去编写3中状态，实例代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;   export function fetchDetail(videoId) &#123;</span><br><span class="line">&gt;     return function (dispatch) &#123;</span><br><span class="line">&gt;       dispatch(&#123;</span><br><span class="line">&gt;         type: &apos;FETCH_DETAIL&apos;,</span><br><span class="line">&gt;         payload: axios.get(`$&#123;ENV.api&#125;/video/getVideo.do?videoId=$&#123;videoId&#125;`),</span><br><span class="line">&gt;       &#125;);</span><br><span class="line">&gt;     &#125;;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<ul>
+<li><h5 id="logger-redux-logger组件"><a href="#logger-redux-logger组件" class="headerlink" title="logger - redux-logger组件"></a>logger - redux-logger组件</h5><h5 id="生成日志，便于开发中观察数据的变法，排错等"><a href="#生成日志，便于开发中观察数据的变法，排错等" class="headerlink" title="生成日志，便于开发中观察数据的变法，排错等"></a>生成日志，便于开发中观察数据的变法，排错等</h5><p>Logger <strong>must be</strong> the last middleware in chain, otherwise it will log thunk and promise, not actual actions.</p>
+</li>
+</ul>
+</blockquote>
+<h5 id="Action-–一个对象-由-名称-附带信息-等部分组成"><a href="#Action-–一个对象-由-名称-附带信息-等部分组成" class="headerlink" title="Action –一个对象, 由 名称,附带信息 等部分组成"></a>Action –一个对象, 由 <code>名称</code>,<code>附带信息</code> 等部分组成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const action = &#123;</span><br><span class="line">  type: &apos;ADD_TODO&apos;,</span><br><span class="line">  payload: &apos;Learn Redux&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>react设计思路个人理解, 视图View 与数据是一一对应的, 数据一改变view也会改变;  </p>
+<p>那么数据怎么改变呢? </p>
+<p>用户在view层触发事件，view层向存放数据的Store发送一条消息,我要改变数据了； </p>
+<p>​    1：发送的这条消息就是action，</p>
+<p>​    2：如何发送的呢？Store提供了一个<code>dispatch</code>的方法；</p>
+<h5 id="dispatch"><a href="#dispatch" class="headerlink" title="dispatch"></a>dispatch</h5><p><code>store.dispatch()</code>是 View 发出 Action 的唯一方法。</p>
+<p>​    dispatch默认只接受对象作为参数,如{type: ‘ADD_TODO’,payload: ‘Learn Redux’}  </p>
+<p>​    如果想要接受函数function作为参数, 就需要通过中间件 （middleware）</p>
+<h5 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h5><p>​    1 : Store 收到 Action 以后，必须给出一个新的 State，这样 View 才会发生变化。这种 State 的计算过程就叫做 Reducer。</p>
+<p>​    2 : Reducer 是一个函数，它接受 Action 和当前 State 作为参数，返回一个新的 State。</p>
+<p>​    3 : Reducer 函数不用像上面这样手动调用，<code>store.dispatch</code>方法会触发 Reducer 的自动执行 ,  为此，Store 需要知道 Reducer 函数，做法就是在生成 Store 的时候，将 Reducer 传入<code>createStore</code>方法。</p>
+<p>​    4 : combineReducers方法合并多个reducer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import &#123; combineReducers &#125; from &apos;redux&apos;;</span><br><span class="line"></span><br><span class="line">import table from &apos;./tableReducer&apos;;</span><br><span class="line">import detail from &apos;./detailReducer&apos;;</span><br><span class="line">import theme from &apos;./themeReducer&apos;;</span><br><span class="line">import add from &apos;./formReducer&apos;;</span><br><span class="line">import star from &apos;./starReducer&apos;;</span><br><span class="line"></span><br><span class="line">export default combineReducers(&#123;</span><br><span class="line">  table,</span><br><span class="line">  detail,</span><br><span class="line">  theme,</span><br><span class="line">  add,</span><br><span class="line">  star,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>​    5 : 纯函数—不能改变state</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// State 是一个对象</span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">  return Object.assign(&#123;&#125;, state, &#123; thingToChange &#125;);</span><br><span class="line">  // 或者</span><br><span class="line">  return &#123; ...state, ...newState &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// State 是一个数组</span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">  return [...state, newItem];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里有个问题, 当计算中涉及到引用类型的数据时需要小心, 别把state改了</p>
+<p><code>最好把 State 对象设成只读。你没法改变它，要得到新的 State，唯一办法就是生成一个新对象。这样的好处是，任何时候，与某个 View 对应的 State 总是一个不变的对象。</code></p>
+</blockquote>
+<h5 id="Store通过dispatch收到Action，自动执行reducer函数，并且传入两个参数：当前-State-和收到的-Action-进行相关的计算并返回一个新的state传回给Store，Store改变就会通过-lt-Provider-store-gt-来更新组件"><a href="#Store通过dispatch收到Action，自动执行reducer函数，并且传入两个参数：当前-State-和收到的-Action-进行相关的计算并返回一个新的state传回给Store，Store改变就会通过-lt-Provider-store-gt-来更新组件" class="headerlink" title="Store通过dispatch收到Action，自动执行reducer函数，并且传入两个参数：当前 State 和收到的 Action-进行相关的计算并返回一个新的state传回给Store，Store改变就会通过&lt;Provider store&gt;来更新组件"></a>Store通过dispatch收到Action，自动执行reducer函数，并且传入两个参数：当前 State 和收到的 Action-进行相关的计算并返回一个新的state传回给Store，Store改变就会通过<code>&lt;Provider store&gt;</code>来更新组件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Provider &#125; from &apos;react-redux&apos;;</span><br><span class="line">import store from &apos;../store&apos;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;Layout /&gt;</span><br><span class="line">  &lt;/Provider&gt;,</span><br><span class="line">app);</span><br></pre></td></tr></table></figure>
+<p>跟新组件涉及到组件生命周期的问题，可参考另一篇分享ComponentLifecycle.md。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/react/index.html" data-id="cjcaer07000005magzx07t6qs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/11/code-readability-1/">code-readability</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/code-readability/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/11/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
