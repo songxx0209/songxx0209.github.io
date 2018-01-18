@@ -208,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -218,7 +218,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -274,7 +274,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/Promise-同步异步/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2017/10/28/Promise-同步异步/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -284,7 +284,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -401,6 +401,402 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/jsonp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/jsonp/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><h4 id="1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；"><a href="#1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；" class="headerlink" title="1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；"></a>1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；</h4><h4 id="2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如-lt-script-gt-、-lt-img-gt-、-lt-iframe-gt-）"><a href="#2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如-lt-script-gt-、-lt-img-gt-、-lt-iframe-gt-）" class="headerlink" title="2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;）"></a>2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如<code>&lt;script&gt;</code>、<code>&lt;img&gt;</code>、<code>&lt;iframe&gt;</code>）</h4><h4 id="3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。"><a href="#3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。" class="headerlink" title="3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。"></a>3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。</h4><h4 id="4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。"><a href="#4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。" class="headerlink" title="4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。"></a>4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。</h4><h4 id="5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。"><a href="#5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。" class="headerlink" title="5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。"></a>5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。</h4><h4 id="6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。"><a href="#6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。" class="headerlink" title="6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。"></a>6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/回调函数的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/回调函数的理解/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="回调函数的理解"><a href="#回调函数的理解" class="headerlink" title="回调函数的理解"></a>回调函数的理解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function one() &#123;</span><br><span class="line">	console.log(&apos;wo shi one&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function tow(callback) &#123;</span><br><span class="line">	setTimeout(function()&#123;</span><br><span class="line">		callback &amp;&amp; callback();</span><br><span class="line">	&#125;, 2000);</span><br><span class="line">	console.log(&apos;woshi toto&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tow(one);</span><br><span class="line">console.log(&apos;outer&apos;);</span><br><span class="line"></span><br><span class="line">// 输出结果</span><br><span class="line">// woshi toto</span><br><span class="line">// outer</span><br><span class="line">// wo shi one</span><br></pre></td></tr></table></figure>
+<p>上面例子就是一个 回调函数使用的场景</p>
+<p>setTimeout是一个异步操作；  在异步操作完成后执行 callback 函数；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var a = 10;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        a *= 2;</span><br><span class="line">        return a;       </span><br><span class="line">    &#125;;   </span><br><span class="line">&#125;</span><br><span class="line">var f = foo();</span><br><span class="line">f(); //return 20.</span><br><span class="line">f(); //return 40.</span><br></pre></td></tr></table></figure>
+<p>顺带再理解一下闭包</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/字符串拼接/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/字符串拼接/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#字符串拼接</p>
+<p>##substr(start,length) 方法<br>substr(起始位置，长度) 方法可在字符串中抽取从 start 下标开始的指定数目的字符（例子2）。起始位置必选，长度可选。没有长度参数，就抽取起始到最后（例子1）。</p>
+<p>###例子1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3))</span><br></pre></td></tr></table></figure></p>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
+<p>###例子2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3,7))</span><br></pre></td></tr></table></figure></p>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo worl</span><br></pre></td></tr></table></figure></p>
+<p>#substring() 方法<br><a href="http://www.w3school.com.cn/jsref/jsref_substring.asp" target="_blank" rel="noopener">JavaScript substring() 方法</a></p>
+<blockquote>
+<p>substring() 方法用于提取字符串中介于两个指定下标之间的字符。</p>
+</blockquote>
+<p>###例子1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello world!&quot;</span><br><span class="line">document.write(str.substring(3))</span><br></pre></td></tr></table></figure></p>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
+<p>#slice() 方法<br><a href="http://www.w3school.com.cn/jsref/jsref_slice_string.asp" target="_blank" rel="noopener">JavaScript slice() 方法</a></p>
+<blockquote>
+<p>String 对象的方法 slice()、substring() 和 substr() （不建议使用）都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</p>
+</blockquote>
+<p>##split()方法<br>split() 方法用于把一个字符串分割成字符串数组</p>
+<p>###例子1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;How are you doing today?&quot;</span><br><span class="line">document.write(str.split(&quot; &quot;) + &quot;&lt;br /&gt;&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[How,are,you,doing,today?]</span><br></pre></td></tr></table></figure></p>
+<p>###例子2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot;.split(&quot;&quot;, 3)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;]</span><br><span class="line">&quot;hello&quot;.split(&quot;&quot;)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>##实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//获取Url中的所有参数</span><br><span class="line">function _GetUrlParams() &#123;</span><br><span class="line">    var url = location.search; //获取url中&quot;?&quot;和‘？’符后的字串</span><br><span class="line">    var theRequest = &#123;&#125;;</span><br><span class="line">    if (url.indexOf(&quot;?&quot;) != -1) &#123;</span><br><span class="line">        var str = url.substr(1);//获取？后面的子串</span><br><span class="line">        strs = str.split(&quot;&amp;&quot;);//以&amp;分割成数组</span><br><span class="line">        for (var i = 0; i &lt; strs.length; i++) &#123;</span><br><span class="line">            theRequest[strs[i].split(&quot;=&quot;)[0]] = unescape(strs[i].split(&quot;=&quot;)[1]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>#lastIndexOf()</p>
+<blockquote>
+<p>stringObject.lastIndexOf(searchvalue,fromindex)</p>
+</blockquote>
+<p>如果找到一个 searchvalue，则返回 searchvalue 的第一个字符在 stringObject 中的位置。stringObject 中的字符位置是从 0 开始的。</p>
+<p>#indexOf<br><a href="http://www.w3school.com.cn/jsref/jsref_indexOf.asp" target="_blank" rel="noopener">JavaScript indexOf() 方法</a></p>
+<blockquote>
+<p>stringObject.indexOf(searchvalue,fromindex)<br>参数    描述<br>searchvalue    必需。规定需检索的字符串值。<br>fromindex    可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。<br>用于解锁‘字符’在字符串中的位置， 也可判断该字符在该字符串中是否存在；</p>
+</blockquote>
+<p>#charAt()方法</p>
+<blockquote>
+<p>用于返回指定位置的字符，从0开始计数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello World!&quot; </span><br><span class="line">document.write(str.charAt(1));//输出e</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/OPP-jsonp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -420,7 +816,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/OPP-jsonp/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2017/10/28/OPP-jsonp/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -430,7 +826,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -571,858 +967,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/事件代理和addEventListener/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/28/事件代理和addEventListener/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
-                2017-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;事件代理和addEventListener&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;ul id=&quot;list&quot;&gt;
-        &lt;li id=&quot;item1&quot;&gt;item1&lt;/li&gt;
-        &lt;li id=&quot;item2&quot;&gt;item2&lt;/li&gt;
-        &lt;li id=&quot;item3&quot;&gt;item3&lt;/li&gt;
-        &lt;li id=&quot;item4&quot;&gt;item4&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;script type=&quot;text/javascript&quot;&gt;
-    /*window.onload = function() {
-        var ulNode = document.getElementById(&quot;list&quot;);
-        var liNodes = ulNode.childNodes || ulNode.children;
-        for (var i = 0; i &lt; liNodes.length; i++) {
-            liNodes[i].addEventListener(&apos;click&apos;, function(e) {
-                alert(e.target.innerHTML);
-            }, false);
-        }
-    }*/
-    // 由上可以看出来，假如不停的删除或添加li，则function（）也要不停的更改操作，易出错，因此推荐使用事件代理
-    // https://segmentfault.com/a/1190000002613617
-    window.onload = function() {
-        var ulNode = document.getElementById(&quot;list&quot;);
-        ulNode.addEventListener(&apos;click&apos;, function(e) {
-            console.log(e);
-            if (e.target &amp;&amp; e.target.nodeName.toUpperCase() == &quot;LI&quot;) { /*判断目标事件是否为li*/
-                alert(e.target.innerHTML);
-            }
-        }, true);
-    };
-    /*
-        http://www.runoob.com/jsref/met-element-addeventlistener.html
-        element.addEventListener(event, function, useCapture); IE9以下不支持该方法可以使用attachEvent()方法代替
-        可以在文档中添加许多事件，添加的事件不会覆盖已存在的事件。
-        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, myFunction);
-        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, someOtherFunction);
-    */
-    &lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code></pre><p>###事件Event相关,捕获-冒泡    </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/回调函数的理解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/28/回调函数的理解/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
-                2017-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="回调函数的理解"><a href="#回调函数的理解" class="headerlink" title="回调函数的理解"></a>回调函数的理解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function one() &#123;</span><br><span class="line">	console.log(&apos;wo shi one&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function tow(callback) &#123;</span><br><span class="line">	setTimeout(function()&#123;</span><br><span class="line">		callback &amp;&amp; callback();</span><br><span class="line">	&#125;, 2000);</span><br><span class="line">	console.log(&apos;woshi toto&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tow(one);</span><br><span class="line">console.log(&apos;outer&apos;);</span><br><span class="line"></span><br><span class="line">// 输出结果</span><br><span class="line">// woshi toto</span><br><span class="line">// outer</span><br><span class="line">// wo shi one</span><br></pre></td></tr></table></figure>
-<p>上面例子就是一个 回调函数使用的场景</p>
-<p>setTimeout是一个异步操作；  在异步操作完成后执行 callback 函数；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var a = 10;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        a *= 2;</span><br><span class="line">        return a;       </span><br><span class="line">    &#125;;   </span><br><span class="line">&#125;</span><br><span class="line">var f = foo();</span><br><span class="line">f(); //return 20.</span><br><span class="line">f(); //return 40.</span><br></pre></td></tr></table></figure>
-<p>顺带再理解一下闭包</p>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/字符串拼接/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/28/字符串拼接/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
-                2017-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#字符串拼接</p>
-<p>##substr(start,length) 方法<br>substr(起始位置，长度) 方法可在字符串中抽取从 start 下标开始的指定数目的字符（例子2）。起始位置必选，长度可选。没有长度参数，就抽取起始到最后（例子1）。</p>
-<p>###例子1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3))</span><br></pre></td></tr></table></figure></p>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
-<p>###例子2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3,7))</span><br></pre></td></tr></table></figure></p>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo worl</span><br></pre></td></tr></table></figure></p>
-<p>#substring() 方法<br><a href="http://www.w3school.com.cn/jsref/jsref_substring.asp" target="_blank" rel="noopener">JavaScript substring() 方法</a></p>
-<blockquote>
-<p>substring() 方法用于提取字符串中介于两个指定下标之间的字符。</p>
-</blockquote>
-<p>###例子1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello world!&quot;</span><br><span class="line">document.write(str.substring(3))</span><br></pre></td></tr></table></figure></p>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
-<p>#slice() 方法<br><a href="http://www.w3school.com.cn/jsref/jsref_slice_string.asp" target="_blank" rel="noopener">JavaScript slice() 方法</a></p>
-<blockquote>
-<p>String 对象的方法 slice()、substring() 和 substr() （不建议使用）都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</p>
-</blockquote>
-<p>##split()方法<br>split() 方法用于把一个字符串分割成字符串数组</p>
-<p>###例子1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;How are you doing today?&quot;</span><br><span class="line">document.write(str.split(&quot; &quot;) + &quot;&lt;br /&gt;&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[How,are,you,doing,today?]</span><br></pre></td></tr></table></figure></p>
-<p>###例子2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot;.split(&quot;&quot;, 3)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;]</span><br><span class="line">&quot;hello&quot;.split(&quot;&quot;)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]</span><br></pre></td></tr></table></figure></p>
-<p>##实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//获取Url中的所有参数</span><br><span class="line">function _GetUrlParams() &#123;</span><br><span class="line">    var url = location.search; //获取url中&quot;?&quot;和‘？’符后的字串</span><br><span class="line">    var theRequest = &#123;&#125;;</span><br><span class="line">    if (url.indexOf(&quot;?&quot;) != -1) &#123;</span><br><span class="line">        var str = url.substr(1);//获取？后面的子串</span><br><span class="line">        strs = str.split(&quot;&amp;&quot;);//以&amp;分割成数组</span><br><span class="line">        for (var i = 0; i &lt; strs.length; i++) &#123;</span><br><span class="line">            theRequest[strs[i].split(&quot;=&quot;)[0]] = unescape(strs[i].split(&quot;=&quot;)[1]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>#lastIndexOf()</p>
-<blockquote>
-<p>stringObject.lastIndexOf(searchvalue,fromindex)</p>
-</blockquote>
-<p>如果找到一个 searchvalue，则返回 searchvalue 的第一个字符在 stringObject 中的位置。stringObject 中的字符位置是从 0 开始的。</p>
-<p>#indexOf<br><a href="http://www.w3school.com.cn/jsref/jsref_indexOf.asp" target="_blank" rel="noopener">JavaScript indexOf() 方法</a></p>
-<blockquote>
-<p>stringObject.indexOf(searchvalue,fromindex)<br>参数    描述<br>searchvalue    必需。规定需检索的字符串值。<br>fromindex    可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。<br>用于解锁‘字符’在字符串中的位置， 也可判断该字符在该字符串中是否存在；</p>
-</blockquote>
-<p>#charAt()方法</p>
-<blockquote>
-<p>用于返回指定位置的字符，从0开始计数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello World!&quot; </span><br><span class="line">document.write(str.charAt(1));//输出e</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/HTTP状态码/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/28/HTTP状态码/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
-                2017-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h2><h4 id="我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如："><a href="#我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如：" class="headerlink" title="我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如："></a>我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如：</h4><h4 id="常见状态吗：400（请求无效），401（需要权限），404（找不到地址）-500（服务器错误），"><a href="#常见状态吗：400（请求无效），401（需要权限），404（找不到地址）-500（服务器错误），" class="headerlink" title="常见状态吗：400（请求无效），401（需要权限），404（找不到地址）, 500（服务器错误），"></a>常见状态吗：400（请求无效），401（需要权限），404（找不到地址）, 500（服务器错误），</h4><p>对于400错误具体的信息，可以通过浏览器的调式功能，找出ex对象的错误属性找到详细信息。</p>
-<p><strong>{“message”:”请求无效。”,”modelState”:{“bannerEntity.SortNo”:[“Error converting value {null} to type ‘System.Int32’. Path ‘SortNo’, line 1, position 69.”]}}</strong></p>
-<h2 id="正文："><a href="#正文：" class="headerlink" title="正文："></a><strong>正文：</strong></h2><h2 id="HTTP状态码分类"><a href="#HTTP状态码分类" class="headerlink" title="HTTP状态码分类"></a>HTTP状态码分类</h2><p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：</p>
-<table>
-<thead>
-<tr>
-<th>HTTP状态码分类</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>分类</strong></td>
-<td><strong>分类描述</strong></td>
-</tr>
-<tr>
-<td>1**</td>
-<td>信息，服务器收到请求，需要请求者继续执行操作</td>
-</tr>
-<tr>
-<td>2**</td>
-<td>成功，操作被成功接收并处理</td>
-</tr>
-<tr>
-<td>3**</td>
-<td>重定向，需要进一步的操作以完成请求</td>
-</tr>
-<tr>
-<td>4**</td>
-<td>客户端错误，请求包含语法错误或无法完成请求</td>
-</tr>
-<tr>
-<td>5**</td>
-<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
-</tr>
-</tbody>
-</table>
-<p>HTTP状态码列表:</p>
-<table>
-<thead>
-<tr>
-<th>HTTP状态码列表</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>状态码      </strong></td>
-<td><strong>状态码英文名称</strong></td>
-<td><strong>中文描述</strong></td>
-</tr>
-<tr>
-<td>100</td>
-<td>Continue</td>
-<td>继续。<a href="http://www.dreamdu.com/webbuild/client_vs_server/" target="_blank" rel="noopener">客户端</a>应继续其请求</td>
-</tr>
-<tr>
-<td>101</td>
-<td>Switching Protocols</td>
-<td>切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到HTTP的新版本协议</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>200</td>
-<td>OK</td>
-<td>请求成功。一般用于GET与POST请求</td>
-</tr>
-<tr>
-<td>201</td>
-<td>Created</td>
-<td>已创建。成功请求并创建了新的资源</td>
-</tr>
-<tr>
-<td>202</td>
-<td>Accepted</td>
-<td>已接受。已经接受请求，但未处理完成</td>
-</tr>
-<tr>
-<td>203</td>
-<td>Non-Authoritative Information</td>
-<td>非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本</td>
-</tr>
-<tr>
-<td>204</td>
-<td>No Content</td>
-<td>无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
-</tr>
-<tr>
-<td>205</td>
-<td>Reset Content</td>
-<td>重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</td>
-</tr>
-<tr>
-<td>206</td>
-<td>Partial Content</td>
-<td>部分内容。服务器成功处理了部分GET请求</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>300</td>
-<td>Multiple Choices</td>
-<td>多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</td>
-</tr>
-<tr>
-<td>301</td>
-<td>Moved Permanently</td>
-<td>永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</td>
-</tr>
-<tr>
-<td>302</td>
-<td>Found</td>
-<td>临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
-</tr>
-<tr>
-<td>303</td>
-<td>See Other</td>
-<td>查看其它地址。与301类似。使用GET和POST请求查看</td>
-</tr>
-<tr>
-<td>304</td>
-<td>Not Modified</td>
-<td>未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</td>
-</tr>
-<tr>
-<td>305</td>
-<td>Use Proxy</td>
-<td>使用代理。所请求的资源必须通过代理访问</td>
-</tr>
-<tr>
-<td>306</td>
-<td>Unused</td>
-<td>已经被废弃的HTTP状态码</td>
-</tr>
-<tr>
-<td>307</td>
-<td>Temporary Redirect</td>
-<td>临时重定向。与302类似。使用GET请求重定向</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-<td>客户端请求的语法错误，服务器无法理解</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized</td>
-<td>请求要求用户的身份认证</td>
-</tr>
-<tr>
-<td>402</td>
-<td>Payment Required</td>
-<td>保留，将来使用</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden</td>
-<td>服务器理解请求客户端的请求，但是拒绝执行此请求</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found</td>
-<td>服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置”您所请求的资源无法找到”的个性页面</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed</td>
-<td>客户端请求中的方法被禁止</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable</td>
-<td>服务器无法根据客户端请求的内容特性完成请求</td>
-</tr>
-<tr>
-<td>407</td>
-<td>Proxy Authentication Required</td>
-<td>请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权</td>
-</tr>
-<tr>
-<td>408</td>
-<td>Request Time-out</td>
-<td>服务器等待客户端发送的请求时间过长，超时</td>
-</tr>
-<tr>
-<td>409</td>
-<td>Conflict</td>
-<td>服务器完成客户端的PUT请求是可能返回此代码，服务器处理请求时发生了冲突</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone</td>
-<td>客户端请求的资源已经不存在。410不同于404，如果资源以前有现在被永久删除了可使用410代码，网站设计人员可通过301代码指定资源的新位置</td>
-</tr>
-<tr>
-<td>411</td>
-<td>Length Required</td>
-<td>服务器无法处理客户端发送的不带Content-Length的请求信息</td>
-</tr>
-<tr>
-<td>412</td>
-<td>Precondition Failed</td>
-<td>客户端请求信息的先决条件错误</td>
-</tr>
-<tr>
-<td>413</td>
-<td>Request Entity Too Large</td>
-<td>由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息</td>
-</tr>
-<tr>
-<td>414</td>
-<td>Request-URI Too Large</td>
-<td>请求的URI过长（URI通常为网址），服务器无法处理</td>
-</tr>
-<tr>
-<td>415</td>
-<td>Unsupported Media Type</td>
-<td>服务器无法处理请求附带的媒体格式</td>
-</tr>
-<tr>
-<td>416</td>
-<td>Requested range not satisfiable</td>
-<td>客户端请求的范围无效</td>
-</tr>
-<tr>
-<td>417</td>
-<td>Expectation Failed</td>
-<td>服务器无法满足Expect的请求头信息</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error</td>
-<td>服务器内部错误，无法完成请求</td>
-</tr>
-<tr>
-<td>501</td>
-<td>Not Implemented</td>
-<td>服务器不支持请求的功能，无法完成请求</td>
-</tr>
-<tr>
-<td>502</td>
-<td>Bad Gateway</td>
-<td>充当网关或代理的服务器，从远端服务器接收到了一个无效的请求</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable</td>
-<td>由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</td>
-</tr>
-<tr>
-<td>504</td>
-<td>Gateway Time-out</td>
-<td>充当网关或代理的服务器，未及时从远端服务器获取请求</td>
-</tr>
-<tr>
-<td>505</td>
-<td>HTTP Version not supported</td>
-<td>服务器不支持请求的HTTP协议的版本，无法完成处理</td>
-</tr>
-</tbody>
-</table>
-<h2 id="常见错误的处理方法："><a href="#常见错误的处理方法：" class="headerlink" title="常见错误的处理方法："></a><strong>常见错误的处理方法：</strong></h2><p>500错误</p>
-<p>500错误是站长经常遇到的问题，就本人的经验，原因及解决方法归纳如下：</p>
-<p>1、运行的用户数过多，对服务器造成的压力过大，服务器无法响应，则报HTTP500错误。</p>
-<p>这个原因是网站报500错误的最主要原因，很多网站为什么突然会报500错误（service unavailable）呢？90%是由于空间压力过大，超出了空间商设定的上限而造成的。</p>
-<p>遇到这个问题，最好是第一时间找到空间商的售后服务，他们一般会帮你回收一下应用程序池，问题便得到解决。如果没有找到售后服务，可以自己在空间管理后台，找到“回收应用程序池”那个项目，自己手动执行一下即可。不过，一些空间管理后台并没有提供该项服务。</p>
-<p>2、如果排除了第1的可能性，那么很大原因便是程序上出现了问题。</p>
-<p>可以做个简单的测试页面，看是否能运行成功，再检测报错的页面，从而针对性的进行修改。</p>
-<p>该做关联的地方没有去做关联，则报HTTP500错误。进行手工或者自动关联，问题得到解决。</p>
-<p>3、如果测试中所进行的操作需要向数据库中插入数据，若大数据量的情况下导致数据库中表空间已满，或者缓冲池较小无法满足数据的存取等，都有可能导致HTTP500错误。</p>
-<p>解决方法是调整数据库、修改连接池大小等等，根据个人具体情况进行修正即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1442,7 +986,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/数组/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2017/10/28/数组/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1452,7 +996,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -1613,7 +1157,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/闭包/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2017/10/28/闭包/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1623,7 +1167,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -1742,7 +1286,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/面向对象oop笔记/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2017/10/28/面向对象oop笔记/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1752,7 +1296,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -1893,8 +1437,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1948,7 +1492,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
