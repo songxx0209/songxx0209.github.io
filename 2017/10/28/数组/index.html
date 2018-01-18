@@ -100,16 +100,16 @@
 
 
 
-<meta name="description" content="数组创建数组的方式一：使用Array构造函数12var colors = new Array(3);               //创建一个包含3项的数组var names = new Array(&amp;apos;Greg&amp;apos;);           //创建一个包含1项，即字符串‘Greg’的数组 方式二：使用数组字面量表示法1234var colors = [&amp;apos;red&amp;apos">
+<meta name="description" content="创建数组的方式一：使用Array构造函数12var colors = new Array(3);               //创建一个包含3项的数组var names = new Array(&amp;apos;Greg&amp;apos;);           //创建一个包含1项，即字符串‘Greg’的数组 方式二：使用数组字面量表示法1234var colors = [&amp;apos;red&amp;apos;,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="songxx&#39;s blog">
+<meta property="og:title" content="数组操作方法整理">
 <meta property="og:url" content="http://yoursite.com/2017/10/28/数组/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
-<meta property="og:description" content="数组创建数组的方式一：使用Array构造函数12var colors = new Array(3);               //创建一个包含3项的数组var names = new Array(&amp;apos;Greg&amp;apos;);           //创建一个包含1项，即字符串‘Greg’的数组 方式二：使用数组字面量表示法1234var colors = [&amp;apos;red&amp;apos">
-<meta property="og:updated_time" content="2017-10-28T05:16:09.000Z">
+<meta property="og:description" content="创建数组的方式一：使用Array构造函数12var colors = new Array(3);               //创建一个包含3项的数组var names = new Array(&amp;apos;Greg&amp;apos;);           //创建一个包含1项，即字符串‘Greg’的数组 方式二：使用数组字面量表示法1234var colors = [&amp;apos;red&amp;apos;,">
+<meta property="og:updated_time" content="2018-01-18T02:13:33.369Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="songxx&#39;s blog">
-<meta name="twitter:description" content="数组创建数组的方式一：使用Array构造函数12var colors = new Array(3);               //创建一个包含3项的数组var names = new Array(&amp;apos;Greg&amp;apos;);           //创建一个包含1项，即字符串‘Greg’的数组 方式二：使用数组字面量表示法1234var colors = [&amp;apos;red&amp;apos">
+<meta name="twitter:title" content="数组操作方法整理">
+<meta name="twitter:description" content="创建数组的方式一：使用Array构造函数12var colors = new Array(3);               //创建一个包含3项的数组var names = new Array(&amp;apos;Greg&amp;apos;);           //创建一个包含1项，即字符串‘Greg’的数组 方式二：使用数组字面量表示法1234var colors = [&amp;apos;red&amp;apos;,">
 
 
 
@@ -144,7 +144,7 @@
 
 
 
-  <title> | songxx's blog</title>
+  <title>数组操作方法整理 | songxx's blog</title>
   
 
 
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">数组操作方法整理</h1>
         
 
         <div class="post-meta">
@@ -324,7 +324,7 @@
       
 
       
-        <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h3 id="创建数组的方式一：使用Array构造函数"><a href="#创建数组的方式一：使用Array构造函数" class="headerlink" title="创建数组的方式一：使用Array构造函数"></a>创建数组的方式一：使用Array构造函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var colors = new Array(3);               //创建一个包含3项的数组</span><br><span class="line">var names = new Array(&apos;Greg&apos;);           //创建一个包含1项，即字符串‘Greg’的数组</span><br></pre></td></tr></table></figure>
+        <h3 id="创建数组的方式一：使用Array构造函数"><a href="#创建数组的方式一：使用Array构造函数" class="headerlink" title="创建数组的方式一：使用Array构造函数"></a>创建数组的方式一：使用Array构造函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var colors = new Array(3);               //创建一个包含3项的数组</span><br><span class="line">var names = new Array(&apos;Greg&apos;);           //创建一个包含1项，即字符串‘Greg’的数组</span><br></pre></td></tr></table></figure>
 <h3 id="方式二：使用数组字面量表示法"><a href="#方式二：使用数组字面量表示法" class="headerlink" title="方式二：使用数组字面量表示法"></a>方式二：使用数组字面量表示法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var colors = [&apos;red&apos;, &apos;blue&apos;, &apos;yellow&apos;];      //创建一个包含3项的字符串数组</span><br><span class="line">var name = [];                               //创建了一个空数组</span><br><span class="line">var values = [1, 3, ];                       //不要这样写，会创建一个包含2或3项的数组，谷歌解析为2</span><br><span class="line">var options = [,,,];                      	 //不要这样写，会创建一个包含3或4项的数组，谷歌解析为3</span><br></pre></td></tr></table></figure>
 <h3 id="push-和pop-方法："><a href="#push-和pop-方法：" class="headerlink" title="push()和pop()方法："></a>push()和pop()方法：</h3><blockquote>
 <p>push()方法可以接受任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度。</p>
@@ -365,17 +365,29 @@
 <p>数组中所有的项都经过了function的筛选，最终返回一个新的数组</p>
 <p>数组aa本身没有变化，筛选后的结果为数组bb</p>
 </blockquote>
-<p>##4: object.assign<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;age:34, name:&apos;jim&apos;&#125;    </span><br><span class="line">var b = Object.assign(&#123;&#125;, a, &#123;age:23&#125;);    </span><br><span class="line">b  // Object &#123;age: 23, name: &quot;jim&quot;&#125;</span><br><span class="line">a  // Object &#123;age: 34, name: &quot;jim&quot;&#125;</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">##5: concat    </span><br><span class="line">concat() 方法用于连接两个或多个数组。</span><br><span class="line">该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</span><br><span class="line"></span><br><span class="line">#ES 6 扩展</span><br><span class="line">## 1:Array.from();</span><br><span class="line"></span><br><span class="line">`Array.from`方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。</span><br><span class="line"></span><br><span class="line">## 2:Array.fo();</span><br><span class="line"></span><br><span class="line">`Array.of`方法用于将一组值，转换为数组。</span><br><span class="line"></span><br><span class="line">## 3:数组实例的copyWithin()</span><br><span class="line"></span><br><span class="line">数组实例的`copyWithin`方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。</span><br></pre></td></tr></table></figure></p>
-<p>Array.prototype.copyWithin(target, start = 0, end = this.length)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">它接受三个参数。</span><br><span class="line"></span><br><span class="line">- target（必需）：从该位置开始替换数据。</span><br><span class="line">- start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。</span><br><span class="line">- end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。</span><br><span class="line"></span><br><span class="line">这三个参数都应该是数值，如果不是，会自动转为数值。</span><br></pre></td></tr></table></figure>
-<p>[1, 2, 3, 4, 5].copyWithin(0, 3)<br>// [4, 5, 3, 4, 5]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 4:find() 和 findIndex();</span><br><span class="line"></span><br><span class="line">数组实例的`find`方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为`true`的成员，然后返回该成员。如果没有符合条件的成员，则返回`undefined`。</span><br></pre></td></tr></table></figure></p>
-<p>[1, 5, 10, 15].find(function(value, index, arr) {<br>  return value &gt; 9;<br>}) // 10<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">数组实例的`findIndex`方法的用法与`find`方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回`-1`。</span><br></pre></td></tr></table></figure></p>
-<p>[1, 5, 10, 15].findIndex(function(value, index, arr) {<br>  return value &gt; 9;<br>}) // 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 5:数组实例的fill()</span><br><span class="line"></span><br><span class="line">`fill`方法使用给定值，填充一个数组。</span><br></pre></td></tr></table></figure></p>
-<p>[‘a’, ‘b’, ‘c’].fill(7)<br>// [7, 7, 7]</p>
-<p>new Array(3).fill(7)<br>// [7, 7, 7]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 6:数组实例的entries()，keys()和values() </span><br><span class="line"></span><br><span class="line">ES6提供三个新的方法——`entries()`，`keys()`和`values()`——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用`for...of`循环进行遍历，唯一的区别是`keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历。</span><br></pre></td></tr></table></figure></p>
-<p>for (let index of [‘a’, ‘b’].keys()) {<br>  console.log(index);<br>}<br>// 0<br>// 1</p>
-<p>for (let elem of [‘a’, ‘b’].values()) {<br>  console.log(elem);<br>}<br>// ‘a’<br>// ‘b’</p>
-<p>for (let [index, elem] of [‘a’, ‘b’].entries()) {<br>  console.log(index, elem);<br>}<br>// 0 “a”<br>// 1 “b”<br>```</p>
+<p>##4: object.assign<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;age:34, name:&apos;jim&apos;&#125;    </span><br><span class="line">var b = Object.assign(&#123;&#125;, a, &#123;age:23&#125;);    </span><br><span class="line">b  // Object &#123;age: 23, name: &quot;jim&quot;&#125;</span><br><span class="line">a  // Object &#123;age: 34, name: &quot;jim&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>##5: concat<br>concat() 方法用于连接两个或多个数组。<br>该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</p>
+<p>#ES 6 扩展</p>
+<h2 id="1-Array-from"><a href="#1-Array-from" class="headerlink" title="1:Array.from();"></a>1:Array.from();</h2><p><code>Array.from</code>方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。</p>
+<h2 id="2-Array-fo"><a href="#2-Array-fo" class="headerlink" title="2:Array.fo();"></a>2:Array.fo();</h2><p><code>Array.of</code>方法用于将一组值，转换为数组。</p>
+<h2 id="3-数组实例的copyWithin"><a href="#3-数组实例的copyWithin" class="headerlink" title="3:数组实例的copyWithin()"></a>3:数组实例的copyWithin()</h2><p>数组实例的<code>copyWithin</code>方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.copyWithin(target, start = 0, end = this.length)</span><br></pre></td></tr></table></figure>
+<p>它接受三个参数。</p>
+<ul>
+<li>target（必需）：从该位置开始替换数据。</li>
+<li>start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。</li>
+<li>end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。</li>
+</ul>
+<p>这三个参数都应该是数值，如果不是，会自动转为数值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 4, 5].copyWithin(0, 3)</span><br><span class="line">// [4, 5, 3, 4, 5]</span><br></pre></td></tr></table></figure>
+<h2 id="4-find-和-findIndex"><a href="#4-find-和-findIndex" class="headerlink" title="4:find() 和 findIndex();"></a>4:find() 和 findIndex();</h2><p>数组实例的<code>find</code>方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为<code>true</code>的成员，然后返回该成员。如果没有符合条件的成员，则返回<code>undefined</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 5, 10, 15].find(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;) // 10</span><br></pre></td></tr></table></figure>
+<p>数组实例的<code>findIndex</code>方法的用法与<code>find</code>方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回<code>-1</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 5, 10, 15].findIndex(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;) // 2</span><br></pre></td></tr></table></figure>
+<h2 id="5-数组实例的fill"><a href="#5-数组实例的fill" class="headerlink" title="5:数组实例的fill()"></a>5:数组实例的fill()</h2><p><code>fill</code>方法使用给定值，填充一个数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].fill(7)</span><br><span class="line">// [7, 7, 7]</span><br><span class="line"></span><br><span class="line">new Array(3).fill(7)</span><br><span class="line">// [7, 7, 7]</span><br></pre></td></tr></table></figure>
+<h2 id="6-数组实例的entries-，keys-和values"><a href="#6-数组实例的entries-，keys-和values" class="headerlink" title="6:数组实例的entries()，keys()和values()"></a>6:数组实例的entries()，keys()和values()</h2><p>ES6提供三个新的方法——<code>entries()</code>，<code>keys()</code>和<code>values()</code>——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用<code>for...of</code>循环进行遍历，唯一的区别是<code>keys()</code>是对键名的遍历、<code>values()</code>是对键值的遍历，<code>entries()</code>是对键值对的遍历。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].keys()) &#123;</span><br><span class="line">  console.log(index);</span><br><span class="line">&#125;</span><br><span class="line">// 0</span><br><span class="line">// 1</span><br><span class="line"></span><br><span class="line">for (let elem of [&apos;a&apos;, &apos;b&apos;].values()) &#123;</span><br><span class="line">  console.log(elem);</span><br><span class="line">&#125;</span><br><span class="line">// &apos;a&apos;</span><br><span class="line">// &apos;b&apos;</span><br><span class="line"></span><br><span class="line">for (let [index, elem] of [&apos;a&apos;, &apos;b&apos;].entries()) &#123;</span><br><span class="line">  console.log(index, elem);</span><br><span class="line">&#125;</span><br><span class="line">// 0 &quot;a&quot;</span><br><span class="line">// 1 &quot;b&quot;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -400,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/28/闭包/" rel="next" title="闭包">
-                <i class="fa fa-chevron-left"></i> 闭包
+              <a href="/2017/10/28/闭包/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -410,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/28/Promise-同步异步/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/28/commonjs与AMD/" rel="prev" title="commonjs、AMD、CMD介绍">
+                commonjs、AMD、CMD介绍 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -489,7 +501,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -528,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组的方式一：使用Array构造函数"><span class="nav-number">1.0.1.</span> <span class="nav-text">创建数组的方式一：使用Array构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二：使用数组字面量表示法"><span class="nav-number">1.0.2.</span> <span class="nav-text">方式二：使用数组字面量表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push-和pop-方法："><span class="nav-number">1.0.3.</span> <span class="nav-text">push()和pop()方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shift-方法"><span class="nav-number">1.0.4.</span> <span class="nav-text">shift()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unshift-方法"><span class="nav-number">1.0.5.</span> <span class="nav-text">unshift()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice-方法"><span class="nav-number">1.0.6.</span> <span class="nav-text">slice()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#splice-位置-，数量-，项，项，项………-方法mdn-splice"><span class="nav-number">1.0.7.</span> <span class="nav-text">splice( 位置 ，数量 ，项，项，项………)方法mdn-splice</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#map-reduce-filter"><span class="nav-number">2.</span> <span class="nav-text">map,reduce,filter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1：map"><span class="nav-number">2.1.</span> <span class="nav-text">1：map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2：reduce"><span class="nav-number">2.2.</span> <span class="nav-text">2：reduce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3：filter"><span class="nav-number">2.3.</span> <span class="nav-text">3：filter</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数组的方式一：使用Array构造函数"><span class="nav-number">1.</span> <span class="nav-text">创建数组的方式一：使用Array构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式二：使用数组字面量表示法"><span class="nav-number">2.</span> <span class="nav-text">方式二：使用数组字面量表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push-和pop-方法："><span class="nav-number">3.</span> <span class="nav-text">push()和pop()方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shift-方法"><span class="nav-number">4.</span> <span class="nav-text">shift()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unshift-方法"><span class="nav-number">5.</span> <span class="nav-text">unshift()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice-方法"><span class="nav-number">6.</span> <span class="nav-text">slice()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#splice-位置-，数量-，项，项，项………-方法mdn-splice"><span class="nav-number">7.</span> <span class="nav-text">splice( 位置 ，数量 ，项，项，项………)方法mdn-splice</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#map-reduce-filter"><span class="nav-number"></span> <span class="nav-text">map,reduce,filter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1：map"><span class="nav-number"></span> <span class="nav-text">1：map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2：reduce"><span class="nav-number"></span> <span class="nav-text">2：reduce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3：filter"><span class="nav-number"></span> <span class="nav-text">3：filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Array-from"><span class="nav-number"></span> <span class="nav-text">1:Array.from();</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Array-fo"><span class="nav-number"></span> <span class="nav-text">2:Array.fo();</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数组实例的copyWithin"><span class="nav-number"></span> <span class="nav-text">3:数组实例的copyWithin()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-find-和-findIndex"><span class="nav-number"></span> <span class="nav-text">4:find() 和 findIndex();</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-数组实例的fill"><span class="nav-number"></span> <span class="nav-text">5:数组实例的fill()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-数组实例的entries-，keys-和values"><span class="nav-number"></span> <span class="nav-text">6:数组实例的entries()，keys()和values()</span></a></div>
             
 
           </div>

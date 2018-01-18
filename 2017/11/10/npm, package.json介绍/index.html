@@ -100,16 +100,16 @@
 
 
 
-<meta name="description" content="npm, package.json介绍阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于">
+<meta name="description" content="阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于 npm 脚本就是 Shell 脚本，因">
 <meta property="og:type" content="article">
-<meta property="og:title" content="songxx&#39;s blog">
+<meta property="og:title" content="npm, package.json介绍">
 <meta property="og:url" content="http://yoursite.com/2017/11/10/npm, package.json介绍/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
-<meta property="og:description" content="npm, package.json介绍阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于">
-<meta property="og:updated_time" content="2017-11-10T05:51:16.000Z">
+<meta property="og:description" content="阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于 npm 脚本就是 Shell 脚本，因">
+<meta property="og:updated_time" content="2018-01-18T02:13:33.366Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="songxx&#39;s blog">
-<meta name="twitter:description" content="npm, package.json介绍阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于">
+<meta name="twitter:title" content="npm, package.json介绍">
+<meta name="twitter:description" content="阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于 npm 脚本就是 Shell 脚本，因">
 
 
 
@@ -144,7 +144,7 @@
 
 
 
-  <title> | songxx's blog</title>
+  <title>npm, package.json介绍 | songxx's blog</title>
   
 
 
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">npm, package.json介绍</h1>
         
 
         <div class="post-meta">
@@ -324,7 +324,7 @@
       
 
       
-        <h1 id="npm-package-json介绍"><a href="#npm-package-json介绍" class="headerlink" title="npm, package.json介绍"></a>npm, package.json介绍</h1><h5 id="阮一峰"><a href="#阮一峰" class="headerlink" title="阮一峰"></a><a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="noopener">阮一峰</a></h5><h3 id="Package-json目前使用过的功能："><a href="#Package-json目前使用过的功能：" class="headerlink" title="Package.json目前使用过的功能："></a>Package.json目前使用过的功能：</h3><p>1: 安装包 依赖管理</p>
+        <h5 id="阮一峰"><a href="#阮一峰" class="headerlink" title="阮一峰"></a><a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="noopener">阮一峰</a></h5><h3 id="Package-json目前使用过的功能："><a href="#Package-json目前使用过的功能：" class="headerlink" title="Package.json目前使用过的功能："></a>Package.json目前使用过的功能：</h3><p>1: 安装包 依赖管理</p>
 <p>2: 脚本管理、执行工具  如：npm run build</p>
 <h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>npm 脚本的原理非常简单。每当执行<code>npm run</code>，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。</p>
 <p>由于 npm 脚本就是 Shell 脚本，因为可以使用 Shell 通配符。</p>
@@ -366,8 +366,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/10/this - call, apply, bind - new操作符/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2017/11/10/this - call, apply, bind - new操作符/" rel="next" title="this - call, apply, bind - new操作符">
+                <i class="fa fa-chevron-left"></i> this - call, apply, bind - new操作符
               </a>
             
           </div>
@@ -376,8 +376,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/16/action_scope/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/16/action_scope/" rel="prev" title="js作用域理解">
+                js作用域理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -455,7 +455,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -494,7 +494,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#npm-package-json介绍"><span class="nav-number">1.</span> <span class="nav-text">npm, package.json介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#阮一峰"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">阮一峰</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-json目前使用过的功能："><span class="nav-number">1.0.1.</span> <span class="nav-text">Package.json目前使用过的功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm"><span class="nav-number">1.0.2.</span> <span class="nav-text">npm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dependencies字段，devDependencies字段"><span class="nav-number">1.1.</span> <span class="nav-text">dependencies字段，devDependencies字段</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#阮一峰"><span class="nav-number">1.</span> <span class="nav-text">阮一峰</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-json目前使用过的功能："><span class="nav-number"></span> <span class="nav-text">Package.json目前使用过的功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm"><span class="nav-number"></span> <span class="nav-text">npm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dependencies字段，devDependencies字段"><span class="nav-number"></span> <span class="nav-text">dependencies字段，devDependencies字段</span></a></div>
             
 
           </div>
