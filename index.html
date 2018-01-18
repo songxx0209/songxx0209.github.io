@@ -255,6 +255,127 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/事件代理和addEventListener/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/事件代理和addEventListener/" itemprop="url">事件代理，事件捕获、冒泡</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;事件代理和addEventListener&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul id=&quot;list&quot;&gt;</span><br><span class="line">        &lt;li id=&quot;item1&quot;&gt;item1&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item2&quot;&gt;item2&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item3&quot;&gt;item3&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item4&quot;&gt;item4&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    /*window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        var liNodes = ulNode.childNodes || ulNode.children;</span><br><span class="line">        for (var i = 0; i &lt; liNodes.length; i++) &#123;</span><br><span class="line">            liNodes[i].addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;, false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;*/</span><br><span class="line">    // 由上可以看出来，假如不停的删除或添加li，则function（）也要不停的更改操作，易出错，因此推荐使用事件代理</span><br><span class="line">    // https://segmentfault.com/a/1190000002613617</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        ulNode.addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">            console.log(e);</span><br><span class="line">            if (e.target &amp;&amp; e.target.nodeName.toUpperCase() == &quot;LI&quot;) &#123; /*判断目标事件是否为li*/</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true);</span><br><span class="line">    &#125;;</span><br><span class="line">    /*</span><br><span class="line">        http://www.runoob.com/jsref/met-element-addeventlistener.html</span><br><span class="line">        element.addEventListener(event, function, useCapture); IE9以下不支持该方法可以使用attachEvent()方法代替</span><br><span class="line">        可以在文档中添加许多事件，添加的事件不会覆盖已存在的事件。</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, myFunction);</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, someOtherFunction);</span><br><span class="line">    */</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>###事件Event相关,捕获-冒泡    </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/回调函数的理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -332,127 +453,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var a = 10;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        a *= 2;</span><br><span class="line">        return a;       </span><br><span class="line">    &#125;;   </span><br><span class="line">&#125;</span><br><span class="line">var f = foo();</span><br><span class="line">f(); //return 20.</span><br><span class="line">f(); //return 40.</span><br></pre></td></tr></table></figure>
 <p>顺带再理解一下闭包</p>
 <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/事件代理和addEventListener/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/28/事件代理和addEventListener/" itemprop="url">事件代理，事件捕获、冒泡</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
-                2017-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;事件代理和addEventListener&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul id=&quot;list&quot;&gt;</span><br><span class="line">        &lt;li id=&quot;item1&quot;&gt;item1&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item2&quot;&gt;item2&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item3&quot;&gt;item3&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item4&quot;&gt;item4&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    /*window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        var liNodes = ulNode.childNodes || ulNode.children;</span><br><span class="line">        for (var i = 0; i &lt; liNodes.length; i++) &#123;</span><br><span class="line">            liNodes[i].addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;, false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;*/</span><br><span class="line">    // 由上可以看出来，假如不停的删除或添加li，则function（）也要不停的更改操作，易出错，因此推荐使用事件代理</span><br><span class="line">    // https://segmentfault.com/a/1190000002613617</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        ulNode.addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">            console.log(e);</span><br><span class="line">            if (e.target &amp;&amp; e.target.nodeName.toUpperCase() == &quot;LI&quot;) &#123; /*判断目标事件是否为li*/</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true);</span><br><span class="line">    &#125;;</span><br><span class="line">    /*</span><br><span class="line">        http://www.runoob.com/jsref/met-element-addeventlistener.html</span><br><span class="line">        element.addEventListener(event, function, useCapture); IE9以下不支持该方法可以使用attachEvent()方法代替</span><br><span class="line">        可以在文档中添加许多事件，添加的事件不会覆盖已存在的事件。</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, myFunction);</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, someOtherFunction);</span><br><span class="line">    */</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>###事件Event相关,捕获-冒泡    </p>
-
           
         
       
