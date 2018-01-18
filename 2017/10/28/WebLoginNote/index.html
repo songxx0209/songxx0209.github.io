@@ -100,16 +100,16 @@
 
 
 
-<meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;    &amp;lt;">
+<meta name="description" content="web login1：登录首先应该做什么呢？ 用户输入U，P，点击登录，向后台发送请求；  后台服务器接受到u，p后，会记录下来，生成一个sessionid，csrfken；  下面会有两步，一是将sessionid放到cookie中通过response返回给前端的请求；二是：将sessionid保存包后台的 session store中；      sessionid用来验证用户登录， csrf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件代理，事件捕获、冒泡">
-<meta property="og:url" content="http://yoursite.com/2017/10/28/事件代理和addEventListener/index.html">
+<meta property="og:title" content="songxx&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2017/10/28/WebLoginNote/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;    &amp;lt;">
-<meta property="og:updated_time" content="2018-01-18T00:34:44.061Z">
+<meta property="og:description" content="web login1：登录首先应该做什么呢？ 用户输入U，P，点击登录，向后台发送请求；  后台服务器接受到u，p后，会记录下来，生成一个sessionid，csrfken；  下面会有两步，一是将sessionid放到cookie中通过response返回给前端的请求；二是：将sessionid保存包后台的 session store中；      sessionid用来验证用户登录， csrf">
+<meta property="og:updated_time" content="2017-10-28T05:16:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件代理，事件捕获、冒泡">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;    &amp;lt;">
+<meta name="twitter:title" content="songxx&#39;s blog">
+<meta name="twitter:description" content="web login1：登录首先应该做什么呢？ 用户输入U，P，点击登录，向后台发送请求；  后台服务器接受到u，p后，会记录下来，生成一个sessionid，csrfken；  下面会有两步，一是将sessionid放到cookie中通过response返回给前端的请求；二是：将sessionid保存包后台的 session store中；      sessionid用来验证用户登录， csrf">
 
 
 
@@ -138,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/28/事件代理和addEventListener/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/28/WebLoginNote/"/>
 
 
 
 
 
-  <title>事件代理，事件捕获、冒泡 | songxx's blog</title>
+  <title> | songxx's blog</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/事件代理和addEventListener/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/WebLoginNote/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">事件代理，事件捕获、冒泡</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,21 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;事件代理和addEventListener&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul id=&quot;list&quot;&gt;</span><br><span class="line">        &lt;li id=&quot;item1&quot;&gt;item1&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item2&quot;&gt;item2&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item3&quot;&gt;item3&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item4&quot;&gt;item4&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    /*window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        var liNodes = ulNode.childNodes || ulNode.children;</span><br><span class="line">        for (var i = 0; i &lt; liNodes.length; i++) &#123;</span><br><span class="line">            liNodes[i].addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;, false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;*/</span><br><span class="line">    // 由上可以看出来，假如不停的删除或添加li，则function（）也要不停的更改操作，易出错，因此推荐使用事件代理</span><br><span class="line">    // https://segmentfault.com/a/1190000002613617</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        ulNode.addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">            console.log(e);</span><br><span class="line">            if (e.target &amp;&amp; e.target.nodeName.toUpperCase() == &quot;LI&quot;) &#123; /*判断目标事件是否为li*/</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true);</span><br><span class="line">    &#125;;</span><br><span class="line">    /*</span><br><span class="line">        http://www.runoob.com/jsref/met-element-addeventlistener.html</span><br><span class="line">        element.addEventListener(event, function, useCapture); IE9以下不支持该方法可以使用attachEvent()方法代替</span><br><span class="line">        可以在文档中添加许多事件，添加的事件不会覆盖已存在的事件。</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, myFunction);</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, someOtherFunction);</span><br><span class="line">    */</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>###事件Event相关,捕获-冒泡    </p>
+        <h1 id="web-login"><a href="#web-login" class="headerlink" title="web login"></a>web login</h1><h3 id="1：登录首先应该做什么呢？"><a href="#1：登录首先应该做什么呢？" class="headerlink" title="1：登录首先应该做什么呢？"></a>1：登录首先应该做什么呢？</h3><ul>
+<li><p>用户输入U，P，点击登录，向后台发送请求；</p>
+</li>
+<li><p>后台服务器接受到u，p后，会记录下来，生成一个sessionid，csrfken；</p>
+</li>
+<li><p>下面会有两步，一是将sessionid放到cookie中通过response返回给前端的请求；二是：将sessionid保存包后台的 session store中；</p>
+</li>
+</ul>
+<hr>
+<p>  sessionid用来验证用户登录， csrfken用于防止csrf攻击（具体原理查资料）</p>
+<ul>
+<li>当前前端浏览器cookie已经记录住sessionid，csrf；</li>
+<li>浏览器中当用户发送下一次请求时，请求会自动带上cookie，发送到后台；</li>
+<li>后台等到cookie中的sessionid，和session store中比较，成功返回相应的数据；</li>
+</ul>
 
       
     </div>
@@ -350,8 +363,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/28/WebLoginNote/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2017/10/28/回调函数的理解/" rel="next" title="回调函数的理解">
+                <i class="fa fa-chevron-left"></i> 回调函数的理解
               </a>
             
           </div>
@@ -360,8 +373,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/28/commonjs与AMD/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/28/事件代理和addEventListener/" rel="prev" title="事件代理，事件捕获、冒泡">
+                事件代理，事件捕获、冒泡 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -414,8 +427,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -459,6 +481,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web-login"><span class="nav-number">1.</span> <span class="nav-text">web login</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：登录首先应该做什么呢？"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：登录首先应该做什么呢？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
