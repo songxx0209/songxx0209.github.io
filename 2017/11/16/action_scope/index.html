@@ -100,16 +100,16 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="js 作用域在《JavaScript深入之词法作用域和动态作用域》中讲到，函数的作用域在函数定义的时候就决定了。 作用域作用域是指程序源代码中定义变量的区域。 作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。 JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。 词法作用域 变量声明提升机制， 函数内部定义的变量，会提升占位； 在定义前使用变">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/01/11/hello-world/index.html">
+<meta property="og:title" content="songxx&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2017/11/16/action_scope/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2018-01-11T08:57:50.744Z">
+<meta property="og:description" content="js 作用域在《JavaScript深入之词法作用域和动态作用域》中讲到，函数的作用域在函数定义的时候就决定了。 作用域作用域是指程序源代码中定义变量的区域。 作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。 JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。 词法作用域 变量声明提升机制， 函数内部定义的变量，会提升占位； 在定义前使用变">
+<meta property="og:updated_time" content="2017-11-16T03:30:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="songxx&#39;s blog">
+<meta name="twitter:description" content="js 作用域在《JavaScript深入之词法作用域和动态作用域》中讲到，函数的作用域在函数定义的时候就决定了。 作用域作用域是指程序源代码中定义变量的区域。 作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。 JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。 词法作用域 变量声明提升机制， 函数内部定义的变量，会提升占位； 在定义前使用变">
 
 
 
@@ -138,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/11/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/16/action_scope/"/>
 
 
 
 
 
-  <title>Hello World | songxx's blog</title>
+  <title> | songxx's blog</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/action_scope/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-11T16:57:50+08:00">
-                2018-01-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-16T11:22:13+08:00">
+                2017-11-16
               </time>
             
 
@@ -324,15 +324,24 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="js-作用域"><a href="#js-作用域" class="headerlink" title="js 作用域"></a>js 作用域</h1><p>在<a href="https://github.com/mqyqingfeng/Blog/issues/3" target="_blank" rel="noopener">《JavaScript深入之词法作用域和动态作用域》</a>中讲到，函数的作用域在函数定义的时候就决定了。</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>作用域是指程序源代码中定义变量的区域。</p>
+<p>作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。</p>
+<p>JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。</p>
+<h3 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h3><ul>
+<li><p>变量声明提升机制， 函数内部定义的变量，会提升占位； 在定义前使用变量则为undefined；</p>
+</li>
+<li><p>什么叫变量提升</p>
+<p>变量声明，不管在哪里发生（声明），都会在任意代码执行前处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var value = 1;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">    console.log(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function bar() &#123;</span><br><span class="line">    var value = 2;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar();</span><br><span class="line"></span><br><span class="line">// 结果是 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var scope = &quot;global scope&quot;;</span><br><span class="line">    function checkscope()&#123;</span><br><span class="line">        var scope = &quot;local scope&quot;;</span><br><span class="line">        function f()&#123;</span><br><span class="line">            console.log(scope);</span><br><span class="line">        &#125;</span><br><span class="line">        return f;</span><br><span class="line">    &#125;</span><br><span class="line">    checkscope()(); // local scope</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<p>词法作用域就是 静态作用域；</p>
+<p><strong>原因也很简单，因为JavaScript采用的是词法作用域，函数的作用域基于函数创建的位置。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">  var a = b = 3;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">console.log(a); // undefined</span><br><span class="line">console.log(b); // 3</span><br><span class="line"></span><br><span class="line">// 可以理解为</span><br><span class="line">(function()&#123;</span><br><span class="line">  b = 3;</span><br><span class="line">  var a = b;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
 
       
     </div>
@@ -357,7 +366,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/20/mock假数据/" rel="next" title="">
+              <a href="/2017/11/10/npm, package.json介绍/" rel="next" title="">
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
@@ -367,7 +376,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/11/js操作符/" rel="prev" title="">
+              <a href="/2017/11/16/prototype/" rel="prev" title="">
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -485,7 +494,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js-作用域"><span class="nav-number">1.</span> <span class="nav-text">js 作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.1.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#词法作用域"><span class="nav-number">1.1.1.</span> <span class="nav-text">词法作用域</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/01/15/npm/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
 <meta property="og:description" content="查看npm命令：  1$ npm help  初始化一个基于node的项目，会创建一个配置文件package.json（两种方式）:  12345//1.一般情况下 一路enter$ npm init//2.全部使用默认配置$npm init --yes  安装模块（包）：  1234567891011//全局安装$ npm install 模块名 -g//本地安装$ npm install 模">
-<meta property="og:updated_time" content="2018-01-15T01:02:33.279Z">
+<meta property="og:updated_time" content="2018-01-15T01:35:37.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="npm常用命令">
 <meta name="twitter:description" content="查看npm命令：  1$ npm help  初始化一个基于node的项目，会创建一个配置文件package.json（两种方式）:  12345//1.一般情况下 一路enter$ npm init//2.全部使用默认配置$npm init --yes  安装模块（包）：  1234567891011//全局安装$ npm install 模块名 -g//本地安装$ npm install 模">
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -220,7 +220,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -284,7 +284,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-15T08:51:24+08:00">
                 2018-01-15
@@ -375,12 +375,21 @@
 <h2 id="使用国内npm镜像源-3种方式"><a href="#使用国内npm镜像源-3种方式" class="headerlink" title="使用国内npm镜像源(3种方式)"></a>使用国内npm镜像源(3种方式)</h2><ol>
 <li><p>使用配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set registry 镜像源地址</span><br></pre></td></tr></table></figure>
+<p><strong>npm config管理 npm的配置路径</strong></p>
+<p>常用于设置npm代理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set proxy=http://dev-proxy.oa.com:8080</span><br></pre></td></tr></table></figure>
+<p>​</p>
 </li>
 <li><p>使用cnpm：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//先安装cnpm工具</span><br><span class="line">$ npm install -g cnpm --registry=镜像源地址</span><br><span class="line">//使用cnpm代替npm</span><br><span class="line">$ cnpm install 模块名</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用nrm（推荐）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//1.先安装nrm工具</span><br><span class="line">$ npm install -g nrm</span><br><span class="line"></span><br><span class="line">//2.查看当前可用的镜像源</span><br><span class="line">$ nrm ls</span><br><span class="line"></span><br><span class="line">//3.切换npm源</span><br><span class="line">$ nrm use 镜像源名称</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//1.先安装nrm工具</span><br><span class="line">$ npm install -g nrm</span><br><span class="line"></span><br><span class="line">//2.查看当前可用的镜像源</span><br><span class="line">$ nrm ls</span><br><span class="line"></span><br><span class="line">//3.切换npm源</span><br><span class="line">$ nrm use 镜像源名称</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>npm cache 管理模块的缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean // 清空缓存</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
 </ol>
 
       
@@ -415,6 +424,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/16/various-heights-of-js/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -468,10 +481,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -491,8 +504,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -562,7 +575,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

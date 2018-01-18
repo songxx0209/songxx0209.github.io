@@ -100,16 +100,16 @@
 
 
 
-<meta name="description" content="读书笔记 - 《编写可读代码的艺术》1：代码应当易于理解；  代码的写法应当使别人理解它所需的时间最小化；  2：在短代码 和 易于理解 之间怎么抉择？  总是越小越好吗？ 易于理解 &amp;gt; 代码量小（优先级）  表面层次的改进1：选择好的名字、写好的注释、保持代码的整洁 把信息装到名字里 命名时，需要精准，具体；不要含糊不清，选词准确。 ​  取名字，首先取好中文名字； 取名字时，多想想别人能">
+<meta name="description" content="npm, package.json介绍阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="code-readability">
-<meta property="og:url" content="http://yoursite.com/2018/01/11/code-readability/index.html">
+<meta property="og:title" content="songxx&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2017/11/10/npm, package.json介绍/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
-<meta property="og:description" content="读书笔记 - 《编写可读代码的艺术》1：代码应当易于理解；  代码的写法应当使别人理解它所需的时间最小化；  2：在短代码 和 易于理解 之间怎么抉择？  总是越小越好吗？ 易于理解 &amp;gt; 代码量小（优先级）  表面层次的改进1：选择好的名字、写好的注释、保持代码的整洁 把信息装到名字里 命名时，需要精准，具体；不要含糊不清，选词准确。 ​  取名字，首先取好中文名字； 取名字时，多想想别人能">
-<meta property="og:updated_time" content="2018-01-11T13:01:29.532Z">
+<meta property="og:description" content="npm, package.json介绍阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于">
+<meta property="og:updated_time" content="2017-11-10T05:51:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="code-readability">
-<meta name="twitter:description" content="读书笔记 - 《编写可读代码的艺术》1：代码应当易于理解；  代码的写法应当使别人理解它所需的时间最小化；  2：在短代码 和 易于理解 之间怎么抉择？  总是越小越好吗？ 易于理解 &amp;gt; 代码量小（优先级）  表面层次的改进1：选择好的名字、写好的注释、保持代码的整洁 把信息装到名字里 命名时，需要精准，具体；不要含糊不清，选词准确。 ​  取名字，首先取好中文名字； 取名字时，多想想别人能">
+<meta name="twitter:title" content="songxx&#39;s blog">
+<meta name="twitter:description" content="npm, package.json介绍阮一峰Package.json目前使用过的功能：1: 安装包 依赖管理 2: 脚本管理、执行工具  如：npm run build npmnpm 脚本的原理非常简单。每当执行npm run，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。 由于">
 
 
 
@@ -138,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/11/code-readability/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/10/npm, package.json介绍/"/>
 
 
 
 
 
-  <title>code-readability | songxx's blog</title>
+  <title> | songxx's blog</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/code-readability/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/10/npm, package.json介绍/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">code-readability</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-11T18:26:53+08:00">
-                2018-01-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-10T11:40:30+08:00">
+                2017-11-10
               </time>
             
 
@@ -324,69 +324,24 @@
       
 
       
-        <h2 id="读书笔记-《编写可读代码的艺术》"><a href="#读书笔记-《编写可读代码的艺术》" class="headerlink" title="读书笔记 - 《编写可读代码的艺术》"></a>读书笔记 - 《编写可读代码的艺术》</h2><p>1：代码应当易于理解；</p>
-<ul>
-<li>代码的写法应当使别人理解它所需的时间最小化；</li>
-</ul>
-<p>2：在短代码 和 易于理解 之间怎么抉择？</p>
-<ul>
-<li>总是越小越好吗？</li>
-<li>易于理解 &gt; 代码量小（优先级）</li>
-</ul>
-<h4 id="表面层次的改进"><a href="#表面层次的改进" class="headerlink" title="表面层次的改进"></a>表面层次的改进</h4><p>1：选择好的名字、写好的注释、保持代码的整洁</p>
-<h5 id="把信息装到名字里"><a href="#把信息装到名字里" class="headerlink" title="把信息装到名字里"></a>把信息装到名字里</h5><ul>
-<li>命名时，需要精准，具体；不要含糊不清，选词准确。</li>
-<li>​</li>
-</ul>
-<p>取名字，首先取好中文名字；</p>
-<p>取名字时，多想想别人能看懂这个名字吗？</p>
-<ul>
-<li>使用专业的单词： 例如，不用get，而用fetch，download；</li>
-<li>避免空乏的名字，像tmp合retval，除非使用它们有特殊理由；</li>
-<li>使用具体的名字来更细致的描述事物，servercanStart()</li>
-<li>给变量名带上重要的细节 — 例如， 在值为毫秒的变量后面加上 _ms，</li>
-<li>为作用域大的名字采用更长的名字 — 在小的作用域里面使用短的名字</li>
-<li>有目的的使用大小写、下划线</li>
-</ul>
-<p>带单位的值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var start_ms = 200;</span><br><span class="line">var start_day = 200;</span><br><span class="line">var start_h = 200;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>推荐使用min和max表示极限</p>
-</li>
-<li><p>first和last表示包含的范围，begain、end表示包含／排除范围</p>
-</li>
-<li><p>为布尔值命名：加上像is、has、can、should</p>
-<p>​</p>
-</li>
-</ul>
-<h4 id="审美很重要"><a href="#审美很重要" class="headerlink" title="审美很重要"></a>审美很重要</h4><p>使用一致的布局，让读者很快就习惯这种风格</p>
-<p>让相似的代码看上去相似</p>
-<p>把相关的代码行分组，形成代码块</p>
+        <h1 id="npm-package-json介绍"><a href="#npm-package-json介绍" class="headerlink" title="npm, package.json介绍"></a>npm, package.json介绍</h1><h5 id="阮一峰"><a href="#阮一峰" class="headerlink" title="阮一峰"></a><a href="http://www.ruanyifeng.com/blog/2016/10/npm_scripts.html" target="_blank" rel="noopener">阮一峰</a></h5><h3 id="Package-json目前使用过的功能："><a href="#Package-json目前使用过的功能：" class="headerlink" title="Package.json目前使用过的功能："></a>Package.json目前使用过的功能：</h3><p>1: 安装包 依赖管理</p>
+<p>2: 脚本管理、执行工具  如：npm run build</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>npm 脚本的原理非常简单。每当执行<code>npm run</code>，就会自动新建一个 Shell，在这个 Shell 里面执行指定的脚本命令。因此，只要是 Shell（一般是 Bash）可以运行的命令，就可以写在 npm 脚本里面。</p>
+<p>由于 npm 脚本就是 Shell 脚本，因为可以使用 Shell 通配符。</p>
 <blockquote>
-<p>在需要的时候使用列对齐</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; data(&quot;hello world&quot;       , &quot;are you ok&quot;              , &quot;&quot;);</span><br><span class="line">&gt; data(&quot;hello worldss sdsd&quot;, &quot;are you ok, im ok thanks&quot;, &quot;&quot;);</span><br><span class="line">&gt; data(&quot;hello world&quot;       , &quot;are you ok&quot;              , &quot;oh, my god&quot;);</span><br><span class="line">&gt;</span><br><span class="line">&gt; var ok          = request();</span><br><span class="line">&gt; var development = request();</span><br><span class="line">&gt; var apple       = equest(); // 这样能清晰的看出不同，不容易出错</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; &quot;lint&quot;: &quot;jshint *.js&quot;</span><br><span class="line">&gt; &quot;lint&quot;: &quot;jshint **/*.js&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>&gt;</p>
+<p>npm 脚本有一个非常强大的功能，就是可以使用 npm 的内部变量。</p>
+<p>首先，通过<code>npm_package_</code>前缀，npm 脚本可以拿到<code>package.json</code>里面的字段。比如，下面是一个<code>package.json</code>。</p>
 <blockquote>
-<p>这样能很清晰的分辨 函数的参数，及对应关系；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; &#123;</span><br><span class="line">&gt;   &quot;name&quot;: &quot;foo&quot;, </span><br><span class="line">&gt;   &quot;version&quot;: &quot;1.2.5&quot;,</span><br><span class="line">&gt;   &quot;scripts&quot;: &#123;</span><br><span class="line">&gt;     &quot;view&quot;: &quot;node view.js&quot;</span><br><span class="line">&gt;   &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>总结：</p>
-<p>dry，不要重复你自己；如果有多个相同的代码块做相同的事情，尝试封装起来；</p>
-<p>如果一段代码中提到：a, b和c；那么不要在另一个地方说：b, c和a；选择一个有意义的顺序并一致使用它；</p>
-<p>用空行（换行）来区分代码逻辑；</p>
-<h4 id="该怎么写注释"><a href="#该怎么写注释" class="headerlink" title="该怎么写注释"></a>该怎么写注释</h4><p>注释的目的是尽量帮助读者快速的了解内容；</p>
-<p>为代码中的瑕疵写注释；</p>
-<p>给读者不容易理解的常量加注释；</p>
-<p>想象一下你的代码别人能看得懂吗？（站在读者，<code>对方的角度去思考问题</code>）</p>
-<p>公布可能的陷阱；  </p>
-<p>总结行的注释；</p>
-<p>克服心理阻滞；开始时先把自己想的注释出来；</p>
-<p>精确的描述函数的行为；</p>
-<p>使用输入／输出的方式来写注释；比如一个函数输入什么会得到（输出）什么；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a(1); // 3</span><br></pre></td></tr></table></figure>
-<p>从功能，输出结果上描述你的代码； </p>
-<h4 id="简化循环和逻辑"><a href="#简化循环和逻辑" class="headerlink" title="简化循环和逻辑"></a>简化循环和逻辑</h4><p>最小化代码，简化逻辑；</p>
-<h4 id="把控制流变得易读"><a href="#把控制流变得易读" class="headerlink" title="把控制流变得易读"></a>把控制流变得易读</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(条件)&#123;&#125;</span><br><span class="line">else &#123;&#125; // 相反的条件</span><br><span class="line">// 条件判断的顺序，需要深思熟虑，肯定有一种是更好的；</span><br></pre></td></tr></table></figure>
+<p>那么，变量<code>npm_package_name</code>返回<code>foo</code>，变量<code>npm_package_version</code>返回<code>1.2.5</code>。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; // view.js</span><br><span class="line">&gt; console.log(process.env.npm_package_name); // foo</span><br><span class="line">&gt; console.log(process.env.npm_package_version); // 1.2.5</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="dependencies字段，devDependencies字段"><a href="#dependencies字段，devDependencies字段" class="headerlink" title="dependencies字段，devDependencies字段"></a>dependencies字段，devDependencies字段</h2><p><code>dependencies</code>字段指定了项目运行所依赖的模块，<code>devDependencies</code>指定项目开发所需要的模块。</p>
+<p><strong>它们都指向一个对象</strong>。该对象的各个成员，分别由模块名和对应的版本要求组成，表示依赖的模块及其版本范围。</p>
 
       
     </div>
@@ -411,7 +366,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/11/一次面试记录/" rel="next" title="">
+              <a href="/2017/11/10/this - call, apply, bind - new操作符/" rel="next" title="">
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
@@ -421,8 +376,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/15/npm/" rel="prev" title="npm常用命令">
-                npm常用命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/16/action_scope/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -539,7 +494,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#读书笔记-《编写可读代码的艺术》"><span class="nav-number">1.</span> <span class="nav-text">读书笔记 - 《编写可读代码的艺术》</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表面层次的改进"><span class="nav-number">1.0.1.</span> <span class="nav-text">表面层次的改进</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#把信息装到名字里"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">把信息装到名字里</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#审美很重要"><span class="nav-number">1.0.2.</span> <span class="nav-text">审美很重要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#该怎么写注释"><span class="nav-number">1.0.3.</span> <span class="nav-text">该怎么写注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简化循环和逻辑"><span class="nav-number">1.0.4.</span> <span class="nav-text">简化循环和逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把控制流变得易读"><span class="nav-number">1.0.5.</span> <span class="nav-text">把控制流变得易读</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#npm-package-json介绍"><span class="nav-number">1.</span> <span class="nav-text">npm, package.json介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#阮一峰"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">阮一峰</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-json目前使用过的功能："><span class="nav-number">1.0.1.</span> <span class="nav-text">Package.json目前使用过的功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm"><span class="nav-number">1.0.2.</span> <span class="nav-text">npm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dependencies字段，devDependencies字段"><span class="nav-number">1.1.</span> <span class="nav-text">dependencies字段，devDependencies字段</span></a></li></ol></li></ol></div>
             
 
           </div>
