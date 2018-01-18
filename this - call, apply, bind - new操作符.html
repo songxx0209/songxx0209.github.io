@@ -100,16 +100,16 @@
 
 
 
-<meta name="description" content="class、装饰器 什么是类（class）， 如何使用，场景，注意事项； 什么是装饰器，如何使用，场景，注意事项； 类 和 装饰器之间的联系；  类 - class随着互联网行业的快速发展，程序员需要面对的业务、展示场景也越来越复杂；在这种情况下需要编写维护的代码量也是相当庞大的一个数字；那如何来维护这么庞大的代码呢？ 人们常用的方式是模块化；业界中常使用的方法是“面向对象编程”；但是javasc">
-<meta property="og:type" content="article">
+<meta name="description" content="this - call, apply, bind - new操作符学过bind()\apply()\call()函数的都应该知道，它接收的第一个参数即是上下文对象并将其赋给this。 call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以">
+<meta property="og:type" content="website">
 <meta property="og:title" content="songxx&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/2017/12/15/ES6-class/index.html">
+<meta property="og:url" content="http://yoursite.com/this - call, apply, bind - new操作符.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
-<meta property="og:description" content="class、装饰器 什么是类（class）， 如何使用，场景，注意事项； 什么是装饰器，如何使用，场景，注意事项； 类 和 装饰器之间的联系；  类 - class随着互联网行业的快速发展，程序员需要面对的业务、展示场景也越来越复杂；在这种情况下需要编写维护的代码量也是相当庞大的一个数字；那如何来维护这么庞大的代码呢？ 人们常用的方式是模块化；业界中常使用的方法是“面向对象编程”；但是javasc">
-<meta property="og:updated_time" content="2017-12-15T08:23:27.000Z">
+<meta property="og:description" content="this - call, apply, bind - new操作符学过bind()\apply()\call()函数的都应该知道，它接收的第一个参数即是上下文对象并将其赋给this。 call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以">
+<meta property="og:updated_time" content="2017-11-10T03:34:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="songxx&#39;s blog">
-<meta name="twitter:description" content="class、装饰器 什么是类（class）， 如何使用，场景，注意事项； 什么是装饰器，如何使用，场景，注意事项； 类 和 装饰器之间的联系；  类 - class随着互联网行业的快速发展，程序员需要面对的业务、展示场景也越来越复杂；在这种情况下需要编写维护的代码量也是相当庞大的一个数字；那如何来维护这么庞大的代码呢？ 人们常用的方式是模块化；业界中常使用的方法是“面向对象编程”；但是javasc">
+<meta name="twitter:description" content="this - call, apply, bind - new操作符学过bind()\apply()\call()函数的都应该知道，它接收的第一个参数即是上下文对象并将其赋给this。 call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以">
 
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/15/ES6-class/"/>
+  <link rel="canonical" href="http://yoursite.com/this - call, apply, bind - new操作符.html"/>
 
 
 
@@ -245,153 +245,43 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/ES6-class/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline"></h1>
-        
+	<h1 class="post-title" itemprop="name headline"></h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-15T15:29:22+08:00">
-                2017-12-15
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <h1 id="class、装饰器"><a href="#class、装饰器" class="headerlink" title="class、装饰器"></a>class、装饰器</h1><blockquote>
-<p>什么是类（class）， 如何使用，场景，注意事项；</p>
-<p>什么是装饰器，如何使用，场景，注意事项；</p>
-<p>类 和 装饰器之间的联系；</p>
+      <div class="post-body">
+        
+        
+          <h1 id="this-call-apply-bind-new操作符"><a href="#this-call-apply-bind-new操作符" class="headerlink" title="this - call, apply, bind - new操作符"></a>this - call, apply, bind - new操作符</h1><p>学过bind()\apply()\call()函数的都应该知道，它接收的第一个参数即是上下文对象并将其赋给this。</p>
+<p>call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。因为 JavaScript 的函数存在「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。</p>
+<blockquote>
+<p>var func1 = function(arg1, arg2) {};</p>
 </blockquote>
-<h2 id="类-class"><a href="#类-class" class="headerlink" title="类 - class"></a>类 - class</h2><p>随着互联网行业的快速发展，程序员需要面对的业务、展示场景也越来越复杂；在这种情况下需要编写维护的代码量也是相当庞大的一个数字；那如何来维护这么庞大的代码呢？</p>
-<p>人们常用的方式是模块化；业界中常使用的方法是“面向对象编程”；但是javascript在<code>ES6</code>之前是不支持类（class）的；所以才在ES6中提出类<code>class</code>的概念；</p>
-<p><strong>ES5之前，Javascript定义类（class）的三种方法</strong></p>
-<p><a href="http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html" target="_blank" rel="noopener">阮一峰es6之前创建类的方法</a></p>
-<h3 id="ES6种class"><a href="#ES6种class" class="headerlink" title="ES6种class"></a>ES6种class</h3><p>ECMAScript 2015 中引入的 JavaScript 类(<code>classes</code>) 实质上是 JavaScript 现有的基于原型的继承的语法糖。 类语法不是向JavaScript引入一个新的面向对象的继承模型。JavaScript类提供了一个更简单和更清晰的语法来创建对象并处理继承。</p>
-<p><code>static</code> 关键字用来定义一个类的一个静态方法。调用静态方法不需要<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#The_object_(class_instance" target="_blank" rel="noopener">实例化</a>)该类，但不能通过一个类实例调用静态方法。静态方法通常用于为一个应用程序创建工具函数。</p>
-<p><code>extends</code> 关键字在类声明或类表达式中用于创建一个类作为另一个类的一个子类。</p>
-
+<p>就可以通过 func1.call(this, arg1, arg2); 或者 func1.apply(this, [arg1, arg2]); 来调用。其中 this 是你想指定的上下文，他可以任何一个 JavaScript 对象(JavaScript 中一切皆对象)，call 需要把参数按顺序传递进去，而 apply 则是把参数放在数组里。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj.call(thisObj, arg1, arg2, ...);</span><br><span class="line">obj.apply(thisObj, [arg1, arg2, ...]);</span><br></pre></td></tr></table></figure>
+<p>两者作用一致，都是把obj(即this)绑定到thisObj，这时候thisObj具备了obj的属性和方法。或者说thisObj『继承』了obj的属性和方法。</p>
+<p>唯一区别是apply接受的是数组参数，call接受的是连续参数。</p>
+<p><a href="https://link.zhihu.com/?target=http%3A//www.cnblogs.com/52fhy/p/5118877.html" target="_blank" rel="noopener">js笔记——call,apply,bind使用笔记</a></p>
+<h5 id="函数在哪里调用才决定了this到底引用的是啥"><a href="#函数在哪里调用才决定了this到底引用的是啥" class="headerlink" title="函数在哪里调用才决定了this到底引用的是啥"></a>函数在哪里调用才决定了this到底引用的是啥</h5><h5 id="函数在什么环境里被调用，this就只向这个环境；（不使用call-apply-bind的情况）"><a href="#函数在什么环境里被调用，this就只向这个环境；（不使用call-apply-bind的情况）" class="headerlink" title="函数在什么环境里被调用，this就只向这个环境；（不使用call, apply, bind的情况）"></a>函数在什么环境里被调用，this就只向这个环境；（不使用call, apply, bind的情况）</h5>
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/12/04/小程序/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/11/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -488,7 +378,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#class、装饰器"><span class="nav-number">1.</span> <span class="nav-text">class、装饰器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类-class"><span class="nav-number">1.1.</span> <span class="nav-text">类 - class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6种class"><span class="nav-number">1.1.1.</span> <span class="nav-text">ES6种class</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this-call-apply-bind-new操作符"><span class="nav-number">1.</span> <span class="nav-text">this - call, apply, bind - new操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#函数在哪里调用才决定了this到底引用的是啥"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">函数在哪里调用才决定了this到底引用的是啥</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数在什么环境里被调用，this就只向这个环境；（不使用call-apply-bind的情况）"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">函数在什么环境里被调用，this就只向这个环境；（不使用call, apply, bind的情况）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -614,10 +504,10 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
