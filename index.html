@@ -255,6 +255,1657 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/移动端自适应相关设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/移动端自适应相关设置/" itemprop="url">移动端自适应学习&&关于各种长度单位的理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>由于网页会根据屏幕宽度调整布局，所以不能使用绝对宽度的布局，也不能使用具有绝对宽度的元素。这一条非常重要。</code></p>
+<p><a href="https://github.com/jawil/blog/issues/21" target="_blank" rel="noopener">各种像素、Viewport介绍</a></p>
+<p><a href="https://github.com/iuap-design/blog/issues/212" target="_blank" rel="noopener">像素，分辨率，像素密度PPI 的介绍</a></p>
+<p><a href="https://segmentfault.com/a/1190000005656849" target="_blank" rel="noopener">window.devicePixelRatio 独立像素比</a></p>
+<p>我们是不是应该以一个顺序来研究一个东西呢；</p>
+<p>首先我们拿到一个手机，对于屏幕而言，最直观的概念是什么？</p>
+<p>肯定是屏幕的大小啊，而屏幕的大小有一个专业的单位：英寸（inch） 1inch = 2.54cm</p>
+<p>所以我们可以看出英寸并不是指的屏幕的面积，因为它是一个长度单位；</p>
+<blockquote>
+<p>比如拿到一个手机显示 为4.7英寸（inch）；</p>
+<p>这个4.7英寸指的是什么呢？</p>
+<p>实际上是指 手机屏幕对角线长度。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>屏幕</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>屏幕大小</td>
+<td>4.7英寸</td>
+</tr>
+<tr>
+<td>屏幕分辨率 (个人标注：这里更准确的叫法是 - 物理分辨率)</td>
+<td>1334×750像素</td>
+</tr>
+<tr>
+<td>像素密度</td>
+<td>326ppi</td>
+</tr>
+</tbody>
+</table>
+<p><strong>上表是一个手机的屏幕的部分信息</strong></p>
+<ul>
+<li><p>屏幕大小我们上面已经解释了</p>
+</li>
+<li><p>屏幕分辨率又是指的什么呢？</p>
+<blockquote>
+<p><strong>暂时的理解是：</strong>买手机时，手机信息上显示的<code>屏幕分辨率:1334*750像素</code>指的是在这个4.7英寸的屏幕上有1334*750个单元（屏幕<code>能</code>显示颜色的最小单位）；这是一个固定的值，屏幕生产出来之后就不能改变的值；</p>
+<p>这个应该就是指的手机屏幕的 <strong>设备像素（物理像素）DP（device pixels）</strong> </p>
+</blockquote>
+<p>注意，我们通常所说的<strong>显示器分辨率</strong>，其实是指<strong>桌面设定的分辨率</strong>，而不是显示器的<strong>物理分辨率</strong>。只不过现在液晶显示器成为主流，由于液晶的显示原理与<code>CRT</code>不同，只有在桌面分辨率与物理分辨率一致的情况下，显示效果最佳，所以现在我们的桌面分辨率几乎总是与显示器的物理分辨率一致了。</p>
+</li>
+<li><p>像素密度</p>
+<p><img src="https://camo.githubusercontent.com/fa2dfe97784d291aefce2ca84103d0e853b42d4e/687474703a2f2f75706c6f61642e6368696e617a2e636f6d2f323031352f303930322f313434313136373732393537392e6a7067" alt=""></p>
+</li>
+</ul>
+<p><code>从上面我们了解了：屏幕尺寸、物理分辨率、物理像素、物理像素密度(dpi\ppi) 等概念</code></p>
+<p><strong>个人感觉不要单独使用像素这个词，应为这样很容易迷惑人，像素这个词包括的含义并不是唯一的</strong></p>
+<h3 id="css像素"><a href="#css像素" class="headerlink" title="css像素"></a>css像素</h3><p>接下来了解一下作为一名前端工程师，我们最熟悉的单位之一，px</p>
+<p>我们在编写页面时使用的<code>px</code>其实指的是 <strong>css像素（css pixels）</strong>；</p>
+<p><strong>它是图像显示的基本单元，既不是一个确定的物理量，也不是一个点或者小方块，而是一个抽象概念</strong>。所以在谈论像素时一定<strong>要清楚它的上下文</strong>！一定要清楚它的上下文！一定要清楚它的上下文！</p>
+<blockquote>
+<p>css像素永远是一个相对的值；</p>
+</blockquote>
+<p><strong>那么这个相对的值到底是怎么计算出来的呢？</strong></p>
+<p><code>这里就需要了解到 设备像素(DP) 与 CSS像素之间的关系</code></p>
+<p><strong>获得设备像素比（dpr）后（我们是如何获取这个dpr值的呢？）</strong>，便可得知设备像素与CSS像素之间的比例。当这个比率为1:1时，使用1个设备像素显示1个CSS像素。当这个比率为2:1时，使用4个设备像素显示1个CSS像素，当这个比率为3:1时，使用9（3*3）个设备像素显示1个CSS像素。<br>所以，有如下公式：</p>
+<blockquote>
+<p><strong>DPR = 设备像素/CSS像素</strong></p>
+<p>// 这里像素都是长度单位，所以最终面积会平方</p>
+<p><code>CSS像素</code> 名称又叫 <code>设备独立像素(device-independent pixels (dips))</code></p>
+</blockquote>
+<p><code>问题：我们如何获取这个 dpr值呢？ 这个 dpr 取名也是醉了，好多地方都不同；</code></p>
+<p>dpr准确叫法 设备像素比</p>
+<p>这个 dpr 可以通过<code>window.devicePixelRatio</code> 这接获取；</p>
+<p><strong>viewport</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><code>width</code>属性控制视口的宽度。可以像width=600这样设为确切的像素数，或者设为device-width这一特殊值来指代比例为100%时屏幕宽度的CSS像素数值。（相应有<code>height</code>及<code>device-height</code>属性，可能对包含基于视口高度调整大小及位置的元素的页面有用。）</p>
+<p>initial-scale属性控制页面最初加载时的缩放等级。</p>
+<p>maximum-scale、minimum-scale 最大最小比例设置</p>
+<p>user-scalable属性控制允许用户以怎样的方式放大或缩小页面。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/命名规则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/命名规则/" itemprop="url">命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://guide.aotu.io/docs/css/code.html" target="_blank" rel="noopener">命名规范相关文章一</a></p>
+<p><a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">airbnb命名规则</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2017/02/filename-should-be-lowercase.html" target="_blank" rel="noopener">阮一峰-文件名小写</a></p>
+<p>命名：表现了一个程序员对自己工作的态度，修养，是否是一个追求完美的人；</p>
+<p>###变量</p>
+<p><strong>命名方法</strong>：小驼峰式命名法。</p>
+<p><strong>命名规范</strong>：前缀应当是名词。(函数的名字前缀为动词，以此区分变量和函数)</p>
+<h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><ol>
+<li><p><code>建议文件名，采用小写，why</code></p>
+<p>首先个人遇到的一个问题，git上传代码，不会区分文件名的大小写</p>
+<p>跨平台会出现问题；应为linux对大小写敏感，window、mac不敏感</p>
+</li>
+</ol>
+<p><strong>html、css文件命名：</strong></p>
+<p>确保文件命名总是以字母开头而不是数字，且字母一律小写，以下划线连接且不带其他标点符号，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">jdc.html</span><br><span class="line">jdc_detail.html</span><br><span class="line"></span><br><span class="line">&lt;!-- SASS --&gt;</span><br><span class="line">jdc.scss</span><br><span class="line">jdc_detail.scss</span><br></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><strong>命名方法</strong>：小驼峰式命名法。</p>
+<p><strong>命名规范</strong>：前缀应当为动词。</p>
+<p><strong>命名建议</strong>：可使用常见动词约定</p>
+<table>
+<thead>
+<tr>
+<th>动 词</th>
+<th>含义</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>can</td>
+<td>判断是否可执行某个动作(权限)</td>
+<td>函数返回一个布尔值。true：可执行；false：不可执行</td>
+</tr>
+<tr>
+<td>has</td>
+<td>判断是否含有某个值</td>
+<td>函数返回一个布尔值。true：含有此值；false：不含有此值</td>
+</tr>
+<tr>
+<td>is</td>
+<td>判断是否为某个值</td>
+<td>函数返回一个布尔值。true：为某个值；false：不为某个值</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取某个值</td>
+<td>函数返回一个非布尔值</td>
+</tr>
+<tr>
+<td>set</td>
+<td>设置某个值</td>
+<td>无返回值、返回是否设置成功或者返回链式对象</td>
+</tr>
+<tr>
+<td>load</td>
+<td>加载某些数据</td>
+<td>无返回值或者返回是否加载完成的结果</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p><strong>命名方法</strong>：名称全部大写。</p>
+<p><strong>命名规范</strong>：使用大写字母和下划线来组合命名，下划线用以分割单词。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p><strong>命名方法</strong>：大驼峰式命名法，首字母大写。</p>
+<h3 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h3><p><strong>类的成员包含：</strong></p>
+<p>① 公共属性和方法：跟变量和函数的命名一样。</p>
+<p>② 私有属性和方法：前缀为_(下划线)，后面跟公共属性和方法一样的命名方式。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Student(name) &#123;</span><br><span class="line"> var _name = name; // 私有成员</span><br><span class="line"> </span><br><span class="line"> // 公共方法</span><br><span class="line"> this.getName = function () &#123;</span><br><span class="line"> return _name;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> // 公共方式</span><br><span class="line"> this.setName = function (value) &#123;</span><br><span class="line"> _name = value;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">var st = new Student(&apos;tom&apos;);</span><br><span class="line">st.setName(&apos;jerry&apos;);</span><br><span class="line">console.log(st.getName()); // =&gt; jerry：输出_name私有变量的值</span><br></pre></td></tr></table></figure>
+<h2 id="js命名规范"><a href="#js命名规范" class="headerlink" title="js命名规范"></a>js命名规范</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">结构</th>
+<th style="text-align:center">规范</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">类</td>
+<td style="text-align:center">大驼峰</td>
+<td style="text-align:center">ModuleClass()</td>
+</tr>
+<tr>
+<td style="text-align:center">共有方法</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">getPosition()</td>
+</tr>
+<tr>
+<td style="text-align:center">共有变量</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">frameStyle</td>
+</tr>
+<tr>
+<td style="text-align:center">常量</td>
+<td style="text-align:center">全大写</td>
+<td style="text-align:center">APPLE_CASE</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">共有方法和属性</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">mixedCase</td>
+</tr>
+<tr>
+<td style="text-align:center">私有方法和属性</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">_mixedCase</td>
+</tr>
+<tr>
+<td style="text-align:center">方法参数</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">mixedCase</td>
+</tr>
+<tr>
+<td style="text-align:center">本地变量</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">mixedCase</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>所有语句结束后，必须使用 ; 号结束</li>
+<li>所有变量必须是有意义的英文，严厉禁止拼音</li>
+<li>变量允许使用公认英文缩写</li>
+<li>“on”只能用作事件的命名</li>
+<li>函数开头必须是有意义的动词或动词短语</li>
+<li>私有类的变量属性成员 建议 使用混合式命名，并前面下下划线</li>
+<li>临时的全局变量放到一个全局的哈希表里，方便变量回收</li>
+<li>所有全局变量必须初始化，尽量少用全局变量</li>
+<li>大括号前面不能有换行符</li>
+<li>保留字以及特有的dom属性不能作为变量名</li>
+</ul>
+<p><strong>特殊命名约定</strong></p>
+<ol>
+<li>前面加 “is” 的变量名应该为布尔值，亦可使用 “can” “has” “should”</li>
+<li>前面加 ”str” 的变量名应该为字符串</li>
+<li>前面加 “arr” 的变量名应该为数组</li>
+<li>前面加 “num” 或 “count” 的变量名应该为数字</li>
+<li>“o” 作为局部变量或参数，表示为Object</li>
+<li>“e” 作为局部变量或参数，表示为Element</li>
+<li>“evt” 作为局部变量或参数，表示为event</li>
+<li>“err” 作为局部变量或参数，表示为error</li>
+<li>重复变量建议使用 “i”, “j”, “k” （依次类推）等名称的变量(全世界公认)</li>
+<li>能缩写的单词尽量缩写</li>
+<li>避免产生令人误解的布尔值 isNotNumber isNan</li>
+<li>处理错误的变量，必须在后面跟着 “Error”</li>
+<li>初始化用的函数 必须使用 “init” 开头，如果一个页面只有初始化可以单独使用 init()</li>
+<li>尽量做有意义的代码折行，不要让一行代码过长。(HTML 字符串除外)</li>
+<li>操作符 建议 使用空格隔开</li>
+<li>函数调用和方法 避免 使用空白</li>
+<li>逗号（,） 建议 使用空白隔开。</li>
+<li>不允许频繁使用 previousSibling 和 nextSibling</li>
+</ol>
+<ol>
+<li><strong>注释规范</strong></li>
+</ol>
+<ol>
+<li>一些你不打算给其他人使用的函数，建议添加 @ignore 让文档输出时可以忽略这段注释</li>
+</ol>
+<ol>
+<li>一些相关的功能相关的函数，建议加上@see Function 来对上下文做索引</li>
+<li>对于一些函数不建议或则需要注意的使用方法，必须加上 @deprecated作为提醒</li>
+<li>每个js文件的文件头都必须包含 @fileoverview @author, 建议加上@version</li>
+<li>每个函数都必须使用JsDoc 来注释他的用意</li>
+<li>每个带参数的函数必须包含 @param</li>
+<li>每个有返回值的函数必须包含 @return</li>
+<li>构造函数必须加上 @constructor</li>
+<li>继承函数建议加上 @base 表示其继承于哪个类</li>
+<li>常用全局变量建议使用 JsDoc 的注释方式</li>
+<li>一般的变量及局部变量才用 // 方式进行注释，建议在需要做注释的语句的上一行</li>
+<li>其他详情请参考 JsDoc 注释方法</li>
+</ol>
+<p><strong>其他</strong></p>
+<ol>
+<li>String 优化</li>
+</ol>
+<p>循环体内的字符串累加使用join方式。 例如:</p>
+<p>var r= [];<br>for (var i=0;i&lt;100;i++){<br>​    r.push(“hello”);<br>}<br>var k= r.join(“”);</p>
+<ol>
+<li>Switch 建议采用hash-table</li>
+</ol>
+<p>switch 可以才用 Object代替 例如:</p>
+<p>var a= {<br>​    “1”:doAction1,<br>​    “2”:doAction2,<br>}<br>function doAction1(){<br>}<br>function doAction2(){<br>}<br>a<a href="">1</a>;</p>
+<ol>
+<li>不建议使用eval</li>
+</ol>
+<p>不推荐使用eval来执行脚本。除非用来解释已经确定安全的json数据。</p>
+<ol>
+<li>不要使用Function构造器。</li>
+</ol>
+<ol>
+<li>不要给setTimeout或者setInterval传递字符串参数。</li>
+<li>注意 IE 的内存泄露问题</li>
+<li>JavaScript代码独立</li>
+</ol>
+<p>Javascript不应该被包含在HTML文件中,除非这是段特定只属于此部分的代码。在HTML中的JavaScript代码会明显增加文件大小，而且也不能对其进行缓存和压缩。</p>
+<p>##CSS命名规范</p>
+<ol>
+<li>id和class命名采用该版块的英文单词或组合命名，并第一个单词小写，第二个单词首个字母大写，如：newRelease（最新产品/new+Release)</li>
+<li>CSS样式表各区块用注释说明</li>
+<li>尽量不缩写，除非一看就明白的单词</li>
+</ol>
+<p>经过组员激烈的讨论后，大家都比较偏向的命名方法如下：</p>
+<p><strong>ID：</strong>统一采用驼峰式，单字之间不以：空格断开（例：camel case）、连接号（-，例：camel-case）、底线（_，例：camel_case）连结。</p>
+<p><strong>Class 命名法：</strong>  驼峰式或下划线 <code>个人比较喜欢下划线吧</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod_caption、title_description</span><br></pre></td></tr></table></figure>
+<p><strong>常见的CSS命名规则如下：</strong></p>
+<p>主要的 mian.css</p>
+<p>模块 module.css</p>
+<p>基本共用 base.css</p>
+<p>布局，版面 layout.css</p>
+<p>主题 themes.css</p>
+<p>专栏 columns.css</p>
+<p>文字 font.css</p>
+<p>表单 forms.css</p>
+<p>补丁 mend.css</p>
+<p>打印 print.css</p>
+<p>头：header</p>
+<p>内容：content/container</p>
+<p>尾：footer</p>
+<p>导航：nav</p>
+<p>侧栏：sidebar</p>
+<p>栏目：column</p>
+<p>页面外围控制整体布局宽度：wrapper</p>
+<p>左右中：left right center</p>
+<p>登录条：loginbar</p>
+<p>标志：logo</p>
+<p>广告：banner</p>
+<p>页面主体：main</p>
+<p>热点：hot</p>
+<p>新闻：news</p>
+<p>下载：download</p>
+<p>子导航：subnav</p>
+<p>菜单：menu</p>
+<p>子菜单：submenu</p>
+<p>搜索：search</p>
+<p>友情链接：friendlink</p>
+<p>页脚：footer</p>
+<p>版权：copyright</p>
+<p>滚动：scroll</p>
+<p>内容：content</p>
+<p>标签页：tab</p>
+<p>文章列表：list</p>
+<p>提示信息：msg</p>
+<p>小技巧：tips</p>
+<p>栏目标题：title、caption</p>
+<p>加入：joinus</p>
+<p>指南：guild</p>
+<p>服务：service</p>
+<p>注册：regsiter</p>
+<p>状态：status</p>
+<p>投票：vote</p>
+<p>合作伙伴：partner</p>
+<h2 id="react项目的命名："><a href="#react项目的命名：" class="headerlink" title="react项目的命名："></a>react项目的命名：</h2><p>目录、js、jsx、css、less、scss 的命名都使用小驼峰；</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/前端开发需要考虑哪些问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/前端开发需要考虑哪些问题/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前端开发需要考虑哪些问题？"><a href="#前端开发需要考虑哪些问题？" class="headerlink" title="前端开发需要考虑哪些问题？"></a>前端开发需要考虑哪些问题？</h1><ul>
+<li>组件库、模块化  - 提升开发效率</li>
+<li>运行效率</li>
+<li>可维护性</li>
+<li>体验优化</li>
+</ul>
+<p>组件化，模块化的区别</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/web缓存机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/web缓存机制/" itemprop="url">浏览器缓存机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>浏览器是如何知道使用<a href="http://caibaojian.com/t/%e7%bc%93%e5%ad%98" target="_blank" rel="noopener">缓存</a>的，其实这都是通过http中，浏览器将最后修改时间发送请求给<a href="http://caibaojian.com/c/web" target="_blank" rel="noopener">web</a>服务器，web服务器收到请求后跟服务器上的文档最后修改的时间对比，如果web服务器上最新文档修改时间小于或者等于浏览器发送过来的，则发送304给浏览器，使用<a href="http://caibaojian.com/t/%e7%bc%93%e5%ad%98" target="_blank" rel="noopener">缓存</a>版本。</p>
+<h3 id="cache策略"><a href="#cache策略" class="headerlink" title="cache策略"></a>cache策略</h3><ul>
+<li>浏览器缓存（http缓存机制）<ul>
+<li>协商缓存</li>
+<li>本地缓存（强制缓存）</li>
+</ul>
+</li>
+<li>服务器缓存<ul>
+<li>CDN缓存</li>
+<li>Combo缓存</li>
+</ul>
+</li>
+<li>HTML5缓存思路<ul>
+<li>离线存储manifest</li>
+<li>本地存储LocalStorage</li>
+</ul>
+</li>
+</ul>
+<p><a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">缓存机制文章</a></p>
+<table>
+<thead>
+<tr>
+<th><strong>获取资源形式</strong></th>
+<th><strong>状态码</strong></th>
+<th><strong>发送请求到服务器</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>强缓存</strong></td>
+<td>从缓存取</td>
+<td>200（from cache）</td>
+<td>否，直接从缓存取</td>
+</tr>
+<tr>
+<td><strong>协商缓存</strong></td>
+<td>从缓存取</td>
+<td>304（not modified）</td>
+<td>是，正如其名，通过服务器来告知缓存是否可用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关于http缓存的头信息：</strong></p>
+<p><a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">http://caibaojian.com/http-cache.html</a></p>
+<p>Request<a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">·</a></p>
+<table>
+<thead>
+<tr>
+<th>Cache-Control: max-age=0</th>
+<th>以秒为单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>If-Modified-Since: Mon, 19 Nov 2012 08:38:01 GMT</td>
+<td>缓存文件的最后修改时间。</td>
+</tr>
+<tr>
+<td>If-None-Match: “0693f67a67cc1:0”</td>
+<td>缓存文件的Etag值</td>
+</tr>
+<tr>
+<td>Cache-Control: no-cache</td>
+<td>不使用缓存</td>
+</tr>
+<tr>
+<td>Pragma: no-cache</td>
+<td>不使用缓存</td>
+</tr>
+</tbody>
+</table>
+<p>Response<a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">·</a></p>
+<table>
+<thead>
+<tr>
+<th>Cache-Control: public</th>
+<th>响应被缓存，并且在多用户间共享，  （公有缓存和私有缓存的区别，请看另一节）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-Control: private</td>
+<td>响应只能作为私有缓存，不能在用户之间共享</td>
+</tr>
+<tr>
+<td>Cache-Control:no-cache</td>
+<td>提醒浏览器要从服务器提取文档进行验证</td>
+</tr>
+<tr>
+<td>Cache-Control:no-store</td>
+<td>绝对禁止缓存（用于机密，敏感文件）</td>
+</tr>
+<tr>
+<td>Cache-Control: max-age=60</td>
+<td>60秒之后缓存过期（相对时间）</td>
+</tr>
+<tr>
+<td>Date: Mon, 19 Nov 2012 08:39:00 GMT</td>
+<td>当前response发送的时间</td>
+</tr>
+<tr>
+<td>Expires: Mon, 19 Nov 2012 08:40:01 GMT</td>
+<td>缓存过期的时间（绝对时间）</td>
+</tr>
+<tr>
+<td>Last-Modified: Mon, 19 Nov 2012 08:38:01 GMT</td>
+<td>服务器端文件的最后修改时间</td>
+</tr>
+<tr>
+<td>ETag: “20b1add7ec1cd1:0”</td>
+<td>服务器端文件的Etag值</td>
+</tr>
+</tbody>
+</table>
+<p>如果同时存在cache-control和Expires怎么办呢？</p>
+<blockquote>
+<p>浏览器总是优先使用cache-control，如果没有cache-control才考虑Expires</p>
+</blockquote>
+<p>协商缓存是通过什么来判断， 使用缓存？</p>
+<p>浏览器如何命中 强制缓存和协商缓存？</p>
+<p><a href="http://www.cnblogs.com/wonyun/p/5524617.html" target="_blank" rel="noopener">讲解</a></p>
+<p>强制缓存：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache-control:max-age=2592000,s-maxage=3600</span><br><span class="line"></span><br><span class="line">Status Code:200  (from memory cache)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Status Code:200  (from disk cache)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/SEO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/SEO/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h1><p>1：搜索引擎提交入口</p>
+<p>2：seo优化最重要的三要素</p>
+<ul>
+<li>标题</li>
+<li>关键字</li>
+<li>描述</li>
+</ul>
+<p>3：外链（友情链接）</p>
+<ul>
+<li>​</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/web性能优化总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/web性能优化总结/" itemprop="url">web性能优化总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/personalBlog-by-hexoGithub/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/personalBlog-by-hexoGithub/" itemprop="url">通过github、hexo搭建个人博客流程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最简单的方法，google一下标题，方法一大堆；</p>
+<p><strong>说说个人搭建时遇到的一些问题：</strong></p>
+<p><code>一：更换主题</code></p>
+<p><code>二：博客内部乱码、标签设置中文等问题</code></p>
+<p>###三：中途提交文章报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: fatal: unable to access &apos;https://github.com/songxx0209/songxx0209.github.io.git/&apos;: LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to github.com:443</span><br></pre></td></tr></table></figure>
+<p>错误信息大概是说 链接github时出错了，错误代码443</p>
+<p>经过一番折腾最终解决：修改hexo配置文件——config.yml中deploy：repo</p>
+<p>修改前：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/songxx0209/songxx0209.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">  message: &quot;ready go&quot;</span><br></pre></td></tr></table></figure>
+<p>也试过给 https 传输方法加上用户名和密码，但是还是不行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo: https://用户名：密码@github.com/songxx0209/songxx0209.github.io.git</span><br></pre></td></tr></table></figure>
+<p>最后修改后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:songxx0209/songxx0209.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">  message: &quot;ready go&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>使用 SSH 的方式传输，success!</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/README/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/README/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="web-share"><a href="#web-share" class="headerlink" title="web-share"></a>web-share</h1><ul>
+<li><a href="https://segmentfault.com/" target="_blank" rel="noopener">segmentfault</a></li>
+<li><a href="">简书</a><br>web开发所需要的一些资源与小技巧// 学习es6-阮哥的书,youtube<h2 id="日常整理的一些网址"><a href="#日常整理的一些网址" class="headerlink" title="日常整理的一些网址"></a>日常整理的一些网址</h2></li>
+</ul>
+<p><a href="https://breezetemple.gitbooks.io/how-to-use-gitbook/content/index.html" target="_blank" rel="noopener">gitbook</a><br><a href="http://www.w3cfuns.com/notes/19125/e1c1e49a6034d18cf3dc7b6e50a3d18a.html" target="_blank" rel="noopener">日常整理的一些网址</a>    <a href="http://www.ruanyifeng.com/blog/2015/05/thunk.html" target="_blank" rel="noopener">thunk函数</a>     <a href="http://cn.redux.js.org/docs/react-redux/api.html" target="_blank" rel="noopener">redux中文文档</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="noopener">测试框架 Mocha 实例教程</a></p>
+<p><a href="https://leohxj.gitbooks.io/front-end-database/content/html-and-css-basic/common-tag.html" target="_blank" rel="noopener">前端工程师手册</a></p>
+<p><a href="http://javascript.ruanyifeng.com/nodejs/http.html" target="_blank" rel="noopener">学习网站-js-nodejs</a>    </p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html" target="_blank" rel="noopener">学习网址-阮一峰</a>    </p>
+<p><a href="https://github.com/camsong/blog" target="_blank" rel="noopener">immutable.js</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank" rel="noopener">阮一峰网络日志</a>   </p>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰官网</a></p>
+<p><a href="https://www.zhihu.com/question/36514327" target="_blank" rel="noopener">知乎CDN讲解</a></p>
+<p><a href="https://isux.tencent.com/" target="_blank" rel="noopener">没事参考学习腾讯前端网站</a>  </p>
+<p><a href="http://zhitu.isux.us/" target="_blank" rel="noopener">图片处理</a></p>
+<h2 id="html-css"><a href="#html-css" class="headerlink" title="html+css"></a>html+css</h2><p><a href="https://segmentfault.com/a/1190000003931851" target="_blank" rel="noopener">利用HTML和CSS实现常见的布局</a><br><a href="https://www.w3schools.com/cssref/css3_pr_flex-grow.asp" target="_blank" rel="noopener">w3c字典</a></p>
+<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript" target="_blank" rel="noopener">js官网</a>    </p>
+<p><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/" target="_blank" rel="noopener">函数式编程</a>    </p>
+<p><a href="http://javascript.ruanyifeng.com/" target="_blank" rel="noopener">JavaScript 标准参考教程（alpha）作者: 阮一峰</a></p>
+<p><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">ES6/7 中文文档</a><br><a href="https://github.com/alivebao/clean-code-js" target="_blank" rel="noopener">js代码整洁-参考-不权威</a>    </p>
+<h2 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h2><p><a href="http://cnodejs.org/getstart" target="_blank" rel="noopener">nodejs学习网站</a>   </p>
+<p><a href="http://javascript.ruanyifeng.com/nodejs/fs.html" target="_blank" rel="noopener">阮一峰博客</a></p>
+<p><a href="https://0532.gitbooks.io/nodejs/content/path/README.html" target="_blank" rel="noopener">nodejs-常用模块介绍</a>  </p>
+<p><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">Expressm模块</a>    </p>
+<p><a href="http://www.runoob.com/mongodb/mongodb-databases-documents-collections.html" target="_blank" rel="noopener">Mongodb-菜鸟</a></p>
+<p><a href="https://cnodejs.org/topic/5203a71844e76d216a727d2e" target="_blank" rel="noopener">cheerio API</a>     </p>
+<p>###promise<br><a href="http://www.cnblogs.com/roverliang/p/5340902.html" target="_blank" rel="noopener">使用nodejs抓取博客园内容—Promise模块探索</a><br><a href="http://www.cnblogs.com/lvdabao/p/es6-promise-1.html" target="_blank" rel="noopener">吕大豹-promise</a></p>
+<h2 id="科学上网工具教程"><a href="#科学上网工具教程" class="headerlink" title="科学上网工具教程"></a>科学上网工具教程</h2><p><a href="https://segmentfault.com/a/1190000007611335" target="_blank" rel="noopener">使用amazon 免费云服务器</a></p>
+<p>##浏览器方面<br><a href="https://www.nihaoshijie.com.cn/index.php/archives/322" target="_blank" rel="noopener">浏览器的工作原理</a></p>
+<p>##webpack<br><a href="https://www.youtube.com/watch?v=fGed9phNkto" target="_blank" rel="noopener">youtube-webpack</a><br><a href="http://zhaoda.net/webpack-handbook/configuration.html" target="_blank" rel="noopener">gitbook-webpack</a></p>
+<p>##谷歌调试手机浏览器</p>
+<blockquote>
+<p>chrome://inspect/    </p>
+</blockquote>
+<p>##css3动画<br><a href="http://www.w3school.com.cn/css3/css3_animation.asp" target="_blank" rel="noopener">w3school-animation</a>    </p>
+<p>##js算法之常用排序<br><a href="https://segmentfault.com/a/1190000005144961" target="_blank" rel="noopener">排序</a></p>
+<p>##闭包<br><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">阮哥闭包笔记</a></p>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html" target="_blank" rel="noopener">Redux 入门教程（一）：基本用法</a>    </p>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p><a href="http://imweb.io/topic/577512fe732b4107576230b9" target="_blank" rel="noopener">react优化文章</a></p>
+<p><a href="https://mobx.js.org/index.html" target="_blank" rel="noopener">mobx</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="noopener">React 入门实例教程</a><br><a href="https://ant.design/components/modal/" target="_blank" rel="noopener">React 蚂蚁组件</a><br><a href="http://09x.ant.design/components/validation/" target="_blank" rel="noopener">蚂蚁react网站</a><br><a href="http://reactjs.cn/react/docs/getting-started-zh-CN.html" target="_blank" rel="noopener">React官网入门教程</a><br><a href="https://github.com/dwqs/react-style-guide/blob/master/readme.md" target="_blank" rel="noopener">react书写规范</a>    </p>
+<p><a href="http://www.theodo.fr/blog/2016/03/getting-started-with-react-redux-and-immutable-a-test-driven-tutorial-part-1/" target="_blank" rel="noopener">React, Redux and Immutable</a></p>
+<h2 id="前端模拟数据Mockjs"><a href="#前端模拟数据Mockjs" class="headerlink" title="前端模拟数据Mockjs"></a>前端模拟数据Mockjs</h2><p><a href="https://github.com/nuysoft/Mock/wiki/Getting-Started" target="_blank" rel="noopener">github-Mock</a><br><a href="http://mockjs.com/examples.html#Boolean" target="_blank" rel="noopener">mock官网</a>    </p>
+<h2 id="http-lyn-s76-org"><a href="#http-lyn-s76-org" class="headerlink" title="http://lyn.s76.org/"></a><a href="http://lyn.s76.org/" target="_blank" rel="noopener">http://lyn.s76.org/</a></h2><p>##<a href="http://www.chartjs.org/" target="_blank" rel="noopener">http://www.chartjs.org/</a></p>
+<p>##跨域问题<br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解</a><br><a href="http://lyn.s76.org/2016/06/09/ios8-cors-prefilght/" target="_blank" rel="noopener">杰哥跨域博客总结</a></p>
+<p>##<a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">database</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/advance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/advance/" itemprop="url">职业规划，技术路线，思想历程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一：职业规划"><a href="#一：职业规划" class="headerlink" title="一：职业规划"></a>一：职业规划</h2><h4 id="2017年结束之前，好好把-前端知识（html、css、js）-翻出来学习学习"><a href="#2017年结束之前，好好把-前端知识（html、css、js）-翻出来学习学习" class="headerlink" title="2017年结束之前，好好把 前端知识（html、css、js） 翻出来学习学习"></a>2017年结束之前，好好把 前端知识（html、css、js） 翻出来学习学习</h4><h4 id="总的来看应该会走技术路线，定一个小目标，30岁之前成为一名前端方向的小牛，发行一个star-超过500的包"><a href="#总的来看应该会走技术路线，定一个小目标，30岁之前成为一名前端方向的小牛，发行一个star-超过500的包" class="headerlink" title="总的来看应该会走技术路线，定一个小目标，30岁之前成为一名前端方向的小牛，发行一个star 超过500的包"></a>总的来看应该会走技术路线，定一个小目标，30岁之前成为一名前端方向的小牛，发行一个star 超过500的包</h4><h4 id="先成为一名架构师，需要哪些能力？"><a href="#先成为一名架构师，需要哪些能力？" class="headerlink" title="先成为一名架构师，需要哪些能力？"></a>先成为一名架构师，需要哪些能力？</h4><h2 id="二：技术路线"><a href="#二：技术路线" class="headerlink" title="二：技术路线"></a>二：技术路线</h2><h4 id="1：没有人会为你全面但不突出的能力买单；"><a href="#1：没有人会为你全面但不突出的能力买单；" class="headerlink" title="1：没有人会为你全面但不突出的能力买单；"></a>1：没有人会为你全面但不突出的能力买单；</h4><blockquote>
+<h5 id="首先：思考这句话的正确性；"><a href="#首先：思考这句话的正确性；" class="headerlink" title="首先：思考这句话的正确性；"></a>首先：思考这句话的正确性；</h5><p>再一想，又有什么是绝对正确的。从古至今来看，的确万金油成名的的确是少数。成名的大师总是在某个领域有突出的创作和贡献。全才虽然 !== 庸才，但是选择成为专才，在人生路上方向感要强一些，路要清晰一些。</p>
+<p><strong>突出的能力</strong> ：</p>
+<p>前端所应用的技术：html／css／js <code>全面学习</code></p>
+<p>1：html</p>
+<ul>
+<li>从新深度的学习一下。</li>
+<li>html 是一个网页的结构；</li>
+<li>怎么理解 “结构” 这个词，怎么做到渐进增强；</li>
+<li>html5学习，有哪些新标签，</li>
+</ul>
+<p>2：css</p>
+<ul>
+<li>这个是一个博大精深的知识，熟悉各个 css 样式，特别是 css3，</li>
+</ul>
+<p>3：js</p>
+<p>这个是前端学习的重点，首先把<code>小孩书</code>再仔仔细细的看一遍。熟悉js的 几乎 每一个卡卡郭郭。</p>
+<p>前端是一个快速发展的技术，要多关注 js 的发展动态， ECMAscript 动态 学习了解。</p>
+<p>es6，es7等</p>
+<h5 id="其次，全面的知识怎么理解"><a href="#其次，全面的知识怎么理解" class="headerlink" title="其次，全面的知识怎么理解"></a>其次，全面的知识怎么理解</h5><p>作为一名前端工程师，需要学习一门后端语言吗？</p>
+<ul>
+<li>答案是肯定的，需要</li>
+<li>但是个人观点是 如果不是想要转做后端， 不必学习得太深入，有一个基本的理解，知道整个运行的流程就好，在工作中积累一些后端知识就好。</li>
+<li>如果只是想在前端这个方面有所建树，先在前端方面成为专家。</li>
+</ul>
+<h5 id="一技之长，打造自己的精品"><a href="#一技之长，打造自己的精品" class="headerlink" title="一技之长，打造自己的精品"></a>一技之长，打造自己的精品</h5><ul>
+<li>一技之长，精通js，以及相关知识</li>
+<li>npm包，git，学习方向，多看看大神写的包</li>
+<li>尝试编写自己的包，类库，这一步也就是慢慢的打造自己的精品</li>
+</ul>
+</blockquote>
+<h2 id="三：思想历程"><a href="#三：思想历程" class="headerlink" title="三：思想历程"></a>三：思想历程</h2><h4 id="1：停下来思考找准方向，往往比埋头苦干更容易成功"><a href="#1：停下来思考找准方向，往往比埋头苦干更容易成功" class="headerlink" title="1：停下来思考找准方向，往往比埋头苦干更容易成功"></a>1：停下来思考找准方向，往往比埋头苦干更容易成功</h4><blockquote>
+<p>1：认准方向，不要想无头苍蝇，抓不到重点。</p>
+<ul>
+<li>拟定一个学习计划，有安排的去完成，工作中需要用什么再去学什么。</li>
+<li>坚持，坚持，坚持</li>
+</ul>
+<p>2：做前端到底有没有前端，前途在哪里？？？</p>
+<ul>
+<li>就目前的想法来看，目标应该是架构师</li>
+<li>架构师需要哪些能力？</li>
+</ul>
+</blockquote>
+<h4 id="2：思维逻辑要清晰，培养清晰的思路"><a href="#2：思维逻辑要清晰，培养清晰的思路" class="headerlink" title="2：思维逻辑要清晰，培养清晰的思路"></a>2：思维逻辑要清晰，培养清晰的思路</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/various-heights-of-js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,1406 +2050,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/15/npm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/15/npm/" itemprop="url">npm常用命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-15T08:51:24+08:00">
-                2018-01-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>查看npm命令：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm help</span><br></pre></td></tr></table></figure>
-<ol>
-<li>初始化一个基于node的项目，会创建一个配置文件package.json（两种方式）:</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//1.一般情况下 一路enter</span><br><span class="line">$ npm init</span><br><span class="line"></span><br><span class="line">//2.全部使用默认配置</span><br><span class="line">$npm init --yes</span><br></pre></td></tr></table></figure>
-<ol>
-<li>安装模块（包）：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//全局安装</span><br><span class="line">$ npm install 模块名 -g</span><br><span class="line">//本地安装</span><br><span class="line">$ npm install 模块名</span><br><span class="line">//一次性安装多个</span><br><span class="line">$ npm install 模块1 模块2 模块n --save</span><br><span class="line"></span><br><span class="line">//安装运行时依赖包</span><br><span class="line">$ npm install 模块名 --save</span><br><span class="line">//安装开发时依赖包</span><br><span class="line">$ npm install 模块名 --save-dev</span><br></pre></td></tr></table></figure>
-<ol>
-<li>查看安装目录：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//查看本地安装的目录</span><br><span class="line">$ npm root</span><br><span class="line"></span><br><span class="line">//查看全局安装的目录</span><br><span class="line">$ npm root -g</span><br></pre></td></tr></table></figure>
-<ol>
-<li>卸载模块（包）：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//卸载本地模块</span><br><span class="line">$ npm uninstall 模块名</span><br><span class="line"></span><br><span class="line">//卸载全局模块</span><br><span class="line">$ npm uninstall -g 模块名</span><br></pre></td></tr></table></figure>
-<ol>
-<li>更新模块（包）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm update 模块名</span><br><span class="line"></span><br><span class="line">$ npm update 模块名 -g</span><br></pre></td></tr></table></figure>
-<ol>
-<li>查看当前安装的模块（包）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm ls</span><br><span class="line"></span><br><span class="line">$ npm ls -g</span><br></pre></td></tr></table></figure>
-<ol>
-<li><code>查看</code>模块（包）的信息：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm info 模块名</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>package.json文件的配置说明：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;blog&quot;,  //项目名称</span><br><span class="line">  &quot;version&quot;: &quot;0.0.0&quot;,   //版本</span><br><span class="line">  &quot;description&quot;: &quot;&quot;,   //项目描述</span><br><span class="line">  &quot;private&quot;: true,  </span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,  //入口文件</span><br><span class="line">  &quot;scripts&quot;: &#123;   //配置一些通用的命令脚本</span><br><span class="line">    &quot;start&quot;: &quot;node ./bin/www&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;keywords&quot;: [],  //项目的关键字</span><br><span class="line">  &quot;author&quot;: &quot;&quot;,  //作者</span><br><span class="line">  &quot;dependencies&quot;: &#123;   //开发时的依赖</span><br><span class="line">    &quot;body-parser&quot;: &quot;~1.16.0&quot;,</span><br><span class="line">    &quot;cookie-parser&quot;: &quot;~1.4.3&quot;,</span><br><span class="line">    &quot;debug&quot;: &quot;~2.6.0&quot;,</span><br><span class="line">    &quot;ejs&quot;: &quot;~2.5.5&quot;,</span><br><span class="line">    &quot;express&quot;: &quot;~4.14.1&quot;,</span><br><span class="line">    &quot;morgan&quot;: &quot;~1.7.0&quot;,</span><br><span class="line">    &quot;serve-favicon&quot;: &quot;~2.3.2&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;   //运行时的依赖</span><br><span class="line">    &quot;express-session&quot;: &quot;^1.15.1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装依赖包（两种情况）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//安装运行时依赖</span><br><span class="line">$ npm install 模块名 --save</span><br><span class="line"></span><br><span class="line">//安装开发时依赖</span><br><span class="line">$ npm install 模块名 --save-dev</span><br></pre></td></tr></table></figure>
-<ul>
-<li>scripts配置可执行的命令，以 键值对 的方式配置，可配置多个</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;script&quot;: &#123;</span><br><span class="line">    &quot;命令&quot;: &quot;执行代码&quot;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行配置的命令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//必须加run</span><br><span class="line">$ npm run 命令</span><br><span class="line"></span><br><span class="line">//特殊的命令 start 可不加run</span><br><span class="line">$ npm start </span><br><span class="line">或</span><br><span class="line">$ npm run start</span><br></pre></td></tr></table></figure>
-<h2 id="使用国内npm镜像源-3种方式"><a href="#使用国内npm镜像源-3种方式" class="headerlink" title="使用国内npm镜像源(3种方式)"></a>使用国内npm镜像源(3种方式)</h2><ol>
-<li><p>使用配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config set registry 镜像源地址</span><br></pre></td></tr></table></figure>
-<p><strong>npm config管理 npm的配置路径</strong></p>
-<p>常用于设置npm代理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set proxy=http://dev-proxy.oa.com:8080</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>使用cnpm：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//先安装cnpm工具</span><br><span class="line">$ npm install -g cnpm --registry=镜像源地址</span><br><span class="line">//使用cnpm代替npm</span><br><span class="line">$ cnpm install 模块名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用nrm（推荐）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//1.先安装nrm工具</span><br><span class="line">$ npm install -g nrm</span><br><span class="line"></span><br><span class="line">//2.查看当前可用的镜像源</span><br><span class="line">$ nrm ls</span><br><span class="line"></span><br><span class="line">//3.切换npm源</span><br><span class="line">$ nrm use 镜像源名称</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>npm cache 管理模块的缓存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean // 清空缓存</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/code-readability/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/11/code-readability/" itemprop="url">code-readability</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-11T18:26:53+08:00">
-                2018-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="读书笔记-《编写可读代码的艺术》"><a href="#读书笔记-《编写可读代码的艺术》" class="headerlink" title="读书笔记 - 《编写可读代码的艺术》"></a>读书笔记 - 《编写可读代码的艺术》</h2><p>1：代码应当易于理解；</p>
-<ul>
-<li>代码的写法应当使别人理解它所需的时间最小化；</li>
-</ul>
-<p>2：在短代码 和 易于理解 之间怎么抉择？</p>
-<ul>
-<li>总是越小越好吗？</li>
-<li>易于理解 &gt; 代码量小（优先级）</li>
-</ul>
-<h4 id="表面层次的改进"><a href="#表面层次的改进" class="headerlink" title="表面层次的改进"></a>表面层次的改进</h4><p>1：选择好的名字、写好的注释、保持代码的整洁</p>
-<h5 id="把信息装到名字里"><a href="#把信息装到名字里" class="headerlink" title="把信息装到名字里"></a>把信息装到名字里</h5><ul>
-<li>命名时，需要精准，具体；不要含糊不清，选词准确。</li>
-<li>​</li>
-</ul>
-<p>取名字，首先取好中文名字；</p>
-<p>取名字时，多想想别人能看懂这个名字吗？</p>
-<ul>
-<li>使用专业的单词： 例如，不用get，而用fetch，download；</li>
-<li>避免空乏的名字，像tmp合retval，除非使用它们有特殊理由；</li>
-<li>使用具体的名字来更细致的描述事物，servercanStart()</li>
-<li>给变量名带上重要的细节 — 例如， 在值为毫秒的变量后面加上 _ms，</li>
-<li>为作用域大的名字采用更长的名字 — 在小的作用域里面使用短的名字</li>
-<li>有目的的使用大小写、下划线</li>
-</ul>
-<p>带单位的值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var start_ms = 200;</span><br><span class="line">var start_day = 200;</span><br><span class="line">var start_h = 200;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>推荐使用min和max表示极限</p>
-</li>
-<li><p>first和last表示包含的范围，begain、end表示包含／排除范围</p>
-</li>
-<li><p>为布尔值命名：加上像is、has、can、should</p>
-<p>​</p>
-</li>
-</ul>
-<h4 id="审美很重要"><a href="#审美很重要" class="headerlink" title="审美很重要"></a>审美很重要</h4><p>使用一致的布局，让读者很快就习惯这种风格</p>
-<p>让相似的代码看上去相似</p>
-<p>把相关的代码行分组，形成代码块</p>
-<blockquote>
-<p>在需要的时候使用列对齐</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; data(&quot;hello world&quot;       , &quot;are you ok&quot;              , &quot;&quot;);</span><br><span class="line">&gt; data(&quot;hello worldss sdsd&quot;, &quot;are you ok, im ok thanks&quot;, &quot;&quot;);</span><br><span class="line">&gt; data(&quot;hello world&quot;       , &quot;are you ok&quot;              , &quot;oh, my god&quot;);</span><br><span class="line">&gt;</span><br><span class="line">&gt; var ok          = request();</span><br><span class="line">&gt; var development = request();</span><br><span class="line">&gt; var apple       = equest(); // 这样能清晰的看出不同，不容易出错</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>这样能很清晰的分辨 函数的参数，及对应关系；</p>
-</blockquote>
-<p>总结：</p>
-<p>dry，不要重复你自己；如果有多个相同的代码块做相同的事情，尝试封装起来；</p>
-<p>如果一段代码中提到：a, b和c；那么不要在另一个地方说：b, c和a；选择一个有意义的顺序并一致使用它；</p>
-<p>用空行（换行）来区分代码逻辑；</p>
-<h4 id="该怎么写注释"><a href="#该怎么写注释" class="headerlink" title="该怎么写注释"></a>该怎么写注释</h4><p>注释的目的是尽量帮助读者快速的了解内容；</p>
-<p>为代码中的瑕疵写注释；</p>
-<p>给读者不容易理解的常量加注释；</p>
-<p>想象一下你的代码别人能看得懂吗？（站在读者，<code>对方的角度去思考问题</code>）</p>
-<p>公布可能的陷阱；  </p>
-<p>总结行的注释；</p>
-<p>克服心理阻滞；开始时先把自己想的注释出来；</p>
-<p>精确的描述函数的行为；</p>
-<p>使用输入／输出的方式来写注释；比如一个函数输入什么会得到（输出）什么；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a(1); // 3</span><br></pre></td></tr></table></figure>
-<p>从功能，输出结果上描述你的代码； </p>
-<h4 id="简化循环和逻辑"><a href="#简化循环和逻辑" class="headerlink" title="简化循环和逻辑"></a>简化循环和逻辑</h4><p>最小化代码，简化逻辑；</p>
-<h4 id="把控制流变得易读"><a href="#把控制流变得易读" class="headerlink" title="把控制流变得易读"></a>把控制流变得易读</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(条件)&#123;&#125;</span><br><span class="line">else &#123;&#125; // 相反的条件</span><br><span class="line">// 条件判断的顺序，需要深思熟虑，肯定有一种是更好的；</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/一次面试记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/11/一次面试记录/" itemprop="url">记录一次面试经历</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-11T18:22:14+08:00">
-                2018-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>根据 W3C 的规范，元素内容占据的空间是由 width 属性设置的，而内容周围的 padding 和 border 值是另外计算的。<br>不幸的是，IE5.X 和 6 在怪异模式中使用自己的非标准模型。这些浏览器的 width 属性不是内容的宽度，而是内容、内边距和边框的宽度的总和。</p>
-<ol>
-<li>负责B/S架构（<code>web</code>、<code>移动端</code>）前端工作；</li>
-<li>页面性能优化</li>
-<li>浏览器兼容问题</li>
-<li>规范的定制：命名规范，编码规范；重点在<code>规范</code>二字</li>
-<li>新技术的推进：工具、技术架构（框架）</li>
-<li>ES6</li>
-<li>响应式前端开发</li>
-<li>构建工具webpack、gulp、grunt<ul>
-<li>gulp     task  dest  pipe src watch</li>
-</ul>
-</li>
-<li>调试工具、性能测试工具</li>
-<li>react, vue, angular</li>
-</ol>
-<h3 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h3><ol>
-<li><p>盒子模型</p>
-</li>
-<li><p>说一下原型链、构造函数、对象的关系</p>
-</li>
-<li><p>xss攻击：反射型（url）、存储型（用户输入区）进行攻击</p>
-</li>
-<li><p>css样式 权重  !importan &gt; style &gt; id &gt; class (属性) &gt; p &gt; 通配符（*）</p>
-</li>
-<li><p>doctype的作用：定义文档类型，浏览器会根据文档类型来进行解析</p>
-</li>
-<li><p>跨域问题：</p>
-<p>1：前端跨域，jsonp创建一个script标签src=”http:12.33.23.112:23/getdata?callback=todo” 向后台请求数据，只能是get请求；不用ajax；</p>
-<p>2：启动一个本地服务器坐代理，将请求发送到本地服务器，再由本地服务发送到指定的服务器，这样就可以绕过跨域的问题；</p>
-<p>3：不用解决跨域问题，将前端代码和后端服务放到同一个服务器上，同源就不用解决跨域；</p>
-<p>还有一种就是后端跨域；后端设置跨域问题，前端不用处理，直接请求接口就好了；</p>
-</li>
-<li><p>闭包：2个作用，可以读取函数 内部的变量、第二个作用是局部变量的值一直保存在内存中；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var name = &quot;The Window&quot;;</span><br><span class="line">　　var object = &#123;</span><br><span class="line">　　　　name : &quot;My Object&quot;,</span><br><span class="line">　　　　getNameFunc : function()&#123;</span><br><span class="line">　　　　　　return function()&#123;</span><br><span class="line">　　　　　　　　return this.name;</span><br><span class="line">　　　　　　&#125;;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;;</span><br><span class="line">　　alert(object.getNameFunc()());</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name = &quot;The Window&quot;;</span><br><span class="line">　　var object = &#123;</span><br><span class="line">　　　　name : &quot;My Object&quot;,</span><br><span class="line">　　　　getNameFunc : function()&#123;</span><br><span class="line">　　　　　　var that = this;</span><br><span class="line">　　　　　　return function()&#123;</span><br><span class="line">　　　　　　　　return that.name;</span><br><span class="line">　　　　　　&#125;;</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;;</span><br><span class="line">　　alert(object.getNameFunc()());</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="未完成"><a href="#未完成" class="headerlink" title="未完成"></a>未完成</h3><ol>
-<li>flex布局，这个大致看一下，有所了解就好，毕竟没怎么用过；</li>
-<li>项目中使用的技术栈，出色点，难点： 围绕技术栈的问题，react，redux，webpack，antd</li>
-<li>http，websockt，https</li>
-<li>跨域：怎么解决跨域，jsonp、cors怎么处理<code>not ok</code></li>
-<li>web网络攻击：XSS等； 还有 csrf攻击、<strong>可以看看常见的web攻击方式</strong></li>
-<li>js中各种距离的计算，关系，offsetwidth等 <code>not ok</code>  所有高度总结，然后背下来；</li>
-<li>ajax，http，缓存机制等</li>
-<li>web优化</li>
-<li>闭包</li>
-<li></li>
-</ol>
-<h2 id="跨域-详细"><a href="#跨域-详细" class="headerlink" title="跨域 - 详细"></a>跨域 - 详细</h2><p>jsonp</p>
-<p>cors</p>
-<p><code>这两个东西是怎么用的， 怎么实现的，写一个例子出来</code>；</p>
-<h2 id="美团"><a href="#美团" class="headerlink" title="美团"></a>美团</h2><ul>
-<li>代码质量</li>
-<li>自动化（拒绝手动操作）</li>
-</ul>
-<ul>
-<li>有react，RN的开发经验</li>
-<li>​</li>
-</ul>
-<p>Will mount 和 didmount 的区别</p>
-<p>原生js移除一个节点的方式</p>
-<p>一个js文件里面有10个方法，其中有5个有注释？被注释率就是50%；如何知道这个被注释率；</p>
-<p>webpack  = loader和plugin的区别</p>
-<p>var  let const 的区别</p>
-<p>http。 content-type   说几种类型出来</p>
-<p>http 缓存机制： 强制缓存和协议缓存，  强制／协议 缓存的实现方式；</p>
-<h2 id="面试题整理"><a href="#面试题整理" class="headerlink" title="面试题整理"></a>面试题整理</h2><p><strong>找出字符串中重复最多元素和其个数</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;jaabbcckcasddssdkdkdksssssss&apos;;</span><br><span class="line"></span><br><span class="line">console.log( getBiggestNo(str) );</span><br><span class="line"></span><br><span class="line">function getBiggestNo(str) &#123;</span><br><span class="line">	let wordStore = &#123;&#125;;</span><br><span class="line">	// let biggestNo = 0;</span><br><span class="line">	let ss = &#123;</span><br><span class="line">		name: &apos;&apos;,</span><br><span class="line">		number: 0,</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	for (let i = 0; i &lt; str.length; i++) &#123;</span><br><span class="line">		if ( !wordStore.hasOwnProperty(str[i]) ) &#123;</span><br><span class="line">			wordStore[str[i]] = 1;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			++wordStore[str[i]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (let item in wordStore) &#123;</span><br><span class="line">		if ( ss.number &lt; wordStore[item] ) &#123;</span><br><span class="line">			ss = &#123;</span><br><span class="line">				name: item,</span><br><span class="line">				number: wordStore[item],</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return ss;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>取一个2-32之间的随机数</strong></p>
-<p>我擦，这个问题我想了半天，结果发现还是有遗漏；现在想想自己造轮子之前，还是到网上查查有没有现成的结果，一般情况一下是会有的，然后总结经验；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Math.random() * (max - min) + min</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Math.</span><br><span class="line">abs(x) // 返回数的绝对值</span><br><span class="line">ceil(x) // 向上取整</span><br><span class="line">floor(x) // 向下取整</span><br><span class="line">max(x, y) // 两个中最大的</span><br><span class="line">min(x, y) // 两个中最小的</span><br><span class="line">random() // 取随机数</span><br><span class="line">round(x) // 把数四舍五入为最接近的整数</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>编写一个javscript函数 fn，该函数有一个参数 n（数字类型），其返回值是一个数组，该数组内是 n 个随机且不重复的整数，且整数取值范围是 [2, 32]。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function aa(n) &#123;</span><br><span class="line">  let a = 0;</span><br><span class="line">  if(n &gt;= 32) &#123;</span><br><span class="line">    a = 32;</span><br><span class="line">  &#125; else if (n &lt;= 0) &#123;</span><br><span class="line">    a =0;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    a = n;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  let arr = [];</span><br><span class="line">  for (let i = 0; i &lt; n ; i++) &#123;</span><br><span class="line">    // 创建一个随机数</span><br><span class="line">    let rnd = getRand(32, 2);</span><br><span class="line">    if(checkIndexArr(arr, rnd)) &#123;</span><br><span class="line">      i--;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      arr.push(rnd);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getRand(min, max) &#123;</span><br><span class="line">  return Math.floor(Math.random() * (max - min) + min);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function checkIndexArr(arr, num) &#123;</span><br><span class="line">  const result = arr.find((n) =&gt; n === num);</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>delete使用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3, 4, 5];</span><br><span class="line"></span><br><span class="line">var a = delete arr[2];</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>考察delete的使用；</p>
-<p>主要用于删除对象上的属性；</p>
-</blockquote>
-<p><strong>=号的运行顺序是怎样的？js的运行顺序？</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var x = 1;</span><br><span class="line">y = x = typeof y;</span><br><span class="line">console.log(y);</span><br><span class="line">// undifined</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>从右往左执行</p>
-<p>1: 定义了 x = 1;</p>
-<p>2: x = typeof y;    这里y还没有定义，所以x = undefined</p>
-<p>3: y = x ;</p>
-<p>所以最终y = undifined;</p>
-</blockquote>
-<p>思考：</p>
-<p><strong>关于隐式转换的问题？</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var x = true;</span><br><span class="line">console.log(x + 0); // 1</span><br><span class="line">console.log(x + &apos;xyz&apos;); // &apos;truexyz&apos;</span><br><span class="line">console.log(x + true); // 2</span><br><span class="line">console.log(x + false); // 1</span><br></pre></td></tr></table></figure>
-<p>布尔值于数字 ‘+’时，会隐式转换为 0、1；</p>
-<p><code>看看小孩书里对隐式转换的讲解</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/js操作符/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/11/js操作符/" itemprop="url">js操作符</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-11T18:22:14+08:00">
-                2018-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>问题一：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">++ &apos;bb&apos;;</span><br><span class="line">// Uncaught ReferenceError: Invalid left-hand side expression in prefix operation</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = &apos;hello&apos;;</span><br><span class="line">var b = ++a;</span><br><span class="line">// b : NAN</span><br></pre></td></tr></table></figure>
-<p>上面为什么报错？</p>
-<p>直接写 ++ 字符串，都会报错，但是把字符串保存在一个变量里面再执行++ 就不会报错；</p>
-<p><strong>++、–、-、+操作符：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &apos;1&apos;;</span><br><span class="line">var b = ++a; // b: 2; a: 2;</span><br><span class="line">var c = 3;</span><br><span class="line">b = c--; // b: 3; c: 2;</span><br></pre></td></tr></table></figure>
-<p><strong>连续 = 的执行方向：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var x = 1;</span><br><span class="line">y = x = typeof y;</span><br><span class="line">// y: &apos;undefined&apos;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>y = x = typeof y;</p>
-<p>是从右往左执行的；先执行x = typeof y；此时，y是为定义undefined，所以x被赋值为undefined；最后x又赋值给y；所以最后y：undefined</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var x = 1;</span><br><span class="line">var y = &apos;23&apos;;</span><br><span class="line">y = x = typeof y;</span><br><span class="line">// y: &apos;string&apos;</span><br></pre></td></tr></table></figure>
-<p><strong>&amp;&amp;、||</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = x &amp;&amp; y;</span><br><span class="line">var b = m || n;</span><br><span class="line">// 执行顺序都是从左往右的执行；返回值并非一定是boolean值；</span><br><span class="line"></span><br><span class="line">var a = &#123;name: &apos;bob&apos;&#125;;</span><br><span class="line">var b = a &amp;&amp; true; // b: &#123;name: &apos;bob&apos;&#125; 返回一个对象</span><br></pre></td></tr></table></figure>
-<p><strong>/、*、%</strong></p>
-<p>除、乘、求余</p>
-<p><strong>&lt;、&gt;、=</strong></p>
-<p>两个字符串比较，比较的是对应的字符编码值；（一般比较字符串首 个元素 的字符编码值）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/11/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-11T16:57:50+08:00">
-                2018-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/mock假数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/20/mock假数据/" itemprop="url">前端独立开发之mock假数据的方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-20T14:52:38+08:00">
-                2017-12-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>mock假数据的方式</strong></p>
-<ol>
-<li>第一次接触mock假数据是在使用antd提供的脚手架上</li>
-<li>使用什么<code>esay mock</code>，<code>rap</code>，<code>ssr.js</code>，<code>json-server</code>、<code>dyson</code></li>
-</ol>
-<p><strong>antd也是使用的mockjs，具体实现后面研究一下</strong></p>
-<p>。。。。。。。</p>
-<p><strong>目前先研究一下esay mock的使用：</strong></p>
-<p>这个感觉不太好用；</p>
-<p><strong>json-server的使用：</strong></p>
-<p><a href="https://github.com/typicode/json-server" target="_blank" rel="noopener">学习地址</a></p>
-<p>配合mockjs 使用；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var ssa = require(&apos;mockjs&apos;);</span><br><span class="line"></span><br><span class="line">function getdata() &#123;</span><br><span class="line">  let ss = ssa.mock(&#123;</span><br><span class="line">    &quot;data&quot;: &#123;</span><br><span class="line">      &quot;msg&quot;: &quot;&quot;,</span><br><span class="line">      &quot;data&quot;: &#123;</span><br><span class="line">        &quot;total_count&quot;: 10,</span><br><span class="line">        &quot;total_page_num&quot;: 1,</span><br><span class="line">        &quot;trans_list&quot;: [</span><br><span class="line">          &quot;trans_time&quot;: &quot;2017-12-15 10:40:00&quot;,</span><br><span class="line">          &quot;amount&quot;: &quot;-816.00&quot;,</span><br><span class="line">          &quot;is_credit&quot;: false, // false:支出，true:收入</span><br><span class="line">          &quot;trans_id&quot;: 41512603, //#交易流水id</span><br><span class="line">          &quot;order_info&quot;: &#123;</span><br><span class="line">            &quot;order_id&quot;: &quot;00000300000005&quot;, // #订单id</span><br><span class="line">            &quot;service_type&quot;: &quot;server&quot;, // #订单类型，server:服务器，disk:磁盘，lb:负载均衡</span><br><span class="line">            &quot;resource_id&quot;: &quot;100106&quot;, // #资源id</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;success&quot;: &quot;true&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">  return ss;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = getdata</span><br></pre></td></tr></table></figure>
-<p>如何配置请求类型：post、get等；</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/ES6-class/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/15/ES6-class/" itemprop="url">class、装饰器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-15T15:29:22+08:00">
-                2017-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>什么是类（class）， 如何使用，场景，注意事项；</p>
-<p>什么是装饰器，如何使用，场景，注意事项；</p>
-<p>类 和 装饰器之间的联系；</p>
-</blockquote>
-<h2 id="类-class"><a href="#类-class" class="headerlink" title="类 - class"></a>类 - class</h2><p>随着互联网行业的快速发展，程序员需要面对的业务、展示场景也越来越复杂；在这种情况下需要编写维护的代码量也是相当庞大的一个数字；那如何来维护这么庞大的代码呢？</p>
-<p>人们常用的方式是模块化；业界中常使用的方法是“面向对象编程”；但是javascript在<code>ES6</code>之前是不支持类（class）的；所以才在ES6中提出类<code>class</code>的概念；</p>
-<p><strong>ES5之前，Javascript定义类（class）的三种方法</strong></p>
-<p><a href="http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html" target="_blank" rel="noopener">阮一峰es6之前创建类的方法</a></p>
-<h3 id="ES6种class"><a href="#ES6种class" class="headerlink" title="ES6种class"></a>ES6种class</h3><p>ECMAScript 2015 中引入的 JavaScript 类(<code>classes</code>) 实质上是 JavaScript 现有的基于原型的继承的语法糖。 类语法不是向JavaScript引入一个新的面向对象的继承模型。JavaScript类提供了一个更简单和更清晰的语法来创建对象并处理继承。</p>
-<p><code>static</code> 关键字用来定义一个类的一个静态方法。调用静态方法不需要<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#The_object_(class_instance" target="_blank" rel="noopener">实例化</a>)该类，但不能通过一个类实例调用静态方法。静态方法通常用于为一个应用程序创建工具函数。</p>
-<p><code>extends</code> 关键字在类声明或类表达式中用于创建一个类作为另一个类的一个子类。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/04/小程序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/04/小程序/" itemprop="url">小程序开发 - 之个人经验</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-04T20:25:30+08:00">
-                2017-12-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>小程序开发流程</p>
-<ol>
-<li>根据官网介绍，通过邮箱注册账号，绑定微信； <a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1" target="_blank" rel="noopener">https://mp.weixin.qq.com/wxopen/waregister?action=step1</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/25/RegExp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/25/RegExp/" itemprop="url">Regular Expression</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-25T21:46:22+08:00">
-                2017-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><p>test. 一个在字符串中测试是否匹配的RegExp方法，它返回true或false。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;hello world!&apos;;</span><br><span class="line">var result = /^hello/.test(str);</span><br><span class="line">console.log(result); // true</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>match 一个在字符串中执行查找匹配的String方法，它返回一个数组或者在未匹配到时返回null。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;For more information, see Chapter 3.4.5.1&apos;;</span><br><span class="line">var re = /see (chapter \d+(\.\d)*)/i;</span><br><span class="line">var found = str.match(re);</span><br><span class="line"></span><br><span class="line">console.log(found);</span><br><span class="line"></span><br><span class="line">// logs [ &apos;see Chapter 3.4.5.1&apos;,</span><br><span class="line">//        &apos;Chapter 3.4.5.1&apos;,</span><br><span class="line">//        &apos;.1&apos;,</span><br><span class="line">//        index: 22,</span><br><span class="line">//        input: &apos;For more information, see Chapter 3.4.5.1&apos; ]</span><br><span class="line"></span><br><span class="line">// &apos;see Chapter 3.4.5.1&apos; 是整个匹配。</span><br><span class="line">// &apos;Chapter 3.4.5.1&apos; 被&apos;(chapter \d+(\.\d)*)&apos;捕获。</span><br><span class="line">// &apos;.1&apos; 是被&apos;(\.\d)&apos;捕获的最后一个值。</span><br><span class="line">// &apos;index&apos; 属性(22) 是整个匹配从零开始的索引。</span><br><span class="line">// &apos;input&apos; 属性是被解析的原始字符串。</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&apos;;</span><br><span class="line">var regexp = /[A-E]/gi;</span><br><span class="line">var matches_array = str.match(regexp);</span><br><span class="line"></span><br><span class="line">console.log(matches_array);</span><br><span class="line">// [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>search 一个在字符串中测试匹配的String方法，它返回匹配到的位置索引，或者在失败时返回-1。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function testinput(re, str)&#123;</span><br><span class="line">  var midstring;</span><br><span class="line">  if (str.search(re) != -1)&#123;</span><br><span class="line">    midstring = &quot; contains &quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    midstring = &quot; does not contain &quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log (str + midstring + re);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>replace 一个在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;Twas the night before Xmas...&apos;;</span><br><span class="line">var newstr = str.replace(/xmas/i, &apos;Christmas&apos;);</span><br><span class="line">console.log(newstr);  // Twas the night before Christmas...</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>split 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的String方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var names = &apos;Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand &apos;;</span><br><span class="line"></span><br><span class="line">console.log(names);</span><br><span class="line"></span><br><span class="line">var re = /\s*;\s*/;</span><br><span class="line">var nameList = names.split(re);</span><br><span class="line"></span><br><span class="line">console.log(nameList);</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ol>
-<h2 id="正则表达式使用总结"><a href="#正则表达式使用总结" class="headerlink" title="正则表达式使用总结"></a>正则表达式使用总结</h2><p>####如何理解开始、结束 字符：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/^ ... $/</span><br><span class="line">eg:</span><br><span class="line"></span><br><span class="line">var str = &apos;Twas the night before Xmas&apos;;</span><br><span class="line">var ss = new RegExp(/mas$/, &apos;g&apos;);</span><br><span class="line">var newstr = str.replace(ss, &apos;Christmas&apos;);</span><br><span class="line">console.log(newstr);</span><br><span class="line">// Twas the night before XChristmas</span><br><span class="line">// 匹配结尾的mas</span><br><span class="line"></span><br><span class="line">var a = &apos;   asasd   &apos;;</span><br><span class="line">var b = a.replace(/^\s+|\s+$/g,&quot;&quot;);</span><br><span class="line">console.log(b);</span><br><span class="line">// asasd</span><br><span class="line">// 替换了开头和结尾的空格</span><br></pre></td></tr></table></figure>
-<p>有开始和结束符， 匹配<code>整个字符串</code>是否匹配 正则规则；</p>
-<h4 id="贪婪、非贪婪-匹配"><a href="#贪婪、非贪婪-匹配" class="headerlink" title="贪婪、非贪婪 匹配"></a>贪婪、非贪婪 匹配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var ele = &apos;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&apos;;</span><br><span class="line">var ss = ele.match(/&lt;.+&gt;/);</span><br><span class="line">console.log(ss);</span><br><span class="line">// [&quot;&lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt;&quot;, index: 10, input: &quot;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&quot;]</span><br></pre></td></tr></table></figure>
-<p>由于<code>+</code>的贪婪性，使得正则表达式引擎返回了一个最左边的最长的匹配</p>
-<p>如果想得到期望的结果，就需要启用非贪婪模式：<code>&lt;.+?&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var ele = &apos;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&apos;;</span><br><span class="line">var ss = ele.match(/&lt;.+?&gt;/);</span><br><span class="line">console.log(ss);</span><br><span class="line">// [&quot;&lt;EM&gt;&quot;, index: 10, input: &quot;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&quot;]</span><br><span class="line">// 这里精准的匹配了&lt;EM&gt;</span><br><span class="line">// 非贪婪匹配</span><br></pre></td></tr></table></figure>
-<p><strong>1.什么是正则表达式的贪婪与非贪婪匹配</strong></p>
-<p>如：String str=”abcaxc”;</p>
-<p>　　Patter p=”ab*c”;</p>
-<p><strong>贪婪匹配:</strong>正则表达式一般趋向于最大长度匹配，也就是所谓的贪婪匹配。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abcaxc</strong>(ab*c)。</p>
-<p><strong>非贪婪匹配</strong>：就是匹配到结果就好，就少的匹配字符。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abc</strong>(ab*c)。</p>
-<p><strong>2.编程中如何区分两种模式</strong></p>
-<p>　　<strong>默认是贪婪模式；在量词后面直接加上一个问号？就是非贪婪模式。</strong></p>
-<p>　　量词：{m,n}：m到n个</p>
-<p>　　　　　*：任意多个</p>
-<p>　　　　　+：一个到多个</p>
-<p>　　　　　？：0或一个</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1844,7 +2100,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>

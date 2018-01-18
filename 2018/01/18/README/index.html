@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="web-share segmentfault 简书web开发所需要的一些资源与小技巧// 学习es6-阮哥的书,youtube日常整理的一些网址  gitbook日常整理的一些网址    thunk函数     redux中文文档 测试框架 Mocha 实例教程 前端工程师手册 学习网站-js-nodejs     学习网址-阮一峰     immutable.js 阮一峰网络日志    廖雪峰官">
+<meta property="og:type" content="article">
+<meta property="og:title" content="songxx&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2018/01/18/README/index.html">
+<meta property="og:site_name" content="songxx&#39;s blog">
+<meta property="og:description" content="web-share segmentfault 简书web开发所需要的一些资源与小技巧// 学习es6-阮哥的书,youtube日常整理的一些网址  gitbook日常整理的一些网址    thunk函数     redux中文文档 测试框架 Mocha 实例教程 前端工程师手册 学习网站-js-nodejs     学习网址-阮一峰     immutable.js 阮一峰网络日志    廖雪峰官">
+<meta property="og:updated_time" content="2018-01-18T05:40:55.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="songxx&#39;s blog">
+<meta name="twitter:description" content="web-share segmentfault 简书web开发所需要的一些资源与小技巧// 学习es6-阮哥的书,youtube日常整理的一些网址  gitbook日常整理的一些网址    thunk函数     redux中文文档 测试框架 Mocha 实例教程 前端工程师手册 学习网站-js-nodejs     学习网址-阮一峰     immutable.js 阮一峰网络日志    廖雪峰官">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/18/README/"/>
+
+
+
+
+
+  <title> | songxx's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">songxx's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/README/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="web-share"><a href="#web-share" class="headerlink" title="web-share"></a>web-share</h1><ul>
+<li><a href="https://segmentfault.com/" target="_blank" rel="noopener">segmentfault</a></li>
+<li><a href="">简书</a><br>web开发所需要的一些资源与小技巧// 学习es6-阮哥的书,youtube<h2 id="日常整理的一些网址"><a href="#日常整理的一些网址" class="headerlink" title="日常整理的一些网址"></a>日常整理的一些网址</h2></li>
+</ul>
+<p><a href="https://breezetemple.gitbooks.io/how-to-use-gitbook/content/index.html" target="_blank" rel="noopener">gitbook</a><br><a href="http://www.w3cfuns.com/notes/19125/e1c1e49a6034d18cf3dc7b6e50a3d18a.html" target="_blank" rel="noopener">日常整理的一些网址</a>    <a href="http://www.ruanyifeng.com/blog/2015/05/thunk.html" target="_blank" rel="noopener">thunk函数</a>     <a href="http://cn.redux.js.org/docs/react-redux/api.html" target="_blank" rel="noopener">redux中文文档</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="noopener">测试框架 Mocha 实例教程</a></p>
+<p><a href="https://leohxj.gitbooks.io/front-end-database/content/html-and-css-basic/common-tag.html" target="_blank" rel="noopener">前端工程师手册</a></p>
+<p><a href="http://javascript.ruanyifeng.com/nodejs/http.html" target="_blank" rel="noopener">学习网站-js-nodejs</a>    </p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html" target="_blank" rel="noopener">学习网址-阮一峰</a>    </p>
+<p><a href="https://github.com/camsong/blog" target="_blank" rel="noopener">immutable.js</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/archives.html" target="_blank" rel="noopener">阮一峰网络日志</a>   </p>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰官网</a></p>
+<p><a href="https://www.zhihu.com/question/36514327" target="_blank" rel="noopener">知乎CDN讲解</a></p>
+<p><a href="https://isux.tencent.com/" target="_blank" rel="noopener">没事参考学习腾讯前端网站</a>  </p>
+<p><a href="http://zhitu.isux.us/" target="_blank" rel="noopener">图片处理</a></p>
+<h2 id="html-css"><a href="#html-css" class="headerlink" title="html+css"></a>html+css</h2><p><a href="https://segmentfault.com/a/1190000003931851" target="_blank" rel="noopener">利用HTML和CSS实现常见的布局</a><br><a href="https://www.w3schools.com/cssref/css3_pr_flex-grow.asp" target="_blank" rel="noopener">w3c字典</a></p>
+<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript" target="_blank" rel="noopener">js官网</a>    </p>
+<p><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/" target="_blank" rel="noopener">函数式编程</a>    </p>
+<p><a href="http://javascript.ruanyifeng.com/" target="_blank" rel="noopener">JavaScript 标准参考教程（alpha）作者: 阮一峰</a></p>
+<p><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">ES6/7 中文文档</a><br><a href="https://github.com/alivebao/clean-code-js" target="_blank" rel="noopener">js代码整洁-参考-不权威</a>    </p>
+<h2 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h2><p><a href="http://cnodejs.org/getstart" target="_blank" rel="noopener">nodejs学习网站</a>   </p>
+<p><a href="http://javascript.ruanyifeng.com/nodejs/fs.html" target="_blank" rel="noopener">阮一峰博客</a></p>
+<p><a href="https://0532.gitbooks.io/nodejs/content/path/README.html" target="_blank" rel="noopener">nodejs-常用模块介绍</a>  </p>
+<p><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">Expressm模块</a>    </p>
+<p><a href="http://www.runoob.com/mongodb/mongodb-databases-documents-collections.html" target="_blank" rel="noopener">Mongodb-菜鸟</a></p>
+<p><a href="https://cnodejs.org/topic/5203a71844e76d216a727d2e" target="_blank" rel="noopener">cheerio API</a>     </p>
+<p>###promise<br><a href="http://www.cnblogs.com/roverliang/p/5340902.html" target="_blank" rel="noopener">使用nodejs抓取博客园内容—Promise模块探索</a><br><a href="http://www.cnblogs.com/lvdabao/p/es6-promise-1.html" target="_blank" rel="noopener">吕大豹-promise</a></p>
+<h2 id="科学上网工具教程"><a href="#科学上网工具教程" class="headerlink" title="科学上网工具教程"></a>科学上网工具教程</h2><p><a href="https://segmentfault.com/a/1190000007611335" target="_blank" rel="noopener">使用amazon 免费云服务器</a></p>
+<p>##浏览器方面<br><a href="https://www.nihaoshijie.com.cn/index.php/archives/322" target="_blank" rel="noopener">浏览器的工作原理</a></p>
+<p>##webpack<br><a href="https://www.youtube.com/watch?v=fGed9phNkto" target="_blank" rel="noopener">youtube-webpack</a><br><a href="http://zhaoda.net/webpack-handbook/configuration.html" target="_blank" rel="noopener">gitbook-webpack</a></p>
+<p>##谷歌调试手机浏览器</p>
+<blockquote>
+<p>chrome://inspect/    </p>
+</blockquote>
+<p>##css3动画<br><a href="http://www.w3school.com.cn/css3/css3_animation.asp" target="_blank" rel="noopener">w3school-animation</a>    </p>
+<p>##js算法之常用排序<br><a href="https://segmentfault.com/a/1190000005144961" target="_blank" rel="noopener">排序</a></p>
+<p>##闭包<br><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">阮哥闭包笔记</a></p>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html" target="_blank" rel="noopener">Redux 入门教程（一）：基本用法</a>    </p>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p><a href="http://imweb.io/topic/577512fe732b4107576230b9" target="_blank" rel="noopener">react优化文章</a></p>
+<p><a href="https://mobx.js.org/index.html" target="_blank" rel="noopener">mobx</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="noopener">React 入门实例教程</a><br><a href="https://ant.design/components/modal/" target="_blank" rel="noopener">React 蚂蚁组件</a><br><a href="http://09x.ant.design/components/validation/" target="_blank" rel="noopener">蚂蚁react网站</a><br><a href="http://reactjs.cn/react/docs/getting-started-zh-CN.html" target="_blank" rel="noopener">React官网入门教程</a><br><a href="https://github.com/dwqs/react-style-guide/blob/master/readme.md" target="_blank" rel="noopener">react书写规范</a>    </p>
+<p><a href="http://www.theodo.fr/blog/2016/03/getting-started-with-react-redux-and-immutable-a-test-driven-tutorial-part-1/" target="_blank" rel="noopener">React, Redux and Immutable</a></p>
+<h2 id="前端模拟数据Mockjs"><a href="#前端模拟数据Mockjs" class="headerlink" title="前端模拟数据Mockjs"></a>前端模拟数据Mockjs</h2><p><a href="https://github.com/nuysoft/Mock/wiki/Getting-Started" target="_blank" rel="noopener">github-Mock</a><br><a href="http://mockjs.com/examples.html#Boolean" target="_blank" rel="noopener">mock官网</a>    </p>
+<h2 id="http-lyn-s76-org"><a href="#http-lyn-s76-org" class="headerlink" title="http://lyn.s76.org/"></a><a href="http://lyn.s76.org/" target="_blank" rel="noopener">http://lyn.s76.org/</a></h2><p>##<a href="http://www.chartjs.org/" target="_blank" rel="noopener">http://www.chartjs.org/</a></p>
+<p>##跨域问题<br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解</a><br><a href="http://lyn.s76.org/2016/06/09/ios8-cors-prefilght/" target="_blank" rel="noopener">杰哥跨域博客总结</a></p>
+<p>##<a href="http://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">database</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/18/advance/" rel="next" title="职业规划，技术路线，思想历程">
+                <i class="fa fa-chevron-left"></i> 职业规划，技术路线，思想历程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/18/personalBlog-by-hexoGithub/" rel="prev" title="通过github、hexo搭建个人博客流程">
+                通过github、hexo搭建个人博客流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="songxx" />
+          <p class="site-author-name" itemprop="name">songxx</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#web-share"><span class="nav-number">1.</span> <span class="nav-text">web-share</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#日常整理的一些网址"><span class="nav-number">1.1.</span> <span class="nav-text">日常整理的一些网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html-css"><span class="nav-number">1.2.</span> <span class="nav-text">html+css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Javascript"><span class="nav-number">1.3.</span> <span class="nav-text">Javascript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-js"><span class="nav-number">1.4.</span> <span class="nav-text">node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#科学上网工具教程"><span class="nav-number">1.5.</span> <span class="nav-text">科学上网工具教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux"><span class="nav-number">1.6.</span> <span class="nav-text">Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React"><span class="nav-number">1.7.</span> <span class="nav-text">React</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端模拟数据Mockjs"><span class="nav-number">1.8.</span> <span class="nav-text">前端模拟数据Mockjs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-lyn-s76-org"><span class="nav-number">1.9.</span> <span class="nav-text">http://lyn.s76.org/</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxx</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

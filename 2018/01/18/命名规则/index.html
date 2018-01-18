@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="命名规范相关文章一 airbnb命名规则 阮一峰-文件名小写 命名：表现了一个程序员对自己工作的态度，修养，是否是一个追求完美的人； ###变量 命名方法：小驼峰式命名法。 命名规范：前缀应当是名词。(函数的名字前缀为动词，以此区分变量和函数) 文件命名 建议文件名，采用小写，why 首先个人遇到的一个问题，git上传代码，不会区分文件名的大小写 跨平台会出现问题；应为linux对大小写敏感，wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命名">
+<meta property="og:url" content="http://yoursite.com/2018/01/18/命名规则/index.html">
+<meta property="og:site_name" content="songxx&#39;s blog">
+<meta property="og:description" content="命名规范相关文章一 airbnb命名规则 阮一峰-文件名小写 命名：表现了一个程序员对自己工作的态度，修养，是否是一个追求完美的人； ###变量 命名方法：小驼峰式命名法。 命名规范：前缀应当是名词。(函数的名字前缀为动词，以此区分变量和函数) 文件命名 建议文件名，采用小写，why 首先个人遇到的一个问题，git上传代码，不会区分文件名的大小写 跨平台会出现问题；应为linux对大小写敏感，wi">
+<meta property="og:updated_time" content="2018-01-18T05:40:55.735Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="命名">
+<meta name="twitter:description" content="命名规范相关文章一 airbnb命名规则 阮一峰-文件名小写 命名：表现了一个程序员对自己工作的态度，修养，是否是一个追求完美的人； ###变量 命名方法：小驼峰式命名法。 命名规范：前缀应当是名词。(函数的名字前缀为动词，以此区分变量和函数) 文件命名 建议文件名，采用小写，why 首先个人遇到的一个问题，git上传代码，不会区分文件名的大小写 跨平台会出现问题；应为linux对大小写敏感，wi">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/18/命名规则/"/>
+
+
+
+
+
+  <title>命名 | songxx's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">songxx's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/命名规则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">命名</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://guide.aotu.io/docs/css/code.html" target="_blank" rel="noopener">命名规范相关文章一</a></p>
+<p><a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">airbnb命名规则</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2017/02/filename-should-be-lowercase.html" target="_blank" rel="noopener">阮一峰-文件名小写</a></p>
+<p>命名：表现了一个程序员对自己工作的态度，修养，是否是一个追求完美的人；</p>
+<p>###变量</p>
+<p><strong>命名方法</strong>：小驼峰式命名法。</p>
+<p><strong>命名规范</strong>：前缀应当是名词。(函数的名字前缀为动词，以此区分变量和函数)</p>
+<h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><ol>
+<li><p><code>建议文件名，采用小写，why</code></p>
+<p>首先个人遇到的一个问题，git上传代码，不会区分文件名的大小写</p>
+<p>跨平台会出现问题；应为linux对大小写敏感，window、mac不敏感</p>
+</li>
+</ol>
+<p><strong>html、css文件命名：</strong></p>
+<p>确保文件命名总是以字母开头而不是数字，且字母一律小写，以下划线连接且不带其他标点符号，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">jdc.html</span><br><span class="line">jdc_detail.html</span><br><span class="line"></span><br><span class="line">&lt;!-- SASS --&gt;</span><br><span class="line">jdc.scss</span><br><span class="line">jdc_detail.scss</span><br></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><strong>命名方法</strong>：小驼峰式命名法。</p>
+<p><strong>命名规范</strong>：前缀应当为动词。</p>
+<p><strong>命名建议</strong>：可使用常见动词约定</p>
+<table>
+<thead>
+<tr>
+<th>动 词</th>
+<th>含义</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>can</td>
+<td>判断是否可执行某个动作(权限)</td>
+<td>函数返回一个布尔值。true：可执行；false：不可执行</td>
+</tr>
+<tr>
+<td>has</td>
+<td>判断是否含有某个值</td>
+<td>函数返回一个布尔值。true：含有此值；false：不含有此值</td>
+</tr>
+<tr>
+<td>is</td>
+<td>判断是否为某个值</td>
+<td>函数返回一个布尔值。true：为某个值；false：不为某个值</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取某个值</td>
+<td>函数返回一个非布尔值</td>
+</tr>
+<tr>
+<td>set</td>
+<td>设置某个值</td>
+<td>无返回值、返回是否设置成功或者返回链式对象</td>
+</tr>
+<tr>
+<td>load</td>
+<td>加载某些数据</td>
+<td>无返回值或者返回是否加载完成的结果</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p><strong>命名方法</strong>：名称全部大写。</p>
+<p><strong>命名规范</strong>：使用大写字母和下划线来组合命名，下划线用以分割单词。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p><strong>命名方法</strong>：大驼峰式命名法，首字母大写。</p>
+<h3 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h3><p><strong>类的成员包含：</strong></p>
+<p>① 公共属性和方法：跟变量和函数的命名一样。</p>
+<p>② 私有属性和方法：前缀为_(下划线)，后面跟公共属性和方法一样的命名方式。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Student(name) &#123;</span><br><span class="line"> var _name = name; // 私有成员</span><br><span class="line"> </span><br><span class="line"> // 公共方法</span><br><span class="line"> this.getName = function () &#123;</span><br><span class="line"> return _name;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> // 公共方式</span><br><span class="line"> this.setName = function (value) &#123;</span><br><span class="line"> _name = value;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">var st = new Student(&apos;tom&apos;);</span><br><span class="line">st.setName(&apos;jerry&apos;);</span><br><span class="line">console.log(st.getName()); // =&gt; jerry：输出_name私有变量的值</span><br></pre></td></tr></table></figure>
+<h2 id="js命名规范"><a href="#js命名规范" class="headerlink" title="js命名规范"></a>js命名规范</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">结构</th>
+<th style="text-align:center">规范</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">类</td>
+<td style="text-align:center">大驼峰</td>
+<td style="text-align:center">ModuleClass()</td>
+</tr>
+<tr>
+<td style="text-align:center">共有方法</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">getPosition()</td>
+</tr>
+<tr>
+<td style="text-align:center">共有变量</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">frameStyle</td>
+</tr>
+<tr>
+<td style="text-align:center">常量</td>
+<td style="text-align:center">全大写</td>
+<td style="text-align:center">APPLE_CASE</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">共有方法和属性</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">mixedCase</td>
+</tr>
+<tr>
+<td style="text-align:center">私有方法和属性</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">_mixedCase</td>
+</tr>
+<tr>
+<td style="text-align:center">方法参数</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">mixedCase</td>
+</tr>
+<tr>
+<td style="text-align:center">本地变量</td>
+<td style="text-align:center">小驼峰</td>
+<td style="text-align:center">mixedCase</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>所有语句结束后，必须使用 ; 号结束</li>
+<li>所有变量必须是有意义的英文，严厉禁止拼音</li>
+<li>变量允许使用公认英文缩写</li>
+<li>“on”只能用作事件的命名</li>
+<li>函数开头必须是有意义的动词或动词短语</li>
+<li>私有类的变量属性成员 建议 使用混合式命名，并前面下下划线</li>
+<li>临时的全局变量放到一个全局的哈希表里，方便变量回收</li>
+<li>所有全局变量必须初始化，尽量少用全局变量</li>
+<li>大括号前面不能有换行符</li>
+<li>保留字以及特有的dom属性不能作为变量名</li>
+</ul>
+<p><strong>特殊命名约定</strong></p>
+<ol>
+<li>前面加 “is” 的变量名应该为布尔值，亦可使用 “can” “has” “should”</li>
+<li>前面加 ”str” 的变量名应该为字符串</li>
+<li>前面加 “arr” 的变量名应该为数组</li>
+<li>前面加 “num” 或 “count” 的变量名应该为数字</li>
+<li>“o” 作为局部变量或参数，表示为Object</li>
+<li>“e” 作为局部变量或参数，表示为Element</li>
+<li>“evt” 作为局部变量或参数，表示为event</li>
+<li>“err” 作为局部变量或参数，表示为error</li>
+<li>重复变量建议使用 “i”, “j”, “k” （依次类推）等名称的变量(全世界公认)</li>
+<li>能缩写的单词尽量缩写</li>
+<li>避免产生令人误解的布尔值 isNotNumber isNan</li>
+<li>处理错误的变量，必须在后面跟着 “Error”</li>
+<li>初始化用的函数 必须使用 “init” 开头，如果一个页面只有初始化可以单独使用 init()</li>
+<li>尽量做有意义的代码折行，不要让一行代码过长。(HTML 字符串除外)</li>
+<li>操作符 建议 使用空格隔开</li>
+<li>函数调用和方法 避免 使用空白</li>
+<li>逗号（,） 建议 使用空白隔开。</li>
+<li>不允许频繁使用 previousSibling 和 nextSibling</li>
+</ol>
+<ol>
+<li><strong>注释规范</strong></li>
+</ol>
+<ol>
+<li>一些你不打算给其他人使用的函数，建议添加 @ignore 让文档输出时可以忽略这段注释</li>
+</ol>
+<ol>
+<li>一些相关的功能相关的函数，建议加上@see Function 来对上下文做索引</li>
+<li>对于一些函数不建议或则需要注意的使用方法，必须加上 @deprecated作为提醒</li>
+<li>每个js文件的文件头都必须包含 @fileoverview @author, 建议加上@version</li>
+<li>每个函数都必须使用JsDoc 来注释他的用意</li>
+<li>每个带参数的函数必须包含 @param</li>
+<li>每个有返回值的函数必须包含 @return</li>
+<li>构造函数必须加上 @constructor</li>
+<li>继承函数建议加上 @base 表示其继承于哪个类</li>
+<li>常用全局变量建议使用 JsDoc 的注释方式</li>
+<li>一般的变量及局部变量才用 // 方式进行注释，建议在需要做注释的语句的上一行</li>
+<li>其他详情请参考 JsDoc 注释方法</li>
+</ol>
+<p><strong>其他</strong></p>
+<ol>
+<li>String 优化</li>
+</ol>
+<p>循环体内的字符串累加使用join方式。 例如:</p>
+<p>var r= [];<br>for (var i=0;i&lt;100;i++){<br>​    r.push(“hello”);<br>}<br>var k= r.join(“”);</p>
+<ol>
+<li>Switch 建议采用hash-table</li>
+</ol>
+<p>switch 可以才用 Object代替 例如:</p>
+<p>var a= {<br>​    “1”:doAction1,<br>​    “2”:doAction2,<br>}<br>function doAction1(){<br>}<br>function doAction2(){<br>}<br>a<a href="">1</a>;</p>
+<ol>
+<li>不建议使用eval</li>
+</ol>
+<p>不推荐使用eval来执行脚本。除非用来解释已经确定安全的json数据。</p>
+<ol>
+<li>不要使用Function构造器。</li>
+</ol>
+<ol>
+<li>不要给setTimeout或者setInterval传递字符串参数。</li>
+<li>注意 IE 的内存泄露问题</li>
+<li>JavaScript代码独立</li>
+</ol>
+<p>Javascript不应该被包含在HTML文件中,除非这是段特定只属于此部分的代码。在HTML中的JavaScript代码会明显增加文件大小，而且也不能对其进行缓存和压缩。</p>
+<p>##CSS命名规范</p>
+<ol>
+<li>id和class命名采用该版块的英文单词或组合命名，并第一个单词小写，第二个单词首个字母大写，如：newRelease（最新产品/new+Release)</li>
+<li>CSS样式表各区块用注释说明</li>
+<li>尽量不缩写，除非一看就明白的单词</li>
+</ol>
+<p>经过组员激烈的讨论后，大家都比较偏向的命名方法如下：</p>
+<p><strong>ID：</strong>统一采用驼峰式，单字之间不以：空格断开（例：camel case）、连接号（-，例：camel-case）、底线（_，例：camel_case）连结。</p>
+<p><strong>Class 命名法：</strong>  驼峰式或下划线 <code>个人比较喜欢下划线吧</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod_caption、title_description</span><br></pre></td></tr></table></figure>
+<p><strong>常见的CSS命名规则如下：</strong></p>
+<p>主要的 mian.css</p>
+<p>模块 module.css</p>
+<p>基本共用 base.css</p>
+<p>布局，版面 layout.css</p>
+<p>主题 themes.css</p>
+<p>专栏 columns.css</p>
+<p>文字 font.css</p>
+<p>表单 forms.css</p>
+<p>补丁 mend.css</p>
+<p>打印 print.css</p>
+<p>头：header</p>
+<p>内容：content/container</p>
+<p>尾：footer</p>
+<p>导航：nav</p>
+<p>侧栏：sidebar</p>
+<p>栏目：column</p>
+<p>页面外围控制整体布局宽度：wrapper</p>
+<p>左右中：left right center</p>
+<p>登录条：loginbar</p>
+<p>标志：logo</p>
+<p>广告：banner</p>
+<p>页面主体：main</p>
+<p>热点：hot</p>
+<p>新闻：news</p>
+<p>下载：download</p>
+<p>子导航：subnav</p>
+<p>菜单：menu</p>
+<p>子菜单：submenu</p>
+<p>搜索：search</p>
+<p>友情链接：friendlink</p>
+<p>页脚：footer</p>
+<p>版权：copyright</p>
+<p>滚动：scroll</p>
+<p>内容：content</p>
+<p>标签页：tab</p>
+<p>文章列表：list</p>
+<p>提示信息：msg</p>
+<p>小技巧：tips</p>
+<p>栏目标题：title、caption</p>
+<p>加入：joinus</p>
+<p>指南：guild</p>
+<p>服务：service</p>
+<p>注册：regsiter</p>
+<p>状态：status</p>
+<p>投票：vote</p>
+<p>合作伙伴：partner</p>
+<h2 id="react项目的命名："><a href="#react项目的命名：" class="headerlink" title="react项目的命名："></a>react项目的命名：</h2><p>目录、js、jsx、css、less、scss 的命名都使用小驼峰；</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/18/前端开发需要考虑哪些问题/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/18/移动端自适应相关设置/" rel="prev" title="移动端自适应学习&&关于各种长度单位的理解">
+                移动端自适应学习&&关于各种长度单位的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="songxx" />
+          <p class="site-author-name" itemprop="name">songxx</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件命名"><span class="nav-number">1.</span> <span class="nav-text">文件命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">3.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数"><span class="nav-number">4.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的成员"><span class="nav-number">5.</span> <span class="nav-text">类的成员</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js命名规范"><span class="nav-number"></span> <span class="nav-text">js命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react项目的命名："><span class="nav-number"></span> <span class="nav-text">react项目的命名：</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxx</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

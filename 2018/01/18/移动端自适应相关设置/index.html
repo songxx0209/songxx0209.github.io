@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="由于网页会根据屏幕宽度调整布局，所以不能使用绝对宽度的布局，也不能使用具有绝对宽度的元素。这一条非常重要。 各种像素、Viewport介绍 像素，分辨率，像素密度PPI 的介绍 window.devicePixelRatio 独立像素比 我们是不是应该以一个顺序来研究一个东西呢； 首先我们拿到一个手机，对于屏幕而言，最直观的概念是什么？ 肯定是屏幕的大小啊，而屏幕的大小有一个专业的单位：英寸（in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端自适应学习&amp;&amp;关于各种长度单位的理解">
+<meta property="og:url" content="http://yoursite.com/2018/01/18/移动端自适应相关设置/index.html">
+<meta property="og:site_name" content="songxx&#39;s blog">
+<meta property="og:description" content="由于网页会根据屏幕宽度调整布局，所以不能使用绝对宽度的布局，也不能使用具有绝对宽度的元素。这一条非常重要。 各种像素、Viewport介绍 像素，分辨率，像素密度PPI 的介绍 window.devicePixelRatio 独立像素比 我们是不是应该以一个顺序来研究一个东西呢； 首先我们拿到一个手机，对于屏幕而言，最直观的概念是什么？ 肯定是屏幕的大小啊，而屏幕的大小有一个专业的单位：英寸（in">
+<meta property="og:image" content="https://camo.githubusercontent.com/fa2dfe97784d291aefce2ca84103d0e853b42d4e/687474703a2f2f75706c6f61642e6368696e617a2e636f6d2f323031352f303930322f313434313136373732393537392e6a7067">
+<meta property="og:updated_time" content="2018-01-18T05:40:55.736Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端自适应学习&amp;&amp;关于各种长度单位的理解">
+<meta name="twitter:description" content="由于网页会根据屏幕宽度调整布局，所以不能使用绝对宽度的布局，也不能使用具有绝对宽度的元素。这一条非常重要。 各种像素、Viewport介绍 像素，分辨率，像素密度PPI 的介绍 window.devicePixelRatio 独立像素比 我们是不是应该以一个顺序来研究一个东西呢； 首先我们拿到一个手机，对于屏幕而言，最直观的概念是什么？ 肯定是屏幕的大小啊，而屏幕的大小有一个专业的单位：英寸（in">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/fa2dfe97784d291aefce2ca84103d0e853b42d4e/687474703a2f2f75706c6f61642e6368696e617a2e636f6d2f323031352f303930322f313434313136373732393537392e6a7067">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/18/移动端自适应相关设置/"/>
+
+
+
+
+
+  <title>移动端自适应学习&&关于各种长度单位的理解 | songxx's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">songxx's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/移动端自适应相关设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端自适应学习&&关于各种长度单位的理解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>由于网页会根据屏幕宽度调整布局，所以不能使用绝对宽度的布局，也不能使用具有绝对宽度的元素。这一条非常重要。</code></p>
+<p><a href="https://github.com/jawil/blog/issues/21" target="_blank" rel="noopener">各种像素、Viewport介绍</a></p>
+<p><a href="https://github.com/iuap-design/blog/issues/212" target="_blank" rel="noopener">像素，分辨率，像素密度PPI 的介绍</a></p>
+<p><a href="https://segmentfault.com/a/1190000005656849" target="_blank" rel="noopener">window.devicePixelRatio 独立像素比</a></p>
+<p>我们是不是应该以一个顺序来研究一个东西呢；</p>
+<p>首先我们拿到一个手机，对于屏幕而言，最直观的概念是什么？</p>
+<p>肯定是屏幕的大小啊，而屏幕的大小有一个专业的单位：英寸（inch） 1inch = 2.54cm</p>
+<p>所以我们可以看出英寸并不是指的屏幕的面积，因为它是一个长度单位；</p>
+<blockquote>
+<p>比如拿到一个手机显示 为4.7英寸（inch）；</p>
+<p>这个4.7英寸指的是什么呢？</p>
+<p>实际上是指 手机屏幕对角线长度。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>屏幕</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>屏幕大小</td>
+<td>4.7英寸</td>
+</tr>
+<tr>
+<td>屏幕分辨率 (个人标注：这里更准确的叫法是 - 物理分辨率)</td>
+<td>1334×750像素</td>
+</tr>
+<tr>
+<td>像素密度</td>
+<td>326ppi</td>
+</tr>
+</tbody>
+</table>
+<p><strong>上表是一个手机的屏幕的部分信息</strong></p>
+<ul>
+<li><p>屏幕大小我们上面已经解释了</p>
+</li>
+<li><p>屏幕分辨率又是指的什么呢？</p>
+<blockquote>
+<p><strong>暂时的理解是：</strong>买手机时，手机信息上显示的<code>屏幕分辨率:1334*750像素</code>指的是在这个4.7英寸的屏幕上有1334*750个单元（屏幕<code>能</code>显示颜色的最小单位）；这是一个固定的值，屏幕生产出来之后就不能改变的值；</p>
+<p>这个应该就是指的手机屏幕的 <strong>设备像素（物理像素）DP（device pixels）</strong> </p>
+</blockquote>
+<p>注意，我们通常所说的<strong>显示器分辨率</strong>，其实是指<strong>桌面设定的分辨率</strong>，而不是显示器的<strong>物理分辨率</strong>。只不过现在液晶显示器成为主流，由于液晶的显示原理与<code>CRT</code>不同，只有在桌面分辨率与物理分辨率一致的情况下，显示效果最佳，所以现在我们的桌面分辨率几乎总是与显示器的物理分辨率一致了。</p>
+</li>
+<li><p>像素密度</p>
+<p><img src="https://camo.githubusercontent.com/fa2dfe97784d291aefce2ca84103d0e853b42d4e/687474703a2f2f75706c6f61642e6368696e617a2e636f6d2f323031352f303930322f313434313136373732393537392e6a7067" alt=""></p>
+</li>
+</ul>
+<p><code>从上面我们了解了：屏幕尺寸、物理分辨率、物理像素、物理像素密度(dpi\ppi) 等概念</code></p>
+<p><strong>个人感觉不要单独使用像素这个词，应为这样很容易迷惑人，像素这个词包括的含义并不是唯一的</strong></p>
+<h3 id="css像素"><a href="#css像素" class="headerlink" title="css像素"></a>css像素</h3><p>接下来了解一下作为一名前端工程师，我们最熟悉的单位之一，px</p>
+<p>我们在编写页面时使用的<code>px</code>其实指的是 <strong>css像素（css pixels）</strong>；</p>
+<p><strong>它是图像显示的基本单元，既不是一个确定的物理量，也不是一个点或者小方块，而是一个抽象概念</strong>。所以在谈论像素时一定<strong>要清楚它的上下文</strong>！一定要清楚它的上下文！一定要清楚它的上下文！</p>
+<blockquote>
+<p>css像素永远是一个相对的值；</p>
+</blockquote>
+<p><strong>那么这个相对的值到底是怎么计算出来的呢？</strong></p>
+<p><code>这里就需要了解到 设备像素(DP) 与 CSS像素之间的关系</code></p>
+<p><strong>获得设备像素比（dpr）后（我们是如何获取这个dpr值的呢？）</strong>，便可得知设备像素与CSS像素之间的比例。当这个比率为1:1时，使用1个设备像素显示1个CSS像素。当这个比率为2:1时，使用4个设备像素显示1个CSS像素，当这个比率为3:1时，使用9（3*3）个设备像素显示1个CSS像素。<br>所以，有如下公式：</p>
+<blockquote>
+<p><strong>DPR = 设备像素/CSS像素</strong></p>
+<p>// 这里像素都是长度单位，所以最终面积会平方</p>
+<p><code>CSS像素</code> 名称又叫 <code>设备独立像素(device-independent pixels (dips))</code></p>
+</blockquote>
+<p><code>问题：我们如何获取这个 dpr值呢？ 这个 dpr 取名也是醉了，好多地方都不同；</code></p>
+<p>dpr准确叫法 设备像素比</p>
+<p>这个 dpr 可以通过<code>window.devicePixelRatio</code> 这接获取；</p>
+<p><strong>viewport</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p><code>width</code>属性控制视口的宽度。可以像width=600这样设为确切的像素数，或者设为device-width这一特殊值来指代比例为100%时屏幕宽度的CSS像素数值。（相应有<code>height</code>及<code>device-height</code>属性，可能对包含基于视口高度调整大小及位置的元素的页面有用。）</p>
+<p>initial-scale属性控制页面最初加载时的缩放等级。</p>
+<p>maximum-scale、minimum-scale 最大最小比例设置</p>
+<p>user-scalable属性控制允许用户以怎样的方式放大或缩小页面。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/18/命名规则/" rel="next" title="命名">
+                <i class="fa fa-chevron-left"></i> 命名
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="songxx" />
+          <p class="site-author-name" itemprop="name">songxx</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#css像素"><span class="nav-number">1.</span> <span class="nav-text">css像素</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">songxx</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
