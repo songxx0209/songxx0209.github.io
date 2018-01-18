@@ -255,509 +255,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/OPP-jsonp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/18/OPP-jsonp/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T10:13:33+08:00">
-                2018-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>	
-	<script type="text/javascript">
-		(function(win){
-			/*面向对象编程模型*/
-			function songxx(win){
-				var _this = this;	
-
-				_this.star = function(){
-					alert('你打开了这个页面！');
-				};
-
-				/*JSONP实列*/
-				var url = "http://182.131.0.108/get_list?programtype=0&programid=2012&themeType=0&systemid=0&resolution=1&itvid=kdspb1";
-				jsonpRequset(url, {}, function(data) { //调用函数
-					if (data && data.success) { //成功返回数据,解析数据
-						pointInfoList = data.data;
-						console.log(pointInfoList);
-					} else {//数据返回失败
-						
-					}
-				});
-
-				function jsonpRequset(url, param, callback) {
-				    var script = document.createElement("script");
-				    script.type = "text/javascript";
-				    //var funName = 'jsonpCallback' + new Date().getTime();
-				    if (url.indexOf('?') > -1) {
-				        script.src = url + "&callback=" + 'funName';
-				    } else {
-				        script.src = url + "?callback=" + 'funName';
-				    }
-				    document.getElementsByTagName("head")[0].appendChild(script);
-				    /*创建script标签，在url后面加一个callback的参数，将拿到的数据放到-以参数值（funName）为函数名的函数里面；*/
-				    //创建回调函数
-				    window.funName = function(data) {
-				        callback(data);//在回调函数中随意操作拿到的数据
-				    };
-				}
-			}
-			win.sxx = new songxx(); 
-		})(window); //参数win就是window对象
-
-		sxx.star();
-	</script>
-</body>
-</html>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/anonymous/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/18/anonymous/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T10:13:33+08:00">
-                2018-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<script type="text/javascript">
-		(function(o){
-			alert(o);
-		})('water');
-	/*----------------------------------*/
-		/* 匿名函数的链式调用 */
-		(function(o) { 
-			alert(o); 
-			return arguments.callee; 
-		})('water')('down'); 
-	/*----------------------------------*/
-		!function(){ 
-			alert('water'); 
-		}(); 
-	/*----------------------------------*/
-		!function(o){ 
-			alert(o); 
-		}('water'); 
-	/*----------------------------------- */
-	</script>
-</body>
-</html>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/prototype/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/18/prototype/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T10:13:33+08:00">
-                2018-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<script type="text/javascript">
-		/*不是一个构造函数*/
-		function createPerson(name,age,job){
-		 	var o  = new Object();
-		 	o.name = name;
-		 	o.age  = age;
-		 	o.job  = job;
-		 	o.sayName =function(){
-		 		alert(this.name);
-		 	};
-		 	
-		 	return o;
-		}
-		/*是一个构造函数*/
-		function Cat(name,color){
-	　　　　this.name=name;
-	　　　　this.color=color;
-			
-	　　}
-		Cat.prototype.type = "猫科动物";
-		Cat.prototype.eat = '动物';
-
-		//createPerson.prototype.move = 'run';  非构造函数，不能添加prototype属性
-		var cat1 = new Cat("大毛","黄色");
-		var  person1 = createPerson("lyn",27,"Web developer");
-		//console.log(person1.move);
-		console.log(cat1.constructor == Cat);
-		console.log(cat1);
-/*------------------------------------------------------------------------------------------------------*/
-		/*是一个构造函数*/
-		function Animal(){
-	　　　　this.species = "动物";
-	　　}
-
-		function dog(name,color){
-	　　　　this.name=name;
-	　　　　this.color=color;
-			
-	　　}
-		//怎样才能使"猫"继承"动物"呢？
-		dog.prototype = new Animal();
-		dog.prototype.constructor = dog;
-		var dog1 = new dog('来福','灰色');
-		alert(dog1.species);
-
-		/*一种跟简单的实现方法*/
-		var pig = {
-			name:'kety',
-			food:'apple',
-			eat:function(){
-				alert(this.food);
-			},
-			sleep:function(){
-				alert(this.name);
-			}
-		};
-		pig.eat();
-	</script>
-</body>
-</html>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/various-heights-of-js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1887,6 +1384,416 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/ES6-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/15/ES6-class/" itemprop="url">class、装饰器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-15T15:29:22+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>什么是类（class）， 如何使用，场景，注意事项；</p>
+<p>什么是装饰器，如何使用，场景，注意事项；</p>
+<p>类 和 装饰器之间的联系；</p>
+</blockquote>
+<h2 id="类-class"><a href="#类-class" class="headerlink" title="类 - class"></a>类 - class</h2><p>随着互联网行业的快速发展，程序员需要面对的业务、展示场景也越来越复杂；在这种情况下需要编写维护的代码量也是相当庞大的一个数字；那如何来维护这么庞大的代码呢？</p>
+<p>人们常用的方式是模块化；业界中常使用的方法是“面向对象编程”；但是javascript在<code>ES6</code>之前是不支持类（class）的；所以才在ES6中提出类<code>class</code>的概念；</p>
+<p><strong>ES5之前，Javascript定义类（class）的三种方法</strong></p>
+<p><a href="http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html" target="_blank" rel="noopener">阮一峰es6之前创建类的方法</a></p>
+<h3 id="ES6种class"><a href="#ES6种class" class="headerlink" title="ES6种class"></a>ES6种class</h3><p>ECMAScript 2015 中引入的 JavaScript 类(<code>classes</code>) 实质上是 JavaScript 现有的基于原型的继承的语法糖。 类语法不是向JavaScript引入一个新的面向对象的继承模型。JavaScript类提供了一个更简单和更清晰的语法来创建对象并处理继承。</p>
+<p><code>static</code> 关键字用来定义一个类的一个静态方法。调用静态方法不需要<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#The_object_(class_instance" target="_blank" rel="noopener">实例化</a>)该类，但不能通过一个类实例调用静态方法。静态方法通常用于为一个应用程序创建工具函数。</p>
+<p><code>extends</code> 关键字在类声明或类表达式中用于创建一个类作为另一个类的一个子类。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/04/小程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/04/小程序/" itemprop="url">小程序开发 - 之个人经验</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-04T20:25:30+08:00">
+                2017-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>小程序开发流程</p>
+<ol>
+<li>根据官网介绍，通过邮箱注册账号，绑定微信； <a href="https://mp.weixin.qq.com/wxopen/waregister?action=step1" target="_blank" rel="noopener">https://mp.weixin.qq.com/wxopen/waregister?action=step1</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/25/RegExp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/25/RegExp/" itemprop="url">Regular Expression</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-25T21:46:22+08:00">
+                2017-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>test. 一个在字符串中测试是否匹配的RegExp方法，它返回true或false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;hello world!&apos;;</span><br><span class="line">var result = /^hello/.test(str);</span><br><span class="line">console.log(result); // true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>match 一个在字符串中执行查找匹配的String方法，它返回一个数组或者在未匹配到时返回null。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;For more information, see Chapter 3.4.5.1&apos;;</span><br><span class="line">var re = /see (chapter \d+(\.\d)*)/i;</span><br><span class="line">var found = str.match(re);</span><br><span class="line"></span><br><span class="line">console.log(found);</span><br><span class="line"></span><br><span class="line">// logs [ &apos;see Chapter 3.4.5.1&apos;,</span><br><span class="line">//        &apos;Chapter 3.4.5.1&apos;,</span><br><span class="line">//        &apos;.1&apos;,</span><br><span class="line">//        index: 22,</span><br><span class="line">//        input: &apos;For more information, see Chapter 3.4.5.1&apos; ]</span><br><span class="line"></span><br><span class="line">// &apos;see Chapter 3.4.5.1&apos; 是整个匹配。</span><br><span class="line">// &apos;Chapter 3.4.5.1&apos; 被&apos;(chapter \d+(\.\d)*)&apos;捕获。</span><br><span class="line">// &apos;.1&apos; 是被&apos;(\.\d)&apos;捕获的最后一个值。</span><br><span class="line">// &apos;index&apos; 属性(22) 是整个匹配从零开始的索引。</span><br><span class="line">// &apos;input&apos; 属性是被解析的原始字符串。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&apos;;</span><br><span class="line">var regexp = /[A-E]/gi;</span><br><span class="line">var matches_array = str.match(regexp);</span><br><span class="line"></span><br><span class="line">console.log(matches_array);</span><br><span class="line">// [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>search 一个在字符串中测试匹配的String方法，它返回匹配到的位置索引，或者在失败时返回-1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function testinput(re, str)&#123;</span><br><span class="line">  var midstring;</span><br><span class="line">  if (str.search(re) != -1)&#123;</span><br><span class="line">    midstring = &quot; contains &quot;;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    midstring = &quot; does not contain &quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log (str + midstring + re);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>replace 一个在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;Twas the night before Xmas...&apos;;</span><br><span class="line">var newstr = str.replace(/xmas/i, &apos;Christmas&apos;);</span><br><span class="line">console.log(newstr);  // Twas the night before Christmas...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>split 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的String方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var names = &apos;Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ;Chris Hand &apos;;</span><br><span class="line"></span><br><span class="line">console.log(names);</span><br><span class="line"></span><br><span class="line">var re = /\s*;\s*/;</span><br><span class="line">var nameList = names.split(re);</span><br><span class="line"></span><br><span class="line">console.log(nameList);</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ol>
+<h2 id="正则表达式使用总结"><a href="#正则表达式使用总结" class="headerlink" title="正则表达式使用总结"></a>正则表达式使用总结</h2><p>####如何理解开始、结束 字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/^ ... $/</span><br><span class="line">eg:</span><br><span class="line"></span><br><span class="line">var str = &apos;Twas the night before Xmas&apos;;</span><br><span class="line">var ss = new RegExp(/mas$/, &apos;g&apos;);</span><br><span class="line">var newstr = str.replace(ss, &apos;Christmas&apos;);</span><br><span class="line">console.log(newstr);</span><br><span class="line">// Twas the night before XChristmas</span><br><span class="line">// 匹配结尾的mas</span><br><span class="line"></span><br><span class="line">var a = &apos;   asasd   &apos;;</span><br><span class="line">var b = a.replace(/^\s+|\s+$/g,&quot;&quot;);</span><br><span class="line">console.log(b);</span><br><span class="line">// asasd</span><br><span class="line">// 替换了开头和结尾的空格</span><br></pre></td></tr></table></figure>
+<p>有开始和结束符， 匹配<code>整个字符串</code>是否匹配 正则规则；</p>
+<h4 id="贪婪、非贪婪-匹配"><a href="#贪婪、非贪婪-匹配" class="headerlink" title="贪婪、非贪婪 匹配"></a>贪婪、非贪婪 匹配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var ele = &apos;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&apos;;</span><br><span class="line">var ss = ele.match(/&lt;.+&gt;/);</span><br><span class="line">console.log(ss);</span><br><span class="line">// [&quot;&lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt;&quot;, index: 10, input: &quot;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&quot;]</span><br></pre></td></tr></table></figure>
+<p>由于<code>+</code>的贪婪性，使得正则表达式引擎返回了一个最左边的最长的匹配</p>
+<p>如果想得到期望的结果，就需要启用非贪婪模式：<code>&lt;.+?&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var ele = &apos;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&apos;;</span><br><span class="line">var ss = ele.match(/&lt;.+?&gt;/);</span><br><span class="line">console.log(ss);</span><br><span class="line">// [&quot;&lt;EM&gt;&quot;, index: 10, input: &quot;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&quot;]</span><br><span class="line">// 这里精准的匹配了&lt;EM&gt;</span><br><span class="line">// 非贪婪匹配</span><br></pre></td></tr></table></figure>
+<p><strong>1.什么是正则表达式的贪婪与非贪婪匹配</strong></p>
+<p>如：String str=”abcaxc”;</p>
+<p>　　Patter p=”ab*c”;</p>
+<p><strong>贪婪匹配:</strong>正则表达式一般趋向于最大长度匹配，也就是所谓的贪婪匹配。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abcaxc</strong>(ab*c)。</p>
+<p><strong>非贪婪匹配</strong>：就是匹配到结果就好，就少的匹配字符。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abc</strong>(ab*c)。</p>
+<p><strong>2.编程中如何区分两种模式</strong></p>
+<p>　　<strong>默认是贪婪模式；在量词后面直接加上一个问号？就是非贪婪模式。</strong></p>
+<p>　　量词：{m,n}：m到n个</p>
+<p>　　　　　*：任意多个</p>
+<p>　　　　　+：一个到多个</p>
+<p>　　　　　？：0或一个</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1937,7 +1844,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
