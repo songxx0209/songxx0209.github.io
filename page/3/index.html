@@ -1475,7 +1475,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/面向对象oop笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/jsonp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -1494,7 +1494,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/面向对象oop笔记/" itemprop="url">面向对象OOP</a></h1>
+                <a class="post-title-link" href="/2017/10/28/jsonp/" itemprop="url">JSONP</a></h1>
         
 
         <div class="post-meta">
@@ -1546,21 +1546,7 @@
       
         
           
-            <h2 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function OPP (name, qq)&#123;        //工厂方式，构造函数</span><br><span class="line">    //原料</span><br><span class="line">    var person = new Object();</span><br><span class="line">    //加工</span><br><span class="line">    person.name = name;</span><br><span class="line">    person.qq = qq;</span><br><span class="line">    person.showName = function()&#123;</span><br><span class="line">    alert(&apos;我的名字是&apos;+this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    person.showQQ = function()&#123;</span><br><span class="line">    alert(&apos;我的名字是&apos;+this.qq);</span><br><span class="line">    &#125;;</span><br><span class="line">    //出厂</span><br><span class="line">    return person;</span><br><span class="line">&#125;</span><br><span class="line">var person1 = OPP(&apos;张三&apos;，&apos;23232323&apos;);</span><br><span class="line">var person2 = OPP(&apos;李四&apos;，&apos;913581148&apos;);</span><br><span class="line">alert(person1.showName == person2.showName);  //返回：false</span><br></pre></td></tr></table></figure>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><blockquote>
-<p>1：没有new</p>
-<p>2：代码效率低/浪费资源—-上面代码返回false，person1和person2的showName方法代码是一样的，但是他们两个却不相等；因为他们是创建在2块不同内存里中的东西；所以这种写法如果创建100个person就会重复100遍，开辟100块内存来放相同的东西；</p>
-</blockquote>
-<h2 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function OPP (name, qq)&#123;        //构造函数</span><br><span class="line">   </span><br><span class="line">    this.name = name;</span><br><span class="line">    this.qq = qq;</span><br><span class="line">    this.showName = function()&#123;</span><br><span class="line">    alert(&apos;我的名字是&apos;+this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">OPP.prototype.showQQ = function ()&#123;</span><br><span class="line">  alert(&apos;我的名字是&apos;+this.qq);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>所有opp实例共有的部分，用prototype（原型）；将opp函数的showQQ方法放在唯一的一块内存中，大家都到那儿去取；所以大家的这个方法或属性的值都是一样的；</p>
-</blockquote>
-<h3 id="个人对一些知识的理解记录"><a href="#个人对一些知识的理解记录" class="headerlink" title="个人对一些知识的理解记录"></a>个人对一些知识的理解记录</h3><h4 id="1：constructor"><a href="#1：constructor" class="headerlink" title="1：constructor"></a>1：constructor</h4><blockquote>
-<p>1、只有对象obj才会有这个属性；</p>
-<p>2、一个对象实例的constructor属性，指向生成这个实例的构造函数；所以同一个构造函数生成的实例a1，a2。   （a1.constructor === a2.constructor）</p>
-</blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="noopener">阮一峰，构造函数的继承</a></p>
-
+            <h4 id="1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；"><a href="#1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；" class="headerlink" title="1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；"></a>1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；</h4><h4 id="2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如-lt-script-gt-、-lt-img-gt-、-lt-iframe-gt-）"><a href="#2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如-lt-script-gt-、-lt-img-gt-、-lt-iframe-gt-）" class="headerlink" title="2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;）"></a>2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如<code>&lt;script&gt;</code>、<code>&lt;img&gt;</code>、<code>&lt;iframe&gt;</code>）</h4><h4 id="3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。"><a href="#3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。" class="headerlink" title="3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。"></a>3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。</h4><h4 id="4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。"><a href="#4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。" class="headerlink" title="4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。"></a>4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。</h4><h4 id="5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。"><a href="#5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。" class="headerlink" title="5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。"></a>5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。</h4><h4 id="6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。"><a href="#6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。" class="headerlink" title="6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。"></a>6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。</h4>
           
         
       
