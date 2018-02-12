@@ -208,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -218,7 +218,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -241,6 +241,300 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/事件代理和addEventListener/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/事件代理和addEventListener/" itemprop="url">事件代理&&事件捕获、冒泡</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###事件代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;事件代理和addEventListener&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul id=&quot;list&quot;&gt;</span><br><span class="line">        &lt;li id=&quot;item1&quot;&gt;item1&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item2&quot;&gt;item2&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item3&quot;&gt;item3&lt;/li&gt;</span><br><span class="line">        &lt;li id=&quot;item4&quot;&gt;item4&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    /*window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        var liNodes = ulNode.childNodes || ulNode.children;</span><br><span class="line">        for (var i = 0; i &lt; liNodes.length; i++) &#123;</span><br><span class="line">            liNodes[i].addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;, false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;*/</span><br><span class="line">    // 由上可以看出来，假如不停的删除或添加li，则function（）也要不停的更改操作，易出错，因此推荐使用事件代理</span><br><span class="line">    // https://segmentfault.com/a/1190000002613617</span><br><span class="line">    window.onload = function() &#123;</span><br><span class="line">        var ulNode = document.getElementById(&quot;list&quot;);</span><br><span class="line">        ulNode.addEventListener(&apos;click&apos;, function(e) &#123;</span><br><span class="line">            console.log(e);</span><br><span class="line">            if (e.target &amp;&amp; e.target.nodeName.toUpperCase() == &quot;LI&quot;) &#123; /*判断目标事件是否为li*/</span><br><span class="line">                alert(e.target.innerHTML);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true);</span><br><span class="line">    &#125;;</span><br><span class="line">    /*</span><br><span class="line">        http://www.runoob.com/jsref/met-element-addeventlistener.html</span><br><span class="line">        element.addEventListener(event, function, useCapture); IE9以下不支持该方法可以使用attachEvent()方法代替</span><br><span class="line">        可以在文档中添加许多事件，添加的事件不会覆盖已存在的事件。</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, myFunction);</span><br><span class="line">        document.getElementById(&quot;myBtn&quot;).addEventListener(&quot;click&quot;, someOtherFunction);</span><br><span class="line">    */</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>###事件Event相关,捕获-冒泡    </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/字符串拼接/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/字符串拼接/" itemprop="url">字符串操作 - 整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://riny.net/2012/the-summary-of-javascript-string/" target="_blank" rel="noopener">常用的字符串操作</a></p>
+<p><a href="http://louiszhai.github.io/2016/01/12/js.String/#charAt" target="_blank" rel="noopener">全面的字符串操作总结</a></p>
+<h3 id="substr-start-length-方法"><a href="#substr-start-length-方法" class="headerlink" title="substr(start,length) 方法"></a>substr(start,length) 方法</h3><p>substr(起始位置，长度) 方法可在字符串中抽取从 start 下标开始的指定数目的字符（例子2）。起始位置必选，长度可选。没有长度参数，就抽取起始到最后（例子1）。</p>
+<p><strong>例子1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3))</span><br></pre></td></tr></table></figure>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
+<p><strong>例子2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3,7))</span><br></pre></td></tr></table></figure>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo worl</span><br></pre></td></tr></table></figure></p>
+<h3 id="substring-方法"><a href="#substring-方法" class="headerlink" title="substring() 方法"></a>substring() 方法</h3><p><a href="http://www.w3school.com.cn/jsref/jsref_substring.asp" target="_blank" rel="noopener">JavaScript substring() 方法</a></p>
+<blockquote>
+<p>substring() 方法用于提取字符串中介于两个指定下标之间的字符。</p>
+</blockquote>
+<p><strong>例子1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello world!&quot;</span><br><span class="line">document.write(str.substring(3))</span><br></pre></td></tr></table></figure>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
+<h3 id="slice-方法"><a href="#slice-方法" class="headerlink" title="slice() 方法"></a>slice() 方法</h3><p><a href="http://www.w3school.com.cn/jsref/jsref_slice_string.asp" target="_blank" rel="noopener">JavaScript slice() 方法</a></p>
+<blockquote>
+<p>String 对象的方法 slice()、substring() 和 substr() （不建议使用）都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</p>
+</blockquote>
+<h3 id="split-方法"><a href="#split-方法" class="headerlink" title="split()方法"></a>split()方法</h3><p>split() 方法用于把一个字符串分割成字符串数组</p>
+<p><strong>例子1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;How are you doing today?&quot;</span><br><span class="line">document.write(str.split(&quot; &quot;) + &quot;&lt;br /&gt;&quot;)</span><br></pre></td></tr></table></figure>
+<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[How,are,you,doing,today?]</span><br></pre></td></tr></table></figure></p>
+<p><strong>例子2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot;.split(&quot;&quot;, 3)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;]</span><br><span class="line">&quot;hello&quot;.split(&quot;&quot;)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//获取Url中的所有参数</span><br><span class="line">function _GetUrlParams() &#123;</span><br><span class="line">    var url = location.search; //获取url中&quot;?&quot;和‘？’符后的字串</span><br><span class="line">    var theRequest = &#123;&#125;;</span><br><span class="line">    if (url.indexOf(&quot;?&quot;) != -1) &#123;</span><br><span class="line">        var str = url.substr(1);//获取？后面的子串</span><br><span class="line">        strs = str.split(&quot;&amp;&quot;);//以&amp;分割成数组</span><br><span class="line">        for (var i = 0; i &lt; strs.length; i++) &#123;</span><br><span class="line">            theRequest[strs[i].split(&quot;=&quot;)[0]] = unescape(strs[i].split(&quot;=&quot;)[1]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="lastIndexOf()"></a>lastIndexOf()</h3><blockquote>
+<p>stringObject.lastIndexOf(searchvalue,fromindex)</p>
+</blockquote>
+<p>如果找到一个 searchvalue，则返回 searchvalue 的第一个字符在 stringObject 中的位置。stringObject 中的字符位置是从 0 开始的。</p>
+<h3 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf"></a>indexOf</h3><p><a href="http://www.w3school.com.cn/jsref/jsref_indexOf.asp" target="_blank" rel="noopener">JavaScript indexOf() 方法</a></p>
+<blockquote>
+<p>stringObject.indexOf(searchvalue,fromindex)<br>参数    描述<br>searchvalue    必需。规定需检索的字符串值。<br>fromindex    可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。<br>用于解锁‘字符’在字符串中的位置， 也可判断该字符在该字符串中是否存在；</p>
+</blockquote>
+<h3 id="charAt-方法"><a href="#charAt-方法" class="headerlink" title="charAt()方法"></a>charAt()方法</h3><blockquote>
+<p>用于返回指定位置的字符，从0开始计数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello World!&quot; </span><br><span class="line">document.write(str.charAt(1));//输出e</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="能使用正则表达式的api"><a href="#能使用正则表达式的api" class="headerlink" title="能使用正则表达式的api"></a>能使用正则表达式的api</h2><h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>search与indexOf、lastIndexOf方法类似</p>
+<p>search只接受一个参数，但是可以接受正则表达式；返回搜索元素的索引</p>
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;1a2b3c4d5e&apos;;</span><br><span class="line">console.log(str.match(&apos;h&apos;));    //返回null</span><br><span class="line">console.log(str.match(&apos;b&apos;));    //返回[&quot;b&quot;, index: 3, input: &quot;1a2b3c4d5e&quot;]</span><br><span class="line">console.log(str.match(/b/));    //返回[&quot;b&quot;, index: 3, input: &quot;1a2b3c4d5e&quot;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;1a2b3c4d5e&apos;;</span><br><span class="line">console.log(str.match(/h/g));    //返回null</span><br><span class="line">console.log(str.match(/\d/g));    //返回[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="replace-方法"><a href="#replace-方法" class="headerlink" title="replace()方法"></a>replace()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringObject.replace(regexp/substr,replacement)</span><br></pre></td></tr></table></figure>
+<p>替换指定的字符串，可以使用正则表达式</p>
+<h3 id="split-方法-1"><a href="#split-方法-1" class="headerlink" title="split()方法"></a>split()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringObject.split(separator,howmany)</span><br></pre></td></tr></table></figure>
+<p>​    split()方法用于把一个字符串分割成字符串数组。第一个参数separator表示分割位置(参考符)，第二个参数howmany表示返回数组的允许最大长度(一般情况下不设置)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;a|b|c|d|e&apos;;</span><br><span class="line">console.log(str.split(&apos;|&apos;));    //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</span><br><span class="line">console.log(str.split(&apos;|&apos;, 3));    //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line">console.log(str.split(&apos;&apos;));    //返回[&quot;a&quot;, &quot;|&quot;, &quot;b&quot;, &quot;|&quot;, &quot;c&quot;, &quot;|&quot;, &quot;d&quot;, &quot;|&quot;, &quot;e&quot;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;a1b2c3d4e&apos;;</span><br><span class="line">console.log(str.split(/\d/)); //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="还有两个正则表达式方法：exec、test"><a href="#还有两个正则表达式方法：exec、test" class="headerlink" title="还有两个正则表达式方法：exec、test"></a>还有两个正则表达式方法：exec、test</h3><p><strong>test : </strong></p>
+<p>​    test() 方法用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var regex1 = RegExp(&apos;foo*&apos;);</span><br><span class="line">var regex2 = RegExp(&apos;foo*&apos;,&apos;g&apos;);</span><br><span class="line">var str1 = &apos;table football&apos;;</span><br><span class="line"></span><br><span class="line">console.log(regex1.test(str1));</span><br><span class="line">// expected output: true</span><br><span class="line"></span><br><span class="line">console.log(regex1.test(str1));</span><br><span class="line">// expected output: true</span><br><span class="line"></span><br><span class="line">console.log(regex2.test(str1));</span><br></pre></td></tr></table></figure>
+<p><strong>exec：</strong></p>
+<p>exec() 方法用于检索字符串中的正则表达式的匹配。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -284,7 +578,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -374,7 +668,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/数组/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/commonjs与AMD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -393,7 +687,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/数组/" itemprop="url">数组操作方法整理</a></h1>
+                <a class="post-title-link" href="/2017/10/28/commonjs与AMD/" itemprop="url">commonjs、AMD、CMD介绍</a></h1>
         
 
         <div class="post-meta">
@@ -403,7 +697,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -445,70 +739,283 @@
       
         
           
-            <h3 id="创建数组的方式一：使用Array构造函数"><a href="#创建数组的方式一：使用Array构造函数" class="headerlink" title="创建数组的方式一：使用Array构造函数"></a>创建数组的方式一：使用Array构造函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var colors = new Array(3);               //创建一个包含3项的数组</span><br><span class="line">var names = new Array(&apos;Greg&apos;);           //创建一个包含1项，即字符串‘Greg’的数组</span><br></pre></td></tr></table></figure>
-<h3 id="方式二：使用数组字面量表示法"><a href="#方式二：使用数组字面量表示法" class="headerlink" title="方式二：使用数组字面量表示法"></a>方式二：使用数组字面量表示法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var colors = [&apos;red&apos;, &apos;blue&apos;, &apos;yellow&apos;];      //创建一个包含3项的字符串数组</span><br><span class="line">var name = [];                               //创建了一个空数组</span><br><span class="line">var values = [1, 3, ];                       //不要这样写，会创建一个包含2或3项的数组，谷歌解析为2</span><br><span class="line">var options = [,,,];                      	 //不要这样写，会创建一个包含3或4项的数组，谷歌解析为3</span><br></pre></td></tr></table></figure>
-<h3 id="push-和pop-方法："><a href="#push-和pop-方法：" class="headerlink" title="push()和pop()方法："></a>push()和pop()方法：</h3><blockquote>
-<p>push()方法可以接受任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度。</p>
-<p>而pop()方法则从数组末尾移除最后一项，减少数组的length值，然后返回移除的项。例子如下：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var colors = new Array();                     //创建一个数组</span><br><span class="line">var count = colors.push(&apos;red&apos;, &apos;green&apos;);      //推入两项</span><br><span class="line">alert(count);                                 //2</span><br><span class="line"></span><br><span class="line">count = colors.push(&apos;black&apos;);                 //推入另一项</span><br><span class="line">alert(count);                                 //3</span><br><span class="line"></span><br><span class="line">var item = colors.pop();           //删除colors的最后一项，并取得它的值</span><br><span class="line">alert(item);                                  //返回&apos;black&apos;</span><br><span class="line">alert(item.length);                           // 2</span><br></pre></td></tr></table></figure>
-<h3 id="shift-方法"><a href="#shift-方法" class="headerlink" title="shift()方法"></a>shift()方法</h3><blockquote>
-<p>shift()方法与pop()方法相对应，它是移除数组的第一项，并返回它的值，使数组的长度减一；</p>
-</blockquote>
-<h3 id="unshift-方法"><a href="#unshift-方法" class="headerlink" title="unshift()方法"></a>unshift()方法</h3><blockquote>
-<p>unshift()方法与push()方法相对应，可以接受任意数量的参数，把它们逐个添加到数组开头，并返回修改后数组的长度。</p>
-</blockquote>
-<h3 id="slice-方法"><a href="#slice-方法" class="headerlink" title="slice()方法"></a>slice()方法</h3><blockquote>
-<p>截取数组中的项，例子如下：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var color = [&apos;red&apos;, &apos;green&apos;, &apos;blue&apos;, &apos;yellow&apos;, &apos;purple&apos;];</span><br><span class="line">var color2 = color.slice(1);//截取下表为1和其后面的项</span><br><span class="line">var color3 = color.slice(1,4);//截取下表1和4中间的项，包括1/不包括4</span><br><span class="line"></span><br><span class="line">alert(color2);    //green,blue,yellow,purple</span><br><span class="line">alert(color3);    //green,blue,yellow</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果slice（）方法的参数中有一个负数，则用数组长度加上该数来确定相应的位置，例如，在一个包含5项的数组上调用slice(-2,-1)与调用slice(3,4)得到的结果相同。如果位置小于起始位置，则返回空数组。</p>
-</blockquote>
-<h3 id="splice-位置-，数量-，项，项，项………-方法mdn-splice"><a href="#splice-位置-，数量-，项，项，项………-方法mdn-splice" class="headerlink" title="splice( 位置 ，数量 ，项，项，项………)方法mdn-splice"></a>splice( 位置 ，数量 ，项，项，项………)方法<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" target="_blank" rel="noopener">mdn-splice</a></h3><h1 id="map-reduce-filter"><a href="#map-reduce-filter" class="headerlink" title="map,reduce,filter"></a>map,reduce,filter</h1><h2 id="1：map"><a href="#1：map" class="headerlink" title="1：map"></a>1：map</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var numbers = [1, 4, 9];</span><br><span class="line">var roots = numbers.map(function(a,b,c)&#123;console.log(c);return a+1&#125;)</span><br><span class="line">// [1, 4, 9]</span><br><span class="line">// [1, 4, 9]</span><br><span class="line">// [1, 4, 9]</span><br><span class="line">console.log(roots);</span><br><span class="line">// [2, 5, 10]</span><br><span class="line">console.log(numbers);</span><br><span class="line">// [1, 4, 9]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>上例子中map方法接收一个回调函数做参数即：function（）{}</p>
-<p>参数  a：数组numbers中正在被处理的element</p>
-<p>参数  b：数组的索引</p>
-<p>参数  c：数组numbers本身</p>
-</blockquote>
-<p>在使用map方法处理数组时，被处理数组本身是不会被改变的，打印numbers、其值并未被改变；改变的是新定义的变量roots；</p>
-<h2 id="2：reduce"><a href="#2：reduce" class="headerlink" title="2：reduce"></a>2：reduce</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b, c,d) &#123; 	  </span><br><span class="line">	console.log(a);</span><br><span class="line">	console.log(b);</span><br><span class="line">	console.log(c);</span><br><span class="line">	console.log(d);</span><br><span class="line">  	return a.concat(b);</span><br><span class="line">&#125;, []);</span><br><span class="line"></span><br><span class="line">// []</span><br><span class="line">// [0, 1]</span><br><span class="line">// 0</span><br><span class="line">// [Array[2], Array[2], Array[2]]</span><br><span class="line"></span><br><span class="line">// [0, 1]</span><br><span class="line">// [2, 3]</span><br><span class="line">// 1</span><br><span class="line">// [Array[2], Array[2], Array[2]]</span><br><span class="line"></span><br><span class="line">// [0, 1, 2, 3]</span><br><span class="line">// [4, 5]</span><br><span class="line">// 2</span><br><span class="line">// [Array[2], Array[2], Array[2]]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>reduce()方法用一个函数对一个数组中的项进行累积 ， 数组的每个值(从左到右)减少到一个单一值（累积方法在函数中定义）</p>
-<p>参数：a-数组中正在处理的项的前一项；</p>
-<p>b：current element 当前正在处理的项</p>
-<p>c：数组索引</p>
-<p>d：数组本身</p>
-</blockquote>
-<h2 id="3：filter"><a href="#3：filter" class="headerlink" title="3：filter"></a>3：filter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const aa = [12, 5, 8, 130];</span><br><span class="line">const bb = aa.filter(function(a,b,c)&#123;</span><br><span class="line">	console.log(a,b,c);</span><br><span class="line">	return a &lt;13;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 12 0 [12, 5, 8, 130] </span><br><span class="line">// 5 1 [12, 5, 8, 130]</span><br><span class="line">// 8 2 [12, 5, 8, 130]</span><br><span class="line">// 130 3 [12, 5, 8, 130]</span><br><span class="line">aa</span><br><span class="line">[12, 5, 8, 130]</span><br><span class="line">bb</span><br><span class="line">[12, 5, 8]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>数组中所有的项都经过了function的筛选，最终返回一个新的数组</p>
-<p>数组aa本身没有变化，筛选后的结果为数组bb</p>
-</blockquote>
-<p>##4: object.assign<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;age:34, name:&apos;jim&apos;&#125;    </span><br><span class="line">var b = Object.assign(&#123;&#125;, a, &#123;age:23&#125;);    </span><br><span class="line">b  // Object &#123;age: 23, name: &quot;jim&quot;&#125;</span><br><span class="line">a  // Object &#123;age: 34, name: &quot;jim&quot;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>##5: concat<br>concat() 方法用于连接两个或多个数组。<br>该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</p>
-<p>#ES 6 扩展</p>
-<h2 id="1-Array-from"><a href="#1-Array-from" class="headerlink" title="1:Array.from();"></a>1:Array.from();</h2><p><code>Array.from</code>方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。</p>
-<h2 id="2-Array-fo"><a href="#2-Array-fo" class="headerlink" title="2:Array.fo();"></a>2:Array.fo();</h2><p><code>Array.of</code>方法用于将一组值，转换为数组。</p>
-<h2 id="3-数组实例的copyWithin"><a href="#3-数组实例的copyWithin" class="headerlink" title="3:数组实例的copyWithin()"></a>3:数组实例的copyWithin()</h2><p>数组实例的<code>copyWithin</code>方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.copyWithin(target, start = 0, end = this.length)</span><br></pre></td></tr></table></figure>
-<p>它接受三个参数。</p>
+            <p><a href="http://justineo.github.io/singles/writing-modular-js/" target="_blank" rel="noopener">讲解链接</a></p>
+<h1 id="commonjs"><a href="#commonjs" class="headerlink" title="commonjs"></a>commonjs</h1><p>JS模块化，是前端工程师向全栈跨进的一大步;</p>
+<p>commonjs是用在服务器端的，同步加载，如node.js</p>
+<p>nodejs因为模块文件都是存放在磁盘上，加载很快不用考虑异步加载。</p>
+<p>require()用来引入外部模块；exports对象用于导出当前模块的方法或变量，唯一的导出口；module对象就代表模块本身</p>
+<h1 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a><a href="http://www.cnblogs.com/JoannaQ/p/3362588.html" target="_blank" rel="noopener">AMD</a></h1><p>CommenJs加载是同步的，并不适合在浏览器中加载, AMD异步加载适合与浏览器端；</p>
+<p>AMD通过define方法来实现模块</p>
+<p>define(id?, dependencies?, factory);</p>
+<p> 其中：</p>
 <ul>
-<li>target（必需）：从该位置开始替换数据。</li>
-<li>start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。</li>
-<li>end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。</li>
+<li>id: 模块标识，可以省略。</li>
+<li>dependencies: 所依赖的模块，可以省略。</li>
+<li>factory: 模块的实现，或者一个JavaScript对象（回调）。</li>
 </ul>
-<p>这三个参数都应该是数值，如果不是，会自动转为数值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, 4, 5].copyWithin(0, 3)</span><br><span class="line">// [4, 5, 3, 4, 5]</span><br></pre></td></tr></table></figure>
-<h2 id="4-find-和-findIndex"><a href="#4-find-和-findIndex" class="headerlink" title="4:find() 和 findIndex();"></a>4:find() 和 findIndex();</h2><p>数组实例的<code>find</code>方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为<code>true</code>的成员，然后返回该成员。如果没有符合条件的成员，则返回<code>undefined</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 5, 10, 15].find(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;) // 10</span><br></pre></td></tr></table></figure>
-<p>数组实例的<code>findIndex</code>方法的用法与<code>find</code>方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回<code>-1</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 5, 10, 15].findIndex(function(value, index, arr) &#123;</span><br><span class="line">  return value &gt; 9;</span><br><span class="line">&#125;) // 2</span><br></pre></td></tr></table></figure>
-<h2 id="5-数组实例的fill"><a href="#5-数组实例的fill" class="headerlink" title="5:数组实例的fill()"></a>5:数组实例的fill()</h2><p><code>fill</code>方法使用给定值，填充一个数组。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;].fill(7)</span><br><span class="line">// [7, 7, 7]</span><br><span class="line"></span><br><span class="line">new Array(3).fill(7)</span><br><span class="line">// [7, 7, 7]</span><br></pre></td></tr></table></figure>
-<h2 id="6-数组实例的entries-，keys-和values"><a href="#6-数组实例的entries-，keys-和values" class="headerlink" title="6:数组实例的entries()，keys()和values()"></a>6:数组实例的entries()，keys()和values()</h2><p>ES6提供三个新的方法——<code>entries()</code>，<code>keys()</code>和<code>values()</code>——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用<code>for...of</code>循环进行遍历，唯一的区别是<code>keys()</code>是对键名的遍历、<code>values()</code>是对键值的遍历，<code>entries()</code>是对键值对的遍历。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">for (let index of [&apos;a&apos;, &apos;b&apos;].keys()) &#123;</span><br><span class="line">  console.log(index);</span><br><span class="line">&#125;</span><br><span class="line">// 0</span><br><span class="line">// 1</span><br><span class="line"></span><br><span class="line">for (let elem of [&apos;a&apos;, &apos;b&apos;].values()) &#123;</span><br><span class="line">  console.log(elem);</span><br><span class="line">&#125;</span><br><span class="line">// &apos;a&apos;</span><br><span class="line">// &apos;b&apos;</span><br><span class="line"></span><br><span class="line">for (let [index, elem] of [&apos;a&apos;, &apos;b&apos;].entries()) &#123;</span><br><span class="line">  console.log(index, elem);</span><br><span class="line">&#125;</span><br><span class="line">// 0 &quot;a&quot;</span><br><span class="line">// 1 &quot;b&quot;</span><br></pre></td></tr></table></figure>
+<p>####AMD和CMD的区别：</p>
+<p>1.AMD预执行，CMD懒执行：AMD一开始就会加载完所有依赖模块并执行，CMD加载完后等到真正require的时候才会执行(RequireJS 从 2.0 开始，也改成可以延迟执行)</p>
+<p>2.CMD 推崇依赖就近，AMD 推崇依赖前置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//CMD</span><br><span class="line"></span><br><span class="line">define(function(require, exports, module) &#123;</span><br><span class="line">var a = require(&apos;./a&apos;)</span><br><span class="line">a.doSomething()</span><br><span class="line">// 此处略去 100 行</span><br><span class="line">var b = require(&apos;./b&apos;) // 依赖可以就近书写</span><br><span class="line">b.doSomething()</span><br><span class="line">// ... </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//AMD</span><br><span class="line"></span><br><span class="line">define([&apos;./a&apos;, &apos;./b&apos;], function(a, b) &#123; // 依赖必须一开始就写好</span><br><span class="line">a.doSomething()</span><br><span class="line">// 此处略去 100 行</span><br><span class="line">b.doSomething()</span><br><span class="line">...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p> 3.AMD 的 API 默认是<strong>一个当多个用</strong>，CMD 的 API 严格区分，推崇<strong>职责单一</strong>。比如 AMD 里，require 分全局 require 和局部 require，都叫 require。CMD 里，没有全局 require，而是根据模块系统的完备性，提供 seajs.use 来实现模块系统的加载启动。CMD 里，每个 API 都<strong>简单纯粹</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/回调函数的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/回调函数的理解/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="回调函数的理解"><a href="#回调函数的理解" class="headerlink" title="回调函数的理解"></a>回调函数的理解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function one() &#123;</span><br><span class="line">	console.log(&apos;wo shi one&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function tow(callback) &#123;</span><br><span class="line">	setTimeout(function()&#123;</span><br><span class="line">		callback &amp;&amp; callback();</span><br><span class="line">	&#125;, 2000);</span><br><span class="line">	console.log(&apos;woshi toto&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tow(one);</span><br><span class="line">console.log(&apos;outer&apos;);</span><br><span class="line"></span><br><span class="line">// 输出结果</span><br><span class="line">// woshi toto</span><br><span class="line">// outer</span><br><span class="line">// wo shi one</span><br></pre></td></tr></table></figure>
+<p>上面例子就是一个 回调函数使用的场景</p>
+<p>setTimeout是一个异步操作；  在异步操作完成后执行 callback 函数；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">    var a = 10;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        a *= 2;</span><br><span class="line">        return a;       </span><br><span class="line">    &#125;;   </span><br><span class="line">&#125;</span><br><span class="line">var f = foo();</span><br><span class="line">f(); //return 20.</span><br><span class="line">f(); //return 40.</span><br></pre></td></tr></table></figure>
+<p>顺带再理解一下闭包</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/WebLoginNote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/WebLoginNote/" itemprop="url">web login</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1：登录首先应该做什么呢？"><a href="#1：登录首先应该做什么呢？" class="headerlink" title="1：登录首先应该做什么呢？"></a>1：登录首先应该做什么呢？</h3><ul>
+<li><p>用户输入U，P，点击登录，向后台发送请求；</p>
+</li>
+<li><p>后台服务器接受到u，p后，会记录下来，生成一个sessionid，csrfken；</p>
+</li>
+<li><p>下面会有两步，一是将sessionid放到cookie中通过response返回给前端的请求；二是：将sessionid保存包后台的 session store中；</p>
+</li>
+</ul>
+<hr>
+<p>  sessionid用来验证用户登录， csrfken用于防止csrf攻击（具体原理查资料）</p>
+<ul>
+<li>当前前端浏览器cookie已经记录住sessionid，csrf；</li>
+<li>浏览器中当用户发送下一次请求时，请求会自动带上cookie，发送到后台；</li>
+<li>后台等到cookie中的sessionid，和session store中比较，成功返回相应的数据；</li>
+</ul>
 
           
         
@@ -586,7 +1093,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -703,6 +1210,414 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/HTTP状态码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/28/HTTP状态码/" itemprop="url">HTTP状态码</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如："><a href="#我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如：" class="headerlink" title="我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如："></a>我们经常使用浏览器发出http请求，那么对于请求返回的状态，对于开发人员来讲，我们必须要明白其所代表的含义，如：</h4><h4 id="常见状态吗：400（请求无效），401（需要权限），404（找不到地址）-500（服务器错误），"><a href="#常见状态吗：400（请求无效），401（需要权限），404（找不到地址）-500（服务器错误），" class="headerlink" title="常见状态吗：400（请求无效），401（需要权限），404（找不到地址）, 500（服务器错误），"></a>常见状态吗：400（请求无效），401（需要权限），404（找不到地址）, 500（服务器错误），</h4><p>对于400错误具体的信息，可以通过浏览器的调式功能，找出ex对象的错误属性找到详细信息。</p>
+<p><strong>{“message”:”请求无效。”,”modelState”:{“bannerEntity.SortNo”:[“Error converting value {null} to type ‘System.Int32’. Path ‘SortNo’, line 1, position 69.”]}}</strong></p>
+<h2 id="正文："><a href="#正文：" class="headerlink" title="正文："></a><strong>正文：</strong></h2><h2 id="HTTP状态码分类"><a href="#HTTP状态码分类" class="headerlink" title="HTTP状态码分类"></a>HTTP状态码分类</h2><p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：</p>
+<table>
+<thead>
+<tr>
+<th>HTTP状态码分类</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>分类</strong></td>
+<td><strong>分类描述</strong></td>
+</tr>
+<tr>
+<td>1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody>
+</table>
+<p>HTTP状态码列表:</p>
+<table>
+<thead>
+<tr>
+<th>HTTP状态码列表</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>状态码      </strong></td>
+<td><strong>状态码英文名称</strong></td>
+<td><strong>中文描述</strong></td>
+</tr>
+<tr>
+<td>100</td>
+<td>Continue</td>
+<td>继续。<a href="http://www.dreamdu.com/webbuild/client_vs_server/" target="_blank" rel="noopener">客户端</a>应继续其请求</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Switching Protocols</td>
+<td>切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到HTTP的新版本协议</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>请求成功。一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>已创建。成功请求并创建了新的资源</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td>已接受。已经接受请求，但未处理完成</td>
+</tr>
+<tr>
+<td>203</td>
+<td>Non-Authoritative Information</td>
+<td>非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+<td>无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
+</tr>
+<tr>
+<td>205</td>
+<td>Reset Content</td>
+<td>重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</td>
+</tr>
+<tr>
+<td>206</td>
+<td>Partial Content</td>
+<td>部分内容。服务器成功处理了部分GET请求</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>300</td>
+<td>Multiple Choices</td>
+<td>多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+<td>临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
+</tr>
+<tr>
+<td>303</td>
+<td>See Other</td>
+<td>查看其它地址。与301类似。使用GET和POST请求查看</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</td>
+</tr>
+<tr>
+<td>305</td>
+<td>Use Proxy</td>
+<td>使用代理。所请求的资源必须通过代理访问</td>
+</tr>
+<tr>
+<td>306</td>
+<td>Unused</td>
+<td>已经被废弃的HTTP状态码</td>
+</tr>
+<tr>
+<td>307</td>
+<td>Temporary Redirect</td>
+<td>临时重定向。与302类似。使用GET请求重定向</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>客户端请求的语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>请求要求用户的身份认证</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Payment Required</td>
+<td>保留，将来使用</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置”您所请求的资源无法找到”的个性页面</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+<td>客户端请求中的方法被禁止</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+<td>服务器无法根据客户端请求的内容特性完成请求</td>
+</tr>
+<tr>
+<td>407</td>
+<td>Proxy Authentication Required</td>
+<td>请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权</td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request Time-out</td>
+<td>服务器等待客户端发送的请求时间过长，超时</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>服务器完成客户端的PUT请求是可能返回此代码，服务器处理请求时发生了冲突</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone</td>
+<td>客户端请求的资源已经不存在。410不同于404，如果资源以前有现在被永久删除了可使用410代码，网站设计人员可通过301代码指定资源的新位置</td>
+</tr>
+<tr>
+<td>411</td>
+<td>Length Required</td>
+<td>服务器无法处理客户端发送的不带Content-Length的请求信息</td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Failed</td>
+<td>客户端请求信息的先决条件错误</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Request Entity Too Large</td>
+<td>由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息</td>
+</tr>
+<tr>
+<td>414</td>
+<td>Request-URI Too Large</td>
+<td>请求的URI过长（URI通常为网址），服务器无法处理</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Media Type</td>
+<td>服务器无法处理请求附带的媒体格式</td>
+</tr>
+<tr>
+<td>416</td>
+<td>Requested range not satisfiable</td>
+<td>客户端请求的范围无效</td>
+</tr>
+<tr>
+<td>417</td>
+<td>Expectation Failed</td>
+<td>服务器无法满足Expect的请求头信息</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+<td>服务器不支持请求的功能，无法完成请求</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway</td>
+<td>充当网关或代理的服务器，从远端服务器接收到了一个无效的请求</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Time-out</td>
+<td>充当网关或代理的服务器，未及时从远端服务器获取请求</td>
+</tr>
+<tr>
+<td>505</td>
+<td>HTTP Version not supported</td>
+<td>服务器不支持请求的HTTP协议的版本，无法完成处理</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常见错误的处理方法："><a href="#常见错误的处理方法：" class="headerlink" title="常见错误的处理方法："></a><strong>常见错误的处理方法：</strong></h2><p>500错误</p>
+<p>500错误是站长经常遇到的问题，就本人的经验，原因及解决方法归纳如下：</p>
+<p>1、运行的用户数过多，对服务器造成的压力过大，服务器无法响应，则报HTTP500错误。</p>
+<p>这个原因是网站报500错误的最主要原因，很多网站为什么突然会报500错误（service unavailable）呢？90%是由于空间压力过大，超出了空间商设定的上限而造成的。</p>
+<p>遇到这个问题，最好是第一时间找到空间商的售后服务，他们一般会帮你回收一下应用程序池，问题便得到解决。如果没有找到售后服务，可以自己在空间管理后台，找到“回收应用程序池”那个项目，自己手动执行一下即可。不过，一些空间管理后台并没有提供该项服务。</p>
+<p>2、如果排除了第1的可能性，那么很大原因便是程序上出现了问题。</p>
+<p>可以做个简单的测试页面，看是否能运行成功，再检测报错的页面，从而针对性的进行修改。</p>
+<p>该做关联的地方没有去做关联，则报HTTP500错误。进行手工或者自动关联，问题得到解决。</p>
+<p>3、如果测试中所进行的操作需要向数据库中插入数据，若大数据量的情况下导致数据库中表空间已满，或者缓冲池较小无法满足数据的存取等，都有可能导致HTTP500错误。</p>
+<p>解决方法是调整数据库、修改连接池大小等等，根据个人具体情况进行修正即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -722,7 +1637,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/闭包/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2017/10/28/闭包/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -732,7 +1647,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -861,7 +1776,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-28T13:16:09+08:00">
                 2017-10-28
@@ -1002,8 +1917,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1057,7 +1972,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

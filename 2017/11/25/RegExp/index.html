@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/11/25/RegExp/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
 <meta property="og:description" content="test. 一个在字符串中测试是否匹配的RegExp方法，它返回true或false。 123var str = &amp;apos;hello world!&amp;apos;;var result = /^hello/.test(str);console.log(result); // true  match 一个在字符串中执行查找匹配的String方法，它返回一个数组或者在未匹配到时返回null。 123">
-<meta property="og:updated_time" content="2018-01-18T05:40:55.741Z">
+<meta property="og:updated_time" content="2018-02-12T07:41:05.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Regular Expression">
 <meta name="twitter:description" content="test. 一个在字符串中测试是否匹配的RegExp方法，它返回true或false。 123var str = &amp;apos;hello world!&amp;apos;;var result = /^hello/.test(str);console.log(result); // true  match 一个在字符串中执行查找匹配的String方法，它返回一个数组或者在未匹配到时返回null。 123">
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -220,7 +220,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -284,7 +284,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-25T21:46:22+08:00">
                 2017-11-25
@@ -343,8 +343,7 @@
 <p>​</p>
 </li>
 </ol>
-<h2 id="正则表达式使用总结"><a href="#正则表达式使用总结" class="headerlink" title="正则表达式使用总结"></a>正则表达式使用总结</h2><p>####如何理解开始、结束 字符：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/^ ... $/</span><br><span class="line">eg:</span><br><span class="line"></span><br><span class="line">var str = &apos;Twas the night before Xmas&apos;;</span><br><span class="line">var ss = new RegExp(/mas$/, &apos;g&apos;);</span><br><span class="line">var newstr = str.replace(ss, &apos;Christmas&apos;);</span><br><span class="line">console.log(newstr);</span><br><span class="line">// Twas the night before XChristmas</span><br><span class="line">// 匹配结尾的mas</span><br><span class="line"></span><br><span class="line">var a = &apos;   asasd   &apos;;</span><br><span class="line">var b = a.replace(/^\s+|\s+$/g,&quot;&quot;);</span><br><span class="line">console.log(b);</span><br><span class="line">// asasd</span><br><span class="line">// 替换了开头和结尾的空格</span><br></pre></td></tr></table></figure>
+<h2 id="正则表达式使用总结"><a href="#正则表达式使用总结" class="headerlink" title="正则表达式使用总结"></a>正则表达式使用总结</h2><h4 id="如何理解开始、结束-字符："><a href="#如何理解开始、结束-字符：" class="headerlink" title="如何理解开始、结束 字符："></a>如何理解开始、结束 字符：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/^ ... $/</span><br><span class="line">eg:</span><br><span class="line"></span><br><span class="line">var str = &apos;Twas the night before Xmas&apos;;</span><br><span class="line">var ss = new RegExp(/mas$/, &apos;g&apos;);</span><br><span class="line">var newstr = str.replace(ss, &apos;Christmas&apos;);</span><br><span class="line">console.log(newstr);</span><br><span class="line">// Twas the night before XChristmas</span><br><span class="line">// 匹配结尾的mas</span><br><span class="line"></span><br><span class="line">var a = &apos;   asasd   &apos;;</span><br><span class="line">var b = a.replace(/^\s+|\s+$/g,&quot;&quot;);</span><br><span class="line">console.log(b);</span><br><span class="line">// asasd</span><br><span class="line">// 替换了开头和结尾的空格</span><br></pre></td></tr></table></figure>
 <p>有开始和结束符， 匹配<code>整个字符串</code>是否匹配 正则规则；</p>
 <h4 id="贪婪、非贪婪-匹配"><a href="#贪婪、非贪婪-匹配" class="headerlink" title="贪婪、非贪婪 匹配"></a>贪婪、非贪婪 匹配</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var ele = &apos;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&apos;;</span><br><span class="line">var ss = ele.match(/&lt;.+&gt;/);</span><br><span class="line">console.log(ss);</span><br><span class="line">// [&quot;&lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt;&quot;, index: 10, input: &quot;This is a &lt;EM&gt;first&lt;/EM&gt; test is a &lt;EM&gt;first&lt;/EM&gt; test&quot;]</span><br></pre></td></tr></table></figure>
 <p>由于<code>+</code>的贪婪性，使得正则表达式引擎返回了一个最左边的最长的匹配</p>
@@ -451,10 +450,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -474,8 +473,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">35</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -513,7 +512,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式使用总结"><span class="nav-number">1.</span> <span class="nav-text">正则表达式使用总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#贪婪、非贪婪-匹配"><span class="nav-number">1.0.1.</span> <span class="nav-text">贪婪、非贪婪 匹配</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式使用总结"><span class="nav-number">1.</span> <span class="nav-text">正则表达式使用总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何理解开始、结束-字符："><span class="nav-number">1.0.1.</span> <span class="nav-text">如何理解开始、结束 字符：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#贪婪、非贪婪-匹配"><span class="nav-number">1.0.2.</span> <span class="nav-text">贪婪、非贪婪 匹配</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -545,7 +544,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
