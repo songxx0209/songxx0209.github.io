@@ -1475,7 +1475,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/字符串拼接/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/28/面向对象oop笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -1494,7 +1494,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/28/字符串拼接/" itemprop="url">字符串操作 - 整理</a></h1>
+                <a class="post-title-link" href="/2017/10/28/面向对象oop笔记/" itemprop="url">面向对象OOP</a></h1>
         
 
         <div class="post-meta">
@@ -1546,59 +1546,20 @@
       
         
           
-            <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://riny.net/2012/the-summary-of-javascript-string/" target="_blank" rel="noopener">常用的字符串操作</a></p>
-<p><a href="http://louiszhai.github.io/2016/01/12/js.String/#charAt" target="_blank" rel="noopener">全面的字符串操作总结</a></p>
-<h3 id="substr-start-length-方法"><a href="#substr-start-length-方法" class="headerlink" title="substr(start,length) 方法"></a>substr(start,length) 方法</h3><p>substr(起始位置，长度) 方法可在字符串中抽取从 start 下标开始的指定数目的字符（例子2）。起始位置必选，长度可选。没有长度参数，就抽取起始到最后（例子1）。</p>
-<p><strong>例子1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3))</span><br></pre></td></tr></table></figure>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
-<p><strong>例子2</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&apos;Hello world!&apos;</span><br><span class="line">document.write(str.substr(3,7))</span><br></pre></td></tr></table></figure>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo worl</span><br></pre></td></tr></table></figure></p>
-<h3 id="substring-方法"><a href="#substring-方法" class="headerlink" title="substring() 方法"></a>substring() 方法</h3><p><a href="http://www.w3school.com.cn/jsref/jsref_substring.asp" target="_blank" rel="noopener">JavaScript substring() 方法</a></p>
+            <h2 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function OPP (name, qq)&#123;        //工厂方式，构造函数</span><br><span class="line">    //原料</span><br><span class="line">    var person = new Object();</span><br><span class="line">    //加工</span><br><span class="line">    person.name = name;</span><br><span class="line">    person.qq = qq;</span><br><span class="line">    person.showName = function()&#123;</span><br><span class="line">    alert(&apos;我的名字是&apos;+this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    person.showQQ = function()&#123;</span><br><span class="line">    alert(&apos;我的名字是&apos;+this.qq);</span><br><span class="line">    &#125;;</span><br><span class="line">    //出厂</span><br><span class="line">    return person;</span><br><span class="line">&#125;</span><br><span class="line">var person1 = OPP(&apos;张三&apos;，&apos;23232323&apos;);</span><br><span class="line">var person2 = OPP(&apos;李四&apos;，&apos;913581148&apos;);</span><br><span class="line">alert(person1.showName == person2.showName);  //返回：false</span><br></pre></td></tr></table></figure>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><blockquote>
+<p>1：没有new</p>
+<p>2：代码效率低/浪费资源—-上面代码返回false，person1和person2的showName方法代码是一样的，但是他们两个却不相等；因为他们是创建在2块不同内存里中的东西；所以这种写法如果创建100个person就会重复100遍，开辟100块内存来放相同的东西；</p>
+</blockquote>
+<h2 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function OPP (name, qq)&#123;        //构造函数</span><br><span class="line">   </span><br><span class="line">    this.name = name;</span><br><span class="line">    this.qq = qq;</span><br><span class="line">    this.showName = function()&#123;</span><br><span class="line">    alert(&apos;我的名字是&apos;+this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">OPP.prototype.showQQ = function ()&#123;</span><br><span class="line">  alert(&apos;我的名字是&apos;+this.qq);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>substring() 方法用于提取字符串中介于两个指定下标之间的字符。</p>
+<p>所有opp实例共有的部分，用prototype（原型）；将opp函数的showQQ方法放在唯一的一块内存中，大家都到那儿去取；所以大家的这个方法或属性的值都是一样的；</p>
 </blockquote>
-<p><strong>例子1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello world!&quot;</span><br><span class="line">document.write(str.substring(3))</span><br></pre></td></tr></table></figure>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lo world!</span><br></pre></td></tr></table></figure></p>
-<h3 id="slice-方法"><a href="#slice-方法" class="headerlink" title="slice() 方法"></a>slice() 方法</h3><p><a href="http://www.w3school.com.cn/jsref/jsref_slice_string.asp" target="_blank" rel="noopener">JavaScript slice() 方法</a></p>
-<blockquote>
-<p>String 对象的方法 slice()、substring() 和 substr() （不建议使用）都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</p>
+<h3 id="个人对一些知识的理解记录"><a href="#个人对一些知识的理解记录" class="headerlink" title="个人对一些知识的理解记录"></a>个人对一些知识的理解记录</h3><h4 id="1：constructor"><a href="#1：constructor" class="headerlink" title="1：constructor"></a>1：constructor</h4><blockquote>
+<p>1、只有对象obj才会有这个属性；</p>
+<p>2、一个对象实例的constructor属性，指向生成这个实例的构造函数；所以同一个构造函数生成的实例a1，a2。   （a1.constructor === a2.constructor）</p>
 </blockquote>
-<h3 id="split-方法"><a href="#split-方法" class="headerlink" title="split()方法"></a>split()方法</h3><p>split() 方法用于把一个字符串分割成字符串数组</p>
-<p><strong>例子1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;How are you doing today?&quot;</span><br><span class="line">document.write(str.split(&quot; &quot;) + &quot;&lt;br /&gt;&quot;)</span><br></pre></td></tr></table></figure>
-<p>结果输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[How,are,you,doing,today?]</span><br></pre></td></tr></table></figure></p>
-<p><strong>例子2</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot;.split(&quot;&quot;, 3)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;]</span><br><span class="line">&quot;hello&quot;.split(&quot;&quot;)	//可返回 [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]</span><br></pre></td></tr></table></figure>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//获取Url中的所有参数</span><br><span class="line">function _GetUrlParams() &#123;</span><br><span class="line">    var url = location.search; //获取url中&quot;?&quot;和‘？’符后的字串</span><br><span class="line">    var theRequest = &#123;&#125;;</span><br><span class="line">    if (url.indexOf(&quot;?&quot;) != -1) &#123;</span><br><span class="line">        var str = url.substr(1);//获取？后面的子串</span><br><span class="line">        strs = str.split(&quot;&amp;&quot;);//以&amp;分割成数组</span><br><span class="line">        for (var i = 0; i &lt; strs.length; i++) &#123;</span><br><span class="line">            theRequest[strs[i].split(&quot;=&quot;)[0]] = unescape(strs[i].split(&quot;=&quot;)[1]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="lastIndexOf()"></a>lastIndexOf()</h3><blockquote>
-<p>stringObject.lastIndexOf(searchvalue,fromindex)</p>
-</blockquote>
-<p>如果找到一个 searchvalue，则返回 searchvalue 的第一个字符在 stringObject 中的位置。stringObject 中的字符位置是从 0 开始的。</p>
-<h3 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf"></a>indexOf</h3><p><a href="http://www.w3school.com.cn/jsref/jsref_indexOf.asp" target="_blank" rel="noopener">JavaScript indexOf() 方法</a></p>
-<blockquote>
-<p>stringObject.indexOf(searchvalue,fromindex)<br>参数    描述<br>searchvalue    必需。规定需检索的字符串值。<br>fromindex    可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。<br>用于解锁‘字符’在字符串中的位置， 也可判断该字符在该字符串中是否存在；</p>
-</blockquote>
-<h3 id="charAt-方法"><a href="#charAt-方法" class="headerlink" title="charAt()方法"></a>charAt()方法</h3><blockquote>
-<p>用于返回指定位置的字符，从0开始计数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str=&quot;Hello World!&quot; </span><br><span class="line">document.write(str.charAt(1));//输出e</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="能使用正则表达式的api"><a href="#能使用正则表达式的api" class="headerlink" title="能使用正则表达式的api"></a>能使用正则表达式的api</h2><h3 id="search"><a href="#search" class="headerlink" title="search"></a>search</h3><p>search与indexOf、lastIndexOf方法类似</p>
-<p>search只接受一个参数，但是可以接受正则表达式；返回搜索元素的索引</p>
-<h3 id="match"><a href="#match" class="headerlink" title="match"></a>match</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;1a2b3c4d5e&apos;;</span><br><span class="line">console.log(str.match(&apos;h&apos;));    //返回null</span><br><span class="line">console.log(str.match(&apos;b&apos;));    //返回[&quot;b&quot;, index: 3, input: &quot;1a2b3c4d5e&quot;]</span><br><span class="line">console.log(str.match(/b/));    //返回[&quot;b&quot;, index: 3, input: &quot;1a2b3c4d5e&quot;]</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;1a2b3c4d5e&apos;;</span><br><span class="line">console.log(str.match(/h/g));    //返回null</span><br><span class="line">console.log(str.match(/\d/g));    //返回[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;]</span><br></pre></td></tr></table></figure>
-<h3 id="replace-方法"><a href="#replace-方法" class="headerlink" title="replace()方法"></a>replace()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringObject.replace(regexp/substr,replacement)</span><br></pre></td></tr></table></figure>
-<p>替换指定的字符串，可以使用正则表达式</p>
-<h3 id="split-方法-1"><a href="#split-方法-1" class="headerlink" title="split()方法"></a>split()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringObject.split(separator,howmany)</span><br></pre></td></tr></table></figure>
-<p>​    split()方法用于把一个字符串分割成字符串数组。第一个参数separator表示分割位置(参考符)，第二个参数howmany表示返回数组的允许最大长度(一般情况下不设置)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;a|b|c|d|e&apos;;</span><br><span class="line">console.log(str.split(&apos;|&apos;));    //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</span><br><span class="line">console.log(str.split(&apos;|&apos;, 3));    //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span><br><span class="line">console.log(str.split(&apos;&apos;));    //返回[&quot;a&quot;, &quot;|&quot;, &quot;b&quot;, &quot;|&quot;, &quot;c&quot;, &quot;|&quot;, &quot;d&quot;, &quot;|&quot;, &quot;e&quot;]</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var str = &apos;a1b2c3d4e&apos;;</span><br><span class="line">console.log(str.split(/\d/)); //返回[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</span><br></pre></td></tr></table></figure>
-<h3 id="还有两个正则表达式方法：exec、test"><a href="#还有两个正则表达式方法：exec、test" class="headerlink" title="还有两个正则表达式方法：exec、test"></a>还有两个正则表达式方法：exec、test</h3><p><strong>test : </strong></p>
-<p>​    test() 方法用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回 true，否则返回 false。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var regex1 = RegExp(&apos;foo*&apos;);</span><br><span class="line">var regex2 = RegExp(&apos;foo*&apos;,&apos;g&apos;);</span><br><span class="line">var str1 = &apos;table football&apos;;</span><br><span class="line"></span><br><span class="line">console.log(regex1.test(str1));</span><br><span class="line">// expected output: true</span><br><span class="line"></span><br><span class="line">console.log(regex1.test(str1));</span><br><span class="line">// expected output: true</span><br><span class="line"></span><br><span class="line">console.log(regex2.test(str1));</span><br></pre></td></tr></table></figure>
-<p><strong>exec：</strong></p>
-<p>exec() 方法用于检索字符串中的正则表达式的匹配。</p>
+<p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="noopener">阮一峰，构造函数的继承</a></p>
 
           
         
