@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/18/http/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
 <meta property="og:description" content="HTTP是什么，概念： HTTP：超文本传输协议（Hypertext Transfer Protocol）  http协议：服务端和客服端数据传输的工具 HTTP 是基于 TCP/IP 协议的应用层协议。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口。 HTTP协议以明文方式发送内容，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之">
-<meta property="og:updated_time" content="2018-07-21T17:30:35.343Z">
+<meta property="og:updated_time" content="2018-08-05T13:35:31.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http">
 <meta name="twitter:description" content="HTTP是什么，概念： HTTP：超文本传输协议（Hypertext Transfer Protocol）  http协议：服务端和客服端数据传输的工具 HTTP 是基于 TCP/IP 协议的应用层协议。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口。 HTTP协议以明文方式发送内容，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之">
@@ -333,8 +333,7 @@
 </blockquote>
 <p><strong>HTTP请求方式：</strong></p>
 <p>OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT</p>
-<p><strong>Request 部分</strong></p>
-<table>
+<h3 id="Request-部分"><a href="#Request-部分" class="headerlink" title="Request 部分"></a>Request 部分</h3><table>
 <thead>
 <tr>
 <th>Header</th>
@@ -495,17 +494,15 @@
 </tr>
 </tbody>
 </table>
-<p><strong>常见头信息介绍：</strong></p>
-<p>Content-type:</p>
+<h4 id="常见头信息介绍："><a href="#常见头信息介绍：" class="headerlink" title="常见头信息介绍："></a>常见头信息介绍：</h4><p><strong>Content-type:</strong></p>
 <ol>
-<li><p>text/html </p>
-</li>
-<li><p>text/plain </p>
-</li>
-<li><p>text/css </p>
-</li>
-<li><p>text/javascript </p>
-</li>
+<li>text/html </li>
+<li>text/plain </li>
+<li>text/css </li>
+<li>text/javascript </li>
+</ol>
+<p><a href="https://imququ.com/post/four-ways-to-post-data-in-http.html" target="_blank" rel="noopener">post常见的4种提交数据的方式</a></p>
+<ol>
 <li><p>application/x-www-form-urlencoded </p>
 <blockquote>
 <p>是常用的表单发包方式，普通的表单提交，或者js发包，默认都是通过这种方式</p>
@@ -516,7 +513,7 @@
 <p>用在发送文件的post包</p>
 </blockquote>
 </li>
-<li><p>application/json </p>
+<li><p>application/json</p>
 </li>
 <li><p>application/xml</p>
 </li>
@@ -752,6 +749,42 @@
 <li>http、tcp、ftp等</li>
 <li>http的底层传输方式tcp，http1.0；三次握手</li>
 </ol>
+<p><strong>HTTP协议的主要特点：</strong></p>
+<ul>
+<li>简单快速</li>
+<li>灵活</li>
+<li>无连接：链接后就断开</li>
+<li>无状态</li>
+</ul>
+<p><strong>HTTP报文的组成部分</strong></p>
+<ul>
+<li>请求报文<ul>
+<li>请求行</li>
+<li>请求头</li>
+<li>空行</li>
+<li>请求体</li>
+</ul>
+</li>
+<li>响应报文<ul>
+<li>状态行</li>
+<li>响应头</li>
+<li>空行</li>
+<li>响应体</li>
+</ul>
+</li>
+</ul>
+<p><strong>HTTP方法：</strong></p>
+<p>PUT：更新资源</p>
+<p>DELETE：删除资源</p>
+<p>HEAD：获取报文首部</p>
+<p><strong>POST和GET的区别：</strong></p>
+<ul>
+<li>get在浏览器回退时是无害的，而post会再次发送请求</li>
+<li>get请求浏览器会主动缓存，而post请求不会，除非手动设置（如何设置）</li>
+<li>get请求在URL中传递的参数是有长度限制的，而POST没有限制</li>
+<li>get请求通过URL传递，post放在Request body中</li>
+</ul>
+<p><strong>HTTP状态码：</strong></p>
 <h2 id="下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？"><a href="#下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？" class="headerlink" title="下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？"></a>下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？</h2>
       
     </div>
@@ -785,6 +818,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/05/2018-7-26-react/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -861,7 +898,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -900,7 +937,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP是什么，概念："><span class="nav-number">1.</span> <span class="nav-text">HTTP是什么，概念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前后端开发中经常遇到的问题，跨域"><span class="nav-number">2.</span> <span class="nav-text">前后端开发中经常遇到的问题，跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、什么叫跨域（前端层面的理解）？通源策略"><span class="nav-number">2.0.1.</span> <span class="nav-text">一、什么叫跨域（前端层面的理解）？通源策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、如何解决跨域"><span class="nav-number">2.0.2.</span> <span class="nav-text">二、如何解决跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、在实际项目中解决跨域最常见的方法：CORS、代理"><span class="nav-number">2.0.3.</span> <span class="nav-text">三、在实际项目中解决跨域最常见的方法：CORS、代理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题记录："><span class="nav-number">3.</span> <span class="nav-text">问题记录：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">4.</span> <span class="nav-text">参考链接：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从http可以延伸到理解一下网络传输方面的东西"><span class="nav-number">5.</span> <span class="nav-text">从http可以延伸到理解一下网络传输方面的东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？"><span class="nav-number">6.</span> <span class="nav-text">下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP是什么，概念："><span class="nav-number">1.</span> <span class="nav-text">HTTP是什么，概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-部分"><span class="nav-number">1.1.</span> <span class="nav-text">Request 部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见头信息介绍："><span class="nav-number">1.1.1.</span> <span class="nav-text">常见头信息介绍：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前后端开发中经常遇到的问题，跨域"><span class="nav-number">2.</span> <span class="nav-text">前后端开发中经常遇到的问题，跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、什么叫跨域（前端层面的理解）？通源策略"><span class="nav-number">2.0.1.</span> <span class="nav-text">一、什么叫跨域（前端层面的理解）？通源策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、如何解决跨域"><span class="nav-number">2.0.2.</span> <span class="nav-text">二、如何解决跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、在实际项目中解决跨域最常见的方法：CORS、代理"><span class="nav-number">2.0.3.</span> <span class="nav-text">三、在实际项目中解决跨域最常见的方法：CORS、代理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题记录："><span class="nav-number">3.</span> <span class="nav-text">问题记录：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">4.</span> <span class="nav-text">参考链接：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从http可以延伸到理解一下网络传输方面的东西"><span class="nav-number">5.</span> <span class="nav-text">从http可以延伸到理解一下网络传输方面的东西</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？"><span class="nav-number">6.</span> <span class="nav-text">下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？</span></a></li></ol></div>
             
 
           </div>

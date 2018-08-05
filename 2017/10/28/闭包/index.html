@@ -106,7 +106,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/28/闭包/index.html">
 <meta property="og:site_name" content="songxx&#39;s blog">
 <meta property="og:description" content="闭包闭包的三个特性 1：函数嵌套函数 2：函数内部可以引用外部的参数和变量 3：参数和变量不会被垃圾回收机制回收 定义：闭包是指有权访问另一个函数作用域中变量的函数。  1234567891011function aaa()&amp;#123;  var a = 1;  return function()&amp;#123;    alert(a++)  &amp;#125;&amp;#125;var fun = aaa();">
-<meta property="og:updated_time" content="2018-02-12T08:09:39.415Z">
+<meta property="og:updated_time" content="2018-08-05T13:35:31.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="songxx&#39;s blog">
 <meta name="twitter:description" content="闭包闭包的三个特性 1：函数嵌套函数 2：函数内部可以引用外部的参数和变量 3：参数和变量不会被垃圾回收机制回收 定义：闭包是指有权访问另一个函数作用域中变量的函数。  1234567891011function aaa()&amp;#123;  var a = 1;  return function()&amp;#123;    alert(a++)  &amp;#125;&amp;#125;var fun = aaa();">
@@ -333,8 +333,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function aaa()&#123;</span><br><span class="line">  var a = 1;</span><br><span class="line">  return function()&#123;</span><br><span class="line">    alert(a++)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var fun = aaa();  //得到 function()&#123;alert(a++)&#125;这个没有执行的函数</span><br><span class="line">fun(); // 1  执行后 a++，  然后a还在</span><br><span class="line"></span><br><span class="line">fun();// 2 a还存在；</span><br><span class="line">fun = null;   //a被回收；</span><br></pre></td></tr></table></figure>
 <p>上面的列子可以看出：闭包会使变量始终保在内存中，如果不当使用会增大内存消耗。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var abc = (function()&#123;</span><br><span class="line">  var a = 1 ; </span><br><span class="line">  return function ()&#123;</span><br><span class="line">    a++;</span><br><span class="line">    alert(a);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">abc(); // 2 ; </span><br><span class="line">abc(); // 3 ;</span><br></pre></td></tr></table></figure>
-<p>#闭包函数当我们使用完后 尽量都把它值设为 null , 避免无谓的消耗内存</p>
-
+<h5 id="闭包函数当我们使用完后-尽量都把它值设为-null-避免无谓的消耗内存"><a href="#闭包函数当我们使用完后-尽量都把它值设为-null-避免无谓的消耗内存" class="headerlink" title="闭包函数当我们使用完后 尽量都把它值设为 null , 避免无谓的消耗内存"></a>闭包函数当我们使用完后 尽量都把它值设为 null , 避免无谓的消耗内存</h5>
       
     </div>
     
@@ -368,8 +367,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/28/HTTP状态码/" rel="prev" title="HTTP状态码">
-                HTTP状态码 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/28/字符串拼接/" rel="prev" title="字符串操作 - 整理">
+                字符串操作 - 整理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -447,7 +446,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -486,7 +485,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的三个特性"><span class="nav-number">1.0.1.</span> <span class="nav-text">闭包的三个特性</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的三个特性"><span class="nav-number">1.0.1.</span> <span class="nav-text">闭包的三个特性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#闭包函数当我们使用完后-尽量都把它值设为-null-避免无谓的消耗内存"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">闭包函数当我们使用完后 尽量都把它值设为 null , 避免无谓的消耗内存</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

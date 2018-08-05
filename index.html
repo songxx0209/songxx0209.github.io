@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/http/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/原型链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -274,7 +274,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/18/http/" itemprop="url">http</a></h1>
+                <a class="post-title-link" href="/2018/08/05/原型链/" itemprop="url">理解-函数、构造函数、实例、原型、原型链等概念</a></h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-18T23:21:55+08:00">
-                2018-07-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
               </time>
             
 
@@ -326,602 +326,20 @@
       
         
           
-            <h2 id="HTTP是什么，概念："><a href="#HTTP是什么，概念：" class="headerlink" title="HTTP是什么，概念："></a>HTTP是什么，概念：</h2><blockquote>
-<p>HTTP：<strong>超文本传输协议</strong>（Hypertext Transfer Protocol）</p>
-<p> http协议：服务端和客服端数据传输的工具</p>
-<p>HTTP 是基于 TCP/IP 协议的<a href="http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html" target="_blank" rel="noopener"><strong>应用层协议</strong></a>。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口。</p>
-<p>HTTP协议以明文方式发送内容，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，因此，HTTP协议不适合传输一些敏感信息，比如：信用卡号、密码等支付信息。</p>
-<p>HTTPS在http的基础上加入了SSL协议，SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间通信加密。</p>
-</blockquote>
-<p><strong>HTTP请求方式：</strong></p>
-<p>OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT</p>
-<p><strong>Request 部分</strong></p>
-<table>
-<thead>
-<tr>
-<th>Header</th>
-<th>解释</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Accept</code></td>
-<td>指定客户端能够接收的内容类型</td>
-<td>Accept: text/plain, text/html</td>
-</tr>
-<tr>
-<td>Accept-Charset</td>
-<td>浏览器可以接受的字符编码集。</td>
-<td>Accept-Charset: iso-8859-5</td>
-</tr>
-<tr>
-<td>Accept-Encoding</td>
-<td>指定浏览器可以支持的web服务器返回内容压缩编码类型。</td>
-<td>Accept-Encoding: compress, gzip</td>
-</tr>
-<tr>
-<td>Accept-Language</td>
-<td>浏览器可接受的语言</td>
-<td>Accept-Language: en,zh</td>
-</tr>
-<tr>
-<td>Accept-Ranges</td>
-<td>可以请求网页实体的一个或者多个子范围字段<br>扩展：断点续传实现</td>
-<td>Accept-Ranges: bytes</td>
-</tr>
-<tr>
-<td>Authorization</td>
-<td>HTTP授权的授权证书</td>
-<td>Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</td>
-</tr>
-<tr>
-<td>Cache-Control</td>
-<td>指定请求和响应遵循的缓存机制</td>
-<td>Cache-Control: no-cache</td>
-</tr>
-<tr>
-<td>Connection</td>
-<td>表示是否需要持久连接。（HTTP 1.1默认进行持久连接）</td>
-<td>Connection: close</td>
-</tr>
-<tr>
-<td><strong>Cookie</strong></td>
-<td>HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。<br>浏览器会自动带上<strong>请求域名下的cookie</strong>，用户登录常使用</td>
-<td>Cookie: $Version=1; Skin=new;</td>
-</tr>
-<tr>
-<td>Content-Length</td>
-<td>请求的内容长度</td>
-<td>Content-Length: 348</td>
-</tr>
-<tr>
-<td><strong>Content-Type</strong></td>
-<td>请求的与实体对应的MIME信息</td>
-<td>Content-Type: application/x-www-form-urlencoded</td>
-</tr>
-<tr>
-<td>Date</td>
-<td>请求发送的日期和时间</td>
-<td>Date: Tue, 15 Nov 2010 08:12:31 GMT</td>
-</tr>
-<tr>
-<td>Expect</td>
-<td>请求的特定的服务器行为</td>
-<td>Expect: 100-continue</td>
-</tr>
-<tr>
-<td>From</td>
-<td>发出请求的用户的Email</td>
-<td>From: user@email.com</td>
-</tr>
-<tr>
-<td>Host</td>
-<td>指定请求的服务器的域名和端口号</td>
-<td>Host: www.zcmhi.com</td>
-</tr>
-<tr>
-<td>If-Match</td>
-<td>只有请求内容与实体相匹配才有效</td>
-<td>If-Match: “737060cd8c284d8af7ad3082f209582d”</td>
-</tr>
-<tr>
-<td>If-Modified-Since</td>
-<td>如果请求的部分在指定时间之后被修改则请求成功，未被修改则返回304代码</td>
-<td>If-Modified-Since: Sat, 29 Oct 2010 19:43:31 GMT</td>
-</tr>
-<tr>
-<td>If-None-Match</td>
-<td>如果内容未改变返回304代码，参数为服务器先前发送的Etag，与服务器回应的Etag比较判断是否改变</td>
-<td>If-None-Match: “737060cd8c284d8af7ad3082f209582d”</td>
-</tr>
-<tr>
-<td>If-Range</td>
-<td>如果实体未改变，服务器发送客户端丢失的部分，否则发送整个实体。参数也为Etag</td>
-<td>If-Range: “737060cd8c284d8af7ad3082f209582d”</td>
-</tr>
-<tr>
-<td>If-Unmodified-Since</td>
-<td>只在实体在指定时间之后未被修改才请求成功</td>
-<td>If-Unmodified-Since: Sat, 29 Oct 2010 19:43:31 GMT</td>
-</tr>
-<tr>
-<td>Max-Forwards</td>
-<td>限制信息通过代理和网关传送的时间</td>
-<td>Max-Forwards: 10</td>
-</tr>
-<tr>
-<td>Pragma</td>
-<td>用来包含实现特定的指令</td>
-<td>Pragma: no-cache</td>
-</tr>
-<tr>
-<td>Proxy-Authorization</td>
-<td>连接到代理的授权证书</td>
-<td>Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</td>
-</tr>
-<tr>
-<td>Range</td>
-<td>只请求实体的一部分，指定范围</td>
-<td>Range: bytes=500-999</td>
-</tr>
-<tr>
-<td>Referer</td>
-<td>先前网页的地址，当前请求网页紧随其后,即来路</td>
-<td>Referer: <a href="http://www.zcmhi.com/archives/71.html" target="_blank" rel="noopener">http://www.zcmhi.com/archives/71.html</a></td>
-</tr>
-<tr>
-<td>TE</td>
-<td>客户端愿意接受的传输编码，并通知服务器接受接受尾加头信息</td>
-<td>TE: trailers,deflate;q=0.5</td>
-</tr>
-<tr>
-<td>Upgrade</td>
-<td>向服务器指定某种传输协议以便服务器进行转换（如果支持）</td>
-<td>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</td>
-</tr>
-<tr>
-<td>User-Agent</td>
-<td>User-Agent的内容包含发出请求的用户信息</td>
-<td>User-Agent: Mozilla/5.0 (Linux; X11)</td>
-</tr>
-<tr>
-<td>Via</td>
-<td>通知中间网关或代理服务器地址，通信协议</td>
-<td>Via: 1.0 fred, 1.1 nowhere.com (Apache/1.1)</td>
-</tr>
-<tr>
-<td>Warning</td>
-<td>关于消息实体的警告信息</td>
-<td>Warn: 199 Miscellaneous warning</td>
-</tr>
-</tbody>
-</table>
-<p><strong>常见头信息介绍：</strong></p>
-<p>Content-type:</p>
-<ol>
-<li><p>text/html </p>
-</li>
-<li><p>text/plain </p>
-</li>
-<li><p>text/css </p>
-</li>
-<li><p>text/javascript </p>
-</li>
-<li><p>application/x-www-form-urlencoded </p>
-<blockquote>
-<p>是常用的表单发包方式，普通的表单提交，或者js发包，默认都是通过这种方式</p>
-</blockquote>
-</li>
-<li><p>multipart/form-data </p>
-<blockquote>
-<p>用在发送文件的post包</p>
-</blockquote>
-</li>
-<li><p>application/json </p>
-</li>
-<li><p>application/xml</p>
-</li>
-</ol>
-<p><strong>Responses 部分</strong>  </p>
-<table>
-<thead>
-<tr>
-<th>Header</th>
-<th>解释</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Accept-Ranges</td>
-<td>表明服务器是否支持指定范围请求及哪种类型的分段请求</td>
-<td>Accept-Ranges: bytes</td>
-</tr>
-<tr>
-<td>Age</td>
-<td>从原始服务器到代理缓存形成的估算时间（以秒计，非负）</td>
-<td>Age: 12</td>
-</tr>
-<tr>
-<td>Allow</td>
-<td>对某网络资源的有效的请求行为，不允许则返回405</td>
-<td>Allow: GET, HEAD</td>
-</tr>
-<tr>
-<td>Cache-Control</td>
-<td>告诉所有的缓存机制是否可以缓存及哪种类型</td>
-<td>Cache-Control: no-cache</td>
-</tr>
-<tr>
-<td>Content-Encoding</td>
-<td>web服务器支持的返回内容压缩编码类型。</td>
-<td>Content-Encoding: gzip</td>
-</tr>
-<tr>
-<td>Content-Language</td>
-<td>响应体的语言</td>
-<td>Content-Language: en,zh</td>
-</tr>
-<tr>
-<td>Content-Length</td>
-<td>响应体的长度</td>
-<td>Content-Length: 348</td>
-</tr>
-<tr>
-<td>Content-Location</td>
-<td>请求资源可替代的备用的另一地址</td>
-<td>Content-Location: /index.htm</td>
-</tr>
-<tr>
-<td>Content-MD5</td>
-<td>返回资源的MD5校验值</td>
-<td>Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==</td>
-</tr>
-<tr>
-<td>Content-Range</td>
-<td>在整个返回体中本部分的字节位置</td>
-<td>Content-Range: bytes 21010-47021/47022</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>返回内容的MIME类型</td>
-<td>Content-Type: text/html; charset=utf-8</td>
-</tr>
-<tr>
-<td>Date</td>
-<td>原始服务器消息发出的时间</td>
-<td>Date: Tue, 15 Nov 2010 08:12:31 GMT</td>
-</tr>
-<tr>
-<td>ETag</td>
-<td>请求变量的实体标签的当前值</td>
-<td>ETag: “737060cd8c284d8af7ad3082f209582d”</td>
-</tr>
-<tr>
-<td><strong>Expires</strong></td>
-<td>响应过期的日期和时间</td>
-<td>Expires: Thu, 01 Dec 2010 16:00:00 GMT</td>
-</tr>
-<tr>
-<td>Last-Modified</td>
-<td>请求资源的最后修改时间</td>
-<td>Last-Modified: Tue, 15 Nov 2010 12:45:26 GMT</td>
-</tr>
-<tr>
-<td>Location</td>
-<td>用来重定向接收方到非请求URL的位置来完成请求或标识新的资源</td>
-<td>Location: <a href="http://www.zcmhi.com/archives/94.html" target="_blank" rel="noopener">http://www.zcmhi.com/archives/94.html</a></td>
-</tr>
-<tr>
-<td>Pragma</td>
-<td>包括实现特定的指令，它可应用到响应链上的任何接收方</td>
-<td>Pragma: no-cache</td>
-</tr>
-<tr>
-<td>Proxy-Authenticate</td>
-<td>它指出认证方案和可应用到代理的该URL上的参数</td>
-<td>Proxy-Authenticate: Basic</td>
-</tr>
-<tr>
-<td>refresh</td>
-<td>应用于重定向或一个新的资源被创造，在5秒之后重定向（由网景提出，被大部分浏览器支持）</td>
-<td>Refresh: 5; url=<a href="http://www.zcmhi.com/archives/94.html" target="_blank" rel="noopener">http://www.zcmhi.com/archives/94.html</a></td>
-</tr>
-<tr>
-<td>Retry-After</td>
-<td>如果实体暂时不可取，通知客户端在指定时间之后再次尝试</td>
-<td>Retry-After: 120</td>
-</tr>
-<tr>
-<td>Server</td>
-<td>web服务器软件名称</td>
-<td>Server: Apache/1.3.27 (Unix) (Red-Hat/Linux)</td>
-</tr>
-<tr>
-<td>Set-Cookie</td>
-<td>设置Http Cookie</td>
-<td>Set-Cookie: UserID=JohnDoe; Max-Age=3600; Version=1</td>
-</tr>
-<tr>
-<td>Trailer</td>
-<td>指出头域在分块传输编码的尾部存在</td>
-<td>Trailer: Max-Forwards</td>
-</tr>
-<tr>
-<td>Transfer-Encoding</td>
-<td>文件传输编码</td>
-<td>Transfer-Encoding:chunked</td>
-</tr>
-<tr>
-<td>Vary</td>
-<td>告诉下游代理是使用缓存响应还是从原始服务器请求</td>
-<td>Vary: *</td>
-</tr>
-<tr>
-<td>Via</td>
-<td>告知代理客户端响应是通过哪里发送的</td>
-<td>Via: 1.0 fred, 1.1 nowhere.com (Apache/1.1)</td>
-</tr>
-<tr>
-<td>Warning</td>
-<td>警告实体可能存在的问题</td>
-<td>Warning: 199 Miscellaneous warning</td>
-</tr>
-<tr>
-<td>WWW-Authenticate</td>
-<td>表明客户端请求实体应该使用的授权方案</td>
-<td>WWW-Authenticate: Basic</td>
-</tr>
-</tbody>
-</table>
-<h2 id="前后端开发中经常遇到的问题，跨域"><a href="#前后端开发中经常遇到的问题，跨域" class="headerlink" title="前后端开发中经常遇到的问题，跨域"></a>前后端开发中经常遇到的问题，跨域</h2><h4 id="一、什么叫跨域（前端层面的理解）？通源策略"><a href="#一、什么叫跨域（前端层面的理解）？通源策略" class="headerlink" title="一、什么叫跨域（前端层面的理解）？通源策略"></a>一、什么叫跨域（前端层面的理解）？通源策略</h4><p>首先理解什么情况不跨域：</p>
-<p><code>相同的协议（http、https）</code>、<code>相同的端口</code>、<code>相同的host</code>；</p>
-<p>以上三个条件任何一个不满足就叫做跨域，当然满足以上三个情况都是相同的域；</p>
-<p>前端层面理解跨域，跨域只存在于浏览器上，浏览器为了安全限制，禁止不同域名之间相互通信；在非浏览器环境下没有跨域；</p>
-<p><strong>浏览器的同源策略</strong></p>
-<p>规定跨域之间的脚本是隔离的，一个域的脚本不能访问和操作另外一个域的绝大部分属性和方法。</p>
-<ol>
-<li>DOM同源策略：禁止对不同源页面DOM进行操作。这里主要场景是iframe跨域的情况，不同域名的iframe是限制互相访问的。</li>
-<li>XmlHttpRequest同源策略：禁止使用XHR对象向不同源的服务器地址发起HTTP请求。</li>
-</ol>
-<h4 id="二、如何解决跨域"><a href="#二、如何解决跨域" class="headerlink" title="二、如何解决跨域"></a>二、如何解决跨域</h4><ol>
-<li><p>Jsonp</p>
-</li>
-<li><p>Access Control（CORS 跨域资源共享 corss-origin resource sharing）</p>
-<blockquote>
-<p>对于客户端：并不需要做任何操作，正常的发送xhr请求；</p>
-<p>唯一需要注意的是：如果需要把cookie带到服务端，需要设置：xhr.withCredentials = true</p>
-<p>-</p>
-<p>对于服务端，需要在response header 中设置如下两个字段：</p>
-<p>Access-Control-Allow-Origin: <a href="https://link.zhihu.com/?target=http%3A//www.yourhost.com" target="_blank" rel="noopener">http://www.yourhost.com</a>  （这里可以设置为*，允许所有域名访问，但是这样可能会有一些安全方面的问题，具体细节有待研究）</p>
-<p>Access-Control-Allow-Credentials:true</p>
-<p>这样，我们就可以跨域请求接口了；</p>
-</blockquote>
-<p>学习资料：<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">阮一峰老师</a></p>
-</li>
-<li><p>Window.name</p>
-</li>
-<li><p>Server proxy（使用代理，项目中常用的nginx做代理）</p>
-</li>
-<li><p>document.domain</p>
-</li>
-<li><p>window.postMessage</p>
-<blockquote>
-<p>这是html5定义的一个方法，这个方法更多的是解决不同域名多窗口之间的跨域消息传递；</p>
-</blockquote>
-</li>
-</ol>
-<p><strong>跨域为了解决安全问题，相关的也有很多前端安全相关的问题，了解一下（CSRF攻击）</strong></p>
-<h4 id="三、在实际项目中解决跨域最常见的方法：CORS、代理"><a href="#三、在实际项目中解决跨域最常见的方法：CORS、代理" class="headerlink" title="三、在实际项目中解决跨域最常见的方法：CORS、代理"></a>三、在实际项目中解决跨域最常见的方法：CORS、代理</h4><p><strong>CORS详解</strong></p>
-<p><strong>介绍：</strong></p>
-<p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
-<p>浏览器自动实现cors；（浏览器一旦发现AJAX请求跨源，会自动添加一些附加头信息，有时还会多出一次options-预检请求）</p>
-<p>CORS接口的实现主要依靠服务端；（如何实现？）</p>
-<ol>
-<li><p>简单请求：</p>
-</li>
-<li><p>非简单请求</p>
-</li>
-</ol>
-<h2 id="问题记录："><a href="#问题记录：" class="headerlink" title="问题记录："></a>问题记录：</h2><ol>
-<li><p>对于content-type的理解，如果客户端请求时设置的ct于服务端定义的不同，会出现什么情况；</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to load https://wx.dashixiongky.com/api/v1/0/province: Request header field Access-Control-Allow-Headers is not allowed by Access-Control-Allow-Headers in preflight response.</span><br></pre></td></tr></table></figure>
-<p>问题描述：</p>
-<blockquote>
-<p>前端代码通过nginx配置在服务器A上；后台服务也运行在A上；</p>
-<p>后台接口用于微信小程序，所以使用https协议；<a href="https://wx.dashixiongky.com/" target="_blank" rel="noopener">https://wx.dashixiongky.com/</a></p>
-<p>前端页面访问地址：<a href="http://47.94.251.1:8088/" target="_blank" rel="noopener">http://47.94.251.1:8088/</a></p>
-<p>根据同源跨域策略，一个http、一个https；其实已经出现跨域了。</p>
-<p><strong>但是在这中情况下，发送GET请求成功；发送POST请求返回200，但是报错；</strong></p>
-<p><strong>最终解决方案：</strong> 后台服务设置跨域解决；</p>
-</blockquote>
-<p><strong>思考：</strong> 是不是真的跨域了？ 为什么跨域了还能发送get请求；发送post请求返回200状态码？</p>
-<p><strong>学习：</strong> <strong>CORS</strong>（跨域资源共享 - Cross-origin resource sharing）的实现原理；</p>
-</li>
-</ol>
-<ol>
-<li><p>浏览器缓存问题的理解？</p>
-<p>项目中遇到过，浏览器缓存后端接口的情况；</p>
-</li>
-</ol>
-<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://www.jianshu.com/p/b5993a20292a" target="_blank" rel="noopener">http，请求头、相应头介绍</a></p>
-<p><a href="https://segmentfault.com/a/1190000003002851" target="_blank" rel="noopener">content-type理解</a></p>
-<p><a href="https://www.zhihu.com/question/26376773" target="_blank" rel="noopener">知乎</a></p>
-<h2 id="从http可以延伸到理解一下网络传输方面的东西"><a href="#从http可以延伸到理解一下网络传输方面的东西" class="headerlink" title="从http可以延伸到理解一下网络传输方面的东西"></a>从http可以延伸到理解一下网络传输方面的东西</h2><ol>
-<li>短连接、长连接</li>
-<li>http、tcp、ftp等</li>
-<li>http的底层传输方式tcp，http1.0；三次握手</li>
-</ol>
-<h2 id="下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？"><a href="#下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？" class="headerlink" title="下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？"></a>下周整理：浏览器从输入网址，到页面呈现，其中到底都做了些什么？</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/12/jest单元测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/12/jest单元测试/" itemprop="url">jest单元测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-12T15:41:05+08:00">
-                2018-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><p>###问题：</p>
-<p>####什么叫单元测试？</p>
-<blockquote>
-<p>In computer programming, unit testing is a method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures are tested to determine if they are fit for use.</p>
-</blockquote>
-<p>翻译：在计算机程序设计中，单元测试是一种方法，它将一个或多个计算机程序模块与相关联的控制数据、使用过程和操作过程进行测试，以确定它们是否适合使用。</p>
-<p><strong>确认某段代码或模块或接口是否适合使用</strong></p>
-<p>####为什么要进行单元测试</p>
-<blockquote>
-<p>单元测试的目的并不仅仅是确认是否可用，而是更高效更稳定的确认其是否可用。</p>
-</blockquote>
-<p>####正确的理解单元测试？</p>
-<p>####单元测试框架的选择，为什么？</p>
-<blockquote>
-<p>前端单元测试框架很多：QUnit、jasmine、mocha、jest、intern等框架</p>
-<p>jest是由facebook官方提供的一个前端测试框架</p>
-</blockquote>
-<h3 id="TDD-Test-driven-development"><a href="#TDD-Test-driven-development" class="headerlink" title="TDD(Test-driven development)"></a>TDD(Test-driven development)</h3><p>测试驱动开发（TDD），其基本思路是通过测试来推动整个开发的进行。</p>
-<ul>
-<li><strong>单元测试的首要目的不是为了能够编写出大覆盖率的全部通过的测试代码，而是需要从使用者(调用者)的角度出发，尝试函数逻辑的各种可能性，进而辅助性增强代码质量</strong></li>
-<li>测试是手段而不是目的。测试的主要目的不是证明代码正确，而是帮助发现错误，包括低级的错误</li>
-<li>测试要快。快速运行、快速编写</li>
-<li>测试代码保持简洁</li>
-<li>不会忽略失败的测试。一旦团队开始接受1个测试的构建失败，那么他们渐渐地适应2、3、4或者更多的失败。在这种情况下，测试集就不再起作用</li>
-</ul>
-<h4 id="IMPORTANT"><a href="#IMPORTANT" class="headerlink" title="IMPORTANT"></a>IMPORTANT</h4><ul>
-<li>一定不能误解了TDD的核心目的！</li>
-<li>测试不是为了覆盖率和正确率</li>
-<li>而是作为实例，告诉开发人员要编写什么代码</li>
-<li>红灯（代码还不完善，测试挂）-&gt; 绿灯（编写代码，测试通过）-&gt; 重构（优化代码并保证测试通过）</li>
-</ul>
-<h4 id="大致过程"><a href="#大致过程" class="headerlink" title="大致过程"></a>大致过程</h4><ol>
-<li>需求分析，思考实现。考虑如何“使用”产品代码，是一个实例方法还是一个类方法，是从构造函数传参还是从方法调用传参，方法的命名，返回值等。这时其实就是在做设计，而且设计以代码来体现。此时测试为红</li>
-<li>实现代码让测试为绿</li>
-<li>重构，然后重复测试</li>
-<li>最终符合所有要求：<ul>
-<li>每个概念都被清晰的表达</li>
-<li>Not Repeat Self</li>
-<li>没有多余的东西</li>
-<li>通过测试</li>
-</ul>
-</li>
-</ol>
-<h4 id="为什么不谈TDD？"><a href="#为什么不谈TDD？" class="headerlink" title="为什么不谈TDD？"></a>为什么不谈TDD？</h4><p>首先，<a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank" rel="noopener">TDD</a>肯定是有价值的（价值大小不论）。反对TDD的原因一般比较明显，对于TDD是否带来正收益不确定（动机不足）。 某些项目质量要求很高，预算宽绰，TDD势在必行。某些项目比较紧急，或者并非关键或无长期维护计划，TDD理由就不充分。</p>
-<h4 id="reference-link"><a href="#reference-link" class="headerlink" title="reference link"></a>reference link</h4><p><a href="https://segmentfault.com/a/1190000000317146" target="_blank" rel="noopener">参考链接一</a></p>
-<p><a href="https://github.com/ecmadao/Coding-Guide/blob/master/Notes/UnitTest/%E5%89%8D%E7%AB%AF%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%8E%A2%E7%B4%A2.md" target="_blank" rel="noopener">参考链接二-github-blog</a></p>
-<p><a href="http://facebook.github.io/jest/zh-Hans/" target="_blank" rel="noopener">jest官网</a></p>
-<p><a href="http://insights.thoughtworks.cn/react-and-unit-testing/" target="_blank" rel="noopener">什么是好的单元测试</a></p>
-<p><a href="http://www.aliued.com/?p=4095" target="_blank" rel="noopener">React应用下的单元测试</a> <strong>最终参考</strong></p>
+            <h4 id="创建一个对象的方法有哪些？"><a href="#创建一个对象的方法有哪些？" class="headerlink" title="创建一个对象的方法有哪些？"></a>创建一个对象的方法有哪些？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 第一种方式：字面量</span><br><span class="line">var o1 = &#123; name: &apos;o1&apos; &#125;;</span><br><span class="line">var o2 = new Object(&#123; name: &apos;o2&apos; &#125;);</span><br><span class="line"></span><br><span class="line">// 第二种方式：通过构造函数</span><br><span class="line">var M = function (name) &#123; this.name = name &#125;;</span><br><span class="line">var 03 = new M(&apos;o3&apos;);</span><br><span class="line"></span><br><span class="line">// 第三种方式：Object.create</span><br><span class="line">var p = &#123; name: &apos;p&apos; &#125;;</span><br><span class="line">var o4 = Object.create(p);</span><br></pre></td></tr></table></figure>
+<h3 id="instanceof-与-constructor的区别："><a href="#instanceof-与-constructor的区别：" class="headerlink" title="instanceof 与 constructor的区别："></a>instanceof 与 constructor的区别：</h3><p>instanceof会到整条原型链上面去找构造函数</p>
+<p>而，constructor只会找最近的一个构造函数；相对较严谨</p>
+<h3 id="new操作符"><a href="#new操作符" class="headerlink" title="new操作符"></a>new操作符</h3><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 类的声明</span><br><span class="line">function Animal () &#123;</span><br><span class="line">    this.name = &apos;name&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// ES6中的class的声明</span><br><span class="line">class Animal2 &#123;</span><br><span class="line">    constructor () &#123;</span><br><span class="line">        this.name = &apos;name&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 实例化</span><br><span class="line">console.log( new Animal(), new Animal2() );</span><br></pre></td></tr></table></figure>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>什么叫js继承？</p>
+<p>一个对象上寻找一个方法，首先在Constructor上找，找不到再到最近的原型上找，还找不到再往上级的原型上寻找;</p>
+<p><strong>通过构造函数实现继承，通过this实现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 借助构造函数实现继承</span><br><span class="line">function Parent1 () &#123;</span><br><span class="line">    this.name = &apos;parent1&apos;;</span><br><span class="line">&#125;</span><br><span class="line">Parent1.prototype.say = function () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">function Child1 () &#123;</span><br><span class="line">    Parent1.call(this); // 和apply，</span><br><span class="line">    this.type = &apos;child1&apos;;</span><br><span class="line">&#125;</span><br><span class="line">// 父级构造函数上的 this 指向Child构造函数的实例上去</span><br><span class="line">缺点：</span><br><span class="line">Child1 只能继承 Parent1 构造函数上的属性和方法；它不能继承 Parent1 原型对象上的属性和方法</span><br></pre></td></tr></table></figure>
+<p><strong>通过原型链实现继承</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Parent2 () &#123;</span><br><span class="line">    this.name = &apos;parent2&apos;;</span><br><span class="line">    this.arr = [1, 2, 3];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child2 () &#123;</span><br><span class="line">    this.type = &apos;child2&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child2.prototype = new Parent2(); // 将 Parent2 的实例 绑定到 Child2 的原型对象上</span><br><span class="line">let s1 = new Child2();</span><br><span class="line">let s2 = new Child2();</span><br><span class="line">s1.play.push(4);</span><br><span class="line"></span><br><span class="line">console.log(s1.play, s2.play);</span><br><span class="line">// 输出结果：[1, 2, 3, 4], [1, 2, 3, 4]</span><br><span class="line"></span><br><span class="line">// 缺点：Parent2 在 Child2 的原型对象上，所以修改Parent上的值，Child2 实例上相应的值都会被修改</span><br></pre></td></tr></table></figure>
+<p><strong>组合方式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function Parent3 () &#123;</span><br><span class="line">    this.name = &apos;parent3&apos;;</span><br><span class="line">    this.arr = [1, 2, 3];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child3 () &#123;</span><br><span class="line">	Parent3.call(this);</span><br><span class="line">    this.type = &apos;child3&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child3.prototype = new Parent3(); // 这里 Parent3 被执行了两次；</span><br><span class="line">// 优化方案：</span><br><span class="line">// Child3.prototype = Parent3.prototype;</span><br><span class="line"></span><br><span class="line">let s1 = new Child2();</span><br><span class="line">let s2 = new Child2();</span><br><span class="line">s1.arr.push(4);</span><br><span class="line"></span><br><span class="line">console.log(s1.arr, s2.arr);</span><br><span class="line">// 输出结果：[1, 2, 3, 4], [1, 2, 3]</span><br><span class="line">// 解决了上面的问题，但是还是有缺点</span><br><span class="line"></span><br><span class="line">// 缺点</span><br><span class="line">console.log(s1 instanceof Child3, s2 instanceof Parent3); // true, true</span><br><span class="line">console.log(s1.constructor); / Parent3 这里显然不是我们想要的结果，我们希望的结果是输出Child3</span><br></pre></td></tr></table></figure>
+<p><strong>组合方式最终优化版</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Parent4 () &#123;</span><br><span class="line">    this.name = &apos;parent4&apos;;</span><br><span class="line">    this.arr = [1, 2, 3];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child4 () &#123;</span><br><span class="line">	Parent4.call(this);</span><br><span class="line">    this.type = &apos;child4&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child4.prototype = Object.create(Parent4.prototype);</span><br><span class="line">child4.prototype.constructor = Child4;</span><br><span class="line"></span><br><span class="line">let s4 = new Child4();</span><br><span class="line">console.log(s4 instanceof Child4, s4 instanceof Parent4); // true, true</span><br><span class="line">console.log(s4.constructor); // Child4 完美方案</span><br></pre></td></tr></table></figure>
 
           
         
@@ -970,7 +388,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/12/对象/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/RegExp查询表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -989,7 +407,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/12/对象/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/08/05/RegExp查询表/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -1001,8 +419,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-12T15:41:05+08:00">
-                2018-02-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
               </time>
             
 
@@ -1041,1921 +459,256 @@
       
         
           
-            <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects" target="_blank" rel="noopener">MDN</a></p>
-<h3 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = new Object();</span><br><span class="line"></span><br><span class="line">var obj2 = &#123;&#125;;</span><br></pre></td></tr></table></figure>
-<p>一个对象的属性名可以是任何有效的 JavaScript 字符串，或者可以被转换为字符串的任何类型，包括空字符串</p>
-<h3 id="枚举一个对象的所有属性"><a href="#枚举一个对象的所有属性" class="headerlink" title="枚举一个对象的所有属性"></a>枚举一个对象的所有属性</h3><p>从 <a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/ECMAScript_5_support_in_Mozilla" target="_blank" rel="noopener">ECMAScript 5</a> 开始，有三种原生的方法用于列出或枚举对象的属性：</p>
-<ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Statements/for...in" target="_blank" rel="noopener">for…in</a> 循环<br>该方法依次访问一个对象及其原型链中所有可枚举的属性。</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Global_Objects/Object/keys" target="_blank" rel="noopener">Object.keys(o)</a><br>该方法返回一个对象 <code>o</code> 自身包含（不包括原型中）的所有属性的名称的数组。</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames" target="_blank" rel="noopener">Object.getOwnPropertyNames(o)</a><br>该方法返回一个数组，它包含了对象 <code>o</code> 所有拥有的属性（无论是否可枚举）的名称。</li>
-</ul>
-<h3 id="复制一个对象"><a href="#复制一个对象" class="headerlink" title="复制一个对象"></a>复制一个对象</h3><p><strong>Object.assign</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object.assign(target, ...sources)</span><br><span class="line"></span><br><span class="line">target: 目标对象。</span><br><span class="line">sources: 源对象。</span><br><span class="line">返回值: 目标对象</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123; a: 1 &#125;;</span><br><span class="line">var copy = Object.assign(&#123;&#125;, obj);</span><br><span class="line">console.log(copy); // &#123; a: 1 &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>可以使用es6的语法：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;a: 23, b: &apos;song&apos;&#125;;</span><br><span class="line">let ap = &#123;...a&#125;;</span><br><span class="line">// 这个类似于深拷贝</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/12/移动端开发记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/12/移动端开发记录/" itemprop="url">移动端开发记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-12T15:41:05+08:00">
-                2018-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="系统学习点"><a href="#系统学习点" class="headerlink" title="系统学习点"></a>系统学习点</h2><h3 id="一、与像素、rem的单位的理解整理"><a href="#一、与像素、rem的单位的理解整理" class="headerlink" title="一、与像素、rem的单位的理解整理"></a>一、与像素、rem的单位的理解整理</h3><p>这个已经完成整理了一篇文章；</p>
-<h3 id="二、事件整理；touchStart、touchEnd等"><a href="#二、事件整理；touchStart、touchEnd等" class="headerlink" title="二、事件整理；touchStart、touchEnd等"></a>二、事件整理；touchStart、touchEnd等</h3><h2 id="问题记录、解决"><a href="#问题记录、解决" class="headerlink" title="问题记录、解决"></a>问题记录、解决</h2><ol>
-<li><p>phicare 内部文章，图片格式的选择；png 或 jpeg</p>
-<blockquote>
-<p>这里涉及一个知识点，前端图片格式的选择；不同场景应该使用什么格式的图片；</p>
-</blockquote>
-</li>
-<li><p>使用flex布局，遇到的兼容问题；</p>
-<blockquote>
-<p>各种兼容写法，flex的兼容总结；</p>
-</blockquote>
-</li>
-<li><p><strong>需求：</strong></p>
-<p>h5页面解决app推广问题，app文章推广出去，用户点击文章上的 “点击使用”；</p>
-<p>如果手机上已经下载app，则直接打开app；</p>
-<p>如果没有安装app，则跳转下载页面（ios跳转appstore）；</p>
-<p><strong>解决方案：</strong></p>
-<blockquote>
-<p>希望纯js实现；首先一点js不能判断手机上是否安装了app；</p>
-<p>但是可以在浏览器中如safari中输入：<code>36kr://</code>   <code>phicare://</code> 等来判断是否安装app；如果安装浏览器会弹出confirm提示是否打开app；<strong>如果没有安装也会弹出confirm提示这是一个无效的链接打不开（这个就是一个死点-无法实现js解决的原因）</strong>；</p>
-<p>如果没有安装app可以通过链接：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; https//itunes.apple.com/app/[name]/[id]?mt=8</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>跳转到appstore指定app的下载页面</p>
-<p>查找了半天的资料，磕磕绊绊终于发现问题的解决方案：</p>
-<p>ios可以设置<code>Universal link</code>  来解决这个问题；通过一系列的配置可以通过一个url来访问app，判断app是否安装；</p>
-<p>当然也可以使用第三方工具；</p>
-<p>国内的有：魔窗、linkedme等；  国外：HOKO</p>
-</blockquote>
-</li>
-</ol>
-<ol>
-<li><p>关于移动端<strong>图片的使用</strong></p>
-<p>iphone上使用的背景图片到 ipad上就变形了，这个一般该怎么处理；</p>
-<p>ui给图的规则 或者 说移动端使用图片的标准是什么，规格是什么；</p>
-</li>
-</ol>
-<h2 id="经验之谈"><a href="#经验之谈" class="headerlink" title="经验之谈"></a>经验之谈</h2><h3 id="一、移动端优化方案"><a href="#一、移动端优化方案" class="headerlink" title="一、移动端优化方案"></a>一、移动端优化方案</h3><table>
+            <h2 id="RegExp表"><a href="#RegExp表" class="headerlink" title="RegExp表"></a>RegExp表</h2><table>
 <thead>
 <tr>
-<th>优化方案</th>
-<th>是否使用过</th>
+<th style="text-align:center">字符</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>图片优化：压缩、懒加载、未加载完成时使用 ‘小图’代替、CSS Sprites 或 DataURI</td>
-<td></td>
+<td style="text-align:center">\</td>
+<td>转义字符</td>
 </tr>
 <tr>
-<td>减少DOM操作、少用for循环</td>
-<td></td>
+<td style="text-align:center">^</td>
+<td>匹配输入字符串的开始位置。如果设置了RegExp对象的Multiline属性，^也匹配“<code>\n</code>”或“<code>\r</code>”之后的位置</td>
 </tr>
 <tr>
-<td>html：减少元素的个数、避免深层嵌套</td>
-<td></td>
+<td style="text-align:center">$</td>
+<td>匹配输入字符串的结束位置。如果设置了RegExp对象的Multiline属性，$也匹配“<code>\n</code>”或“<code>\r</code>”之前的位置</td>
 </tr>
 <tr>
-<td>不写没有的css样式、注意css命名</td>
-<td></td>
+<td style="text-align:center">*</td>
+<td>匹配前面的子表达式零次或多次。例如，zo<em>能匹配“<code>z</code>”以及“<code>zoo</code>”。</em>等价于{0,}</td>
 </tr>
 <tr>
-<td>静态资源(HTML/CSS/JS/Image)是否优化压缩、代码规范</td>
-<td></td>
+<td style="text-align:center">+</td>
+<td>匹配前面的子表达式一次或多次。例如，“<code>zo+</code>”能匹配“<code>zo</code>”以及“<code>zoo</code>”，但不能匹配“<code>z</code>”。+等价于{1,}。</td>
 </tr>
 <tr>
-<td>能flex布局的不要用浮动，不要用绝对定位（不利于页面布局的扩展）</td>
-<td></td>
+<td style="text-align:center">?</td>
+<td>匹配前面的子表达式零次或一次。例如，“<code>do(es)?</code>”可以匹配“<code>does</code>”或“<code>does</code>”中的“<code>do</code>”。?等价于{0,1}。</td>
 </tr>
 <tr>
-<td>要考虑<code>Android</code>低端机与<code>2G</code>网络场景下性能 注意！</td>
-<td></td>
+<td style="text-align:center">{n}</td>
+<td>n是一个非负整数。匹配确定的n次。例如，“<code>o{2}</code>”不能匹配“<code>Bob</code>”中的“<code>o</code>”，但是能匹配“<code>food</code>”中的两个o。</td>
 </tr>
 <tr>
-<td>初始请求资源数 <code>&lt; 4</code> 注意！</td>
-<td></td>
+<td style="text-align:center">{n,}</td>
+<td>n是一个非负整数。至少匹配n次。例如，“<code>o{2,}</code>”不能匹配“<code>Bob</code>”中的“<code>o</code>”，但能匹配“<code>foooood</code>”中的所有o。“<code>o{1,}</code>”等价于“<code>o+</code>”。“<code>o{0,}</code>”则等价于“<code>o*</code>”。</td>
 </tr>
 <tr>
-<td>数据离线化，考虑将数据缓存在 localStorage</td>
-<td></td>
+<td style="text-align:center">{n,m}</td>
+<td>m和n均为非负整数，其中n&lt;=m。最少匹配n次且最多匹配m次。例如，“<code>o{1,3}</code>”将匹配“<code>fooooood</code>”中的前三个o。“<code>o{0,1}</code>”等价于“<code>o?</code>”。请注意在逗号和两个数之间不能有空格。</td>
 </tr>
 <tr>
-<td>确保接入层已开启Gzip压缩（考虑提升Gzip级别，使用CPU开销换取加载时间） <code>注意！</code></td>
-<td></td>
+<td style="text-align:center">?</td>
+<td>当该字符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串“<code>oooo</code>”，“<code>o+?</code>”将匹配单个“<code>o</code>”，而“<code>o+</code>”将匹配所有“<code>o</code>”。</td>
 </tr>
 <tr>
-<td>初始首屏之外的静态资源（JS/CSS）延迟加载 注意！</td>
-<td></td>
+<td style="text-align:center">.</td>
+<td>匹配除“<code>\``n</code>”之外的任何单个字符。要匹配包括“<code>\``n</code>”在内的任何字符，请使用像“`(.</td>
+<td>\n)`”的模式。</td>
 </tr>
 <tr>
-<td>单页面应用(SPA)考虑延迟加载非首屏业务模块</td>
+<td style="text-align:center">(pattern)</td>
+<td>匹配pattern并获取这一匹配。所获取的匹配可以从产生的Matches集合得到，在VBScript中使用SubMatches集合，在JScript中则使用$0…$9属性。要匹配圆括号字符，请使用“<code>\(</code>”或“<code>\)</code>”。</td>
 </tr>
-</tbody>
-</table>
-<p>运行性能优化, 达到操作足够流畅</p>
-<ul>
-<li>避免 iOS 300+ms 点击延时问题 注意！<ul>
-<li>缓存 DOM 选择与计算</li>
-</ul>
-</li>
-<li>避免触发页面重绘的操作</li>
-<li>Debounce连续触发的事件(scroll / resize / touchmove等)，避免高频繁触发执行 注意！</li>
-<li>尽可能使用事件代理，避免批量绑定事件</li>
-<li><strong>使用CSS3动画代替JS动画</strong></li>
-<li>避免在低端机上使用大量CSS3渐变阴影效果，可考虑降级效果来提升流畅度</li>
-<li>HTML结构层级保持足够简单</li>
-<li>尽能少的使用CSS高级选择器与通配选择器</li>
-<li>Keep it simple</li>
-</ul>
-<p>在线性能检测评定工具使用指南</p>
-<ul>
-<li>访问 <a href="http://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener">Google PageSpeed</a> 在线评定网站</li>
-<li>在地址栏输入目标URL地址，点击分析按钮开始检测</li>
-<li>按 PageSpeed 分析出的建议进行优化，优先解决红色类别的问题</li>
-</ul>
-<p>推荐阅读</p>
-<ul>
-<li><a href="http://www.webperformancetoday.com/tag/mobile-web-performance/" target="_blank" rel="noopener">移动WEB性能</a></li>
-<li><a href="https://developers.google.com/speed/docs/best-practices/caching" target="_blank" rel="noopener">优化WEB缓存</a></li>
-<li><a href="https://developers.google.com/speed/docs/best-practices/rtt" target="_blank" rel="noopener">最小化RTT次数</a></li>
-<li><a href="https://developers.google.com/speed/docs/best-practices/payload" target="_blank" rel="noopener">最小化请求负载</a></li>
-<li><a href="https://developers.google.com/speed/docs/best-practices/rendering" target="_blank" rel="noopener">优化浏览器渲染</a></li>
-<li><a href="http://www.cnblogs.com/xianyulaodi/p/5755079.html" target="_blank" rel="noopener">雅虎优化34条军规</a></li>
-</ul>
-<p><strong>思考：</strong></p>
-<p>我总是在研究web优化，查看别人总结的优化方案，但是很少停下来思考是什么原因造成-我们需要去优化；</p>
-<p>也就是研究需要优化的原因，这样理解优化会更加高效；</p>
-<ul>
-<li><p>首先需要理解一下用户从输入url到页面完整展示的整个流程；这个已经看过多次了，但是还是不能清楚的说出来； ~~~~这个移步Browser.md 文章 <a href="https://segmentfault.com/a/1190000006879700" target="_blank" rel="noopener">新文章解释dns详细</a></p>
-<ul>
-<li><p>用户输入url、DNS域名解析</p>
-<p>DNS就是将域名解析为对应的ip，找到对应的web服务器；</p>
-<p><img src="https://segmentfault.com/img/bVDM45?w=1928&amp;h=1248" alt=""></p>
-<blockquote>
-<p>上述图片是查找www.google.com的IP地址过程。首先在本地域名服务器中查询IP地址，如果没有找到的情况下，本地域名服务器会向根域名服务器发送一个请求，如果根域名服务器也不存在该域名时，本地域名会向com顶级域名服务器发送一个请求，依次类推下去。直到最后本地域名服务器得到google的IP地址并把它缓存到本地，供下次查询使用。从上述过程中，可以看出网址的解析是一个从右向左的过程: com -&gt; google.com -&gt; www.google.com。但是你是否发现少了点什么，根域名服务器的解析过程呢？事实上，真正的网址是www.google.com.，并不是我多打了一个.，这个.对应的就是根域名服务器，默认情况下所有的网址的最后一位都是.，既然是默认情况下，为了方便用户，通常都会省略，浏览器在请求DNS的时候会自动加上，所有网址真正的解析过程为: . -&gt; .com -&gt; google.com. -&gt; www.google.com.。</p>
-</blockquote>
-<p>从上图我们可以看出，比较重要的概念：本地域名服务器；用于缓存访问过的域名-ip；如果它没有缓存ip则会去向外部域名服务器请求；</p>
-<p><strong>如何进行DNS优化：</strong></p>
-<p>DNS缓存、DNS负载均衡</p>
-</li>
-<li><p>TCP链接 - <strong>http请求</strong></p>
-<p><code>什么事http请求报文</code></p>
-<blockquote>
-<p>其实这部分又可以称为前端工程师眼中的HTTP，它主要发生在客户端。发送HTTP请求的过程就是构建HTTP请求报文并通过TCP协议中发送到服务器指定端口(HTTP协议80/8080, HTTPS协议443)。HTTP请求报文是由三部分组成: <strong>请求行</strong>, <strong>请求报头</strong>和<strong>请求正文</strong>。</p>
-</blockquote>
-</li>
-<li><p>浏览器解析渲染页面</p>
-<blockquote>
-<p>首先浏览器解析HTML文件构建DOM树，然后解析CSS文件构建渲染树，等到渲染树构建完成后，浏览器开始布局渲染树并将其绘制到屏幕上。</p>
-<p>文档从上往下的 解析渲染；</p>
-<p>尽可能少的减少reflow（回流）和repain（重绘）</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="二、能用原生js，绝不使用框架"><a href="#二、能用原生js，绝不使用框架" class="headerlink" title="二、能用原生js，绝不使用框架"></a>二、能用原生js，绝不使用框架</h3><ol>
-<li>手动实现一个swipe.js</li>
-<li>模块化移动端的常见组件</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/12/Browser/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/12/Browser/" itemprop="url">浏览器的工作机制、如何提高浏览器工作效率</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-12T15:41:05+08:00">
-                2018-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://segmentfault.com/a/1190000010298038" target="_blank" rel="noopener">参考链接</a></p>
-<h3 id="用户输入url，到浏览器展示网页的过程"><a href="#用户输入url，到浏览器展示网页的过程" class="headerlink" title="用户输入url，到浏览器展示网页的过程"></a>用户输入url，到浏览器展示网页的过程</h3><ol>
-<li>用户输入URL地址</li>
-<li>浏览器解析URL解析出主机名</li>
-<li>浏览器将主机名转换成服务器ip地址（浏览器先查找本地DNS缓存列表 没有的话 再向浏览器默认的DNS服务器发送查询请求 同时缓存）</li>
-<li>浏览器将端口号从URL中解析出来</li>
-<li>浏览器建立一条与目标Web服务器的TCP连接（三次握手）</li>
-<li>浏览器向服务器发送一条HTTP请求报文</li>
-<li>服务器向浏览器返回一条HTTP响应报文</li>
-<li>关闭连接 浏览器解析文档</li>
-<li>如果文档中有资源 重复6 7 8 动作 直至资源全部加载完毕</li>
-</ol>
-<h2 id="浏览器的工作机制"><a href="#浏览器的工作机制" class="headerlink" title="浏览器的工作机制"></a>浏览器的工作机制</h2><p>浏览器解析  </p>
-<p>1、浏览器通过请求的 URL 进行域名解析，向服务器发起请求，接收文件（HTML、CSS、JS、Images等等）。</p>
-<p>2、HTML 文件加载后，开始构建 DOM Tree</p>
-<p>3、CSS 样式文件加载后，开始解析和构建 CSS Rule Tree</p>
-<p>4、Javascript 脚本文件加载后， 通过 DOM API 和 CSSOM API 来操作 DOM Tree 和 CSS Rule Tree</p>
-<p>浏览器渲染  </p>
-<p>1、浏览器引擎通过 DOM Tree 和 CSS Rule Tree 构建 Rendering Tree</p>
-<p>2、Rendering Tree 并不与 DOM Tree 对应，比如像 <head> 标签内容或带有 display: none; 的元素节点并不包括在 Rendering Tree 中 。</head></p>
-<p>3、通过 CSS Rule Tree 匹配 DOM Tree 进行定位坐标和大小，是否换行，以及 position、overflow、z-index 等等属性，这个过程称为 Flow 或 Layout 。</p>
-<p>4、最终通过调用Native GUI 的 API 绘制网页画面的过程称为 Paint 。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/8133-7a8a0afcd59349d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/630" alt=""></p>
-<h2 id="如何避免浏览器的的低效工作"><a href="#如何避免浏览器的的低效工作" class="headerlink" title="如何避免浏览器的的低效工作"></a>如何避免浏览器的的低效工作</h2><p><strong>尽可能少的操作DOM，甚至做到苛刻、吝啬；</strong></p>
-<blockquote>
-<p><code>Repaint</code>——屏幕的一部分要重画，比如某个CSS的背景色变了。但是元素的几何尺寸没有变。</p>
-<p><code>Reflow</code>——意味着元件的几何尺寸变了，我们需要重新验证并计算Render Tree。是Render Tree的一部分或全部发生了变化。这就是Reflow，或是Layout。（<strong>HTML使用的是flow based layout，也就是流式布局，所以，如果某元件的几何尺寸发生了变化，需要重新布局，也就叫reflow</strong>）reflow 会从<html>这个root frame开始递归往下，依次计算所有的结点几何尺寸和位置，在reflow过程中，可能会增加一些frame，比如一个文本字符串必需被包装起来。</html></p>
-</blockquote>
-<h4 id="减少reflow和repaint"><a href="#减少reflow和repaint" class="headerlink" title="减少reflow和repaint"></a>减少reflow和repaint</h4><ol>
-<li>不要一条一条地修改DOM的样式。与其这样，还不如预先定义好css的class，然后修改DOM的className</li>
-<li><strong>把DOM离线后修改。如：</strong><ul>
-<li>使用documentFragment 对象在内存里操作DOM</li>
-<li><strong>先把DOM给display:none(有一次reflow)，然后你想怎么改就怎么改。比如修改100次，然后再把他显示出来。</strong></li>
-<li><strong>clone一个DOM结点到内存里，然后想怎么改就怎么改，改完后，和在线的那个的交换一下。</strong></li>
-<li><strong>尽可能的修改层级比较低的DOM</strong>。当然，改变层级比较底的DOM有可能会造成大面积的reflow，但是也可能影响范围很小。</li>
-<li><strong>为动画的HTML元件使用fixed或absoult的position</strong>，那么修改他们的CSS是不会reflow的。</li>
-</ul>
-</li>
-</ol>
-<h2 id="页面渲染优化"><a href="#页面渲染优化" class="headerlink" title="页面渲染优化"></a>页面渲染优化</h2><ol>
-<li>HTML文档结构层次尽量少，最好不深于六层；</li>
-<li>脚本尽量后放，放在前即可；</li>
-<li>少量首屏样式内联放在标签内；</li>
-<li>样式结构层次尽量简单；</li>
-<li>在脚本中尽量减少DOM操作，<strong>尽量缓存访问DOM的样式信息</strong>，避免过度触发回流；</li>
-<li>减少通过JavaScript代码修改元素样式，尽量使用修改class名方式操作样式或动画；</li>
-<li>动画尽量使用在绝对定位或固定定位的元素上；</li>
-<li>隐藏在屏幕外，或在页面滚动时，尽量停止动画；</li>
-<li><strong>尽量缓存DOM查找，查找器尽量简洁</strong>；</li>
-<li>涉及多域名的网站，可以开启域名预解析</li>
-</ol>
-<blockquote>
-<p>缓存DOM：缓存DOM查询的结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; var body = document.getElementsByTagName();</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/11/前端规范文档/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/11/前端规范文档/" itemprop="url">前端代码规范 1.0版</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-11T13:19:03+08:00">
-                2018-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前端代码规范-1-0版"><a href="#前端代码规范-1-0版" class="headerlink" title="前端代码规范 1.0版"></a>前端代码规范 1.0版</h1><h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><p>旨在增强团队开发协作、提高代码质量和打造开发基石的编码规范；</p>
-<h2 id="html规范："><a href="#html规范：" class="headerlink" title="html规范："></a>html规范：</h2><h3 id="DOCTYPE-声明"><a href="#DOCTYPE-声明" class="headerlink" title="DOCTYPE 声明"></a>DOCTYPE 声明</h3><p>HTML文件必须加上 DOCTYPE 声明，并统一使用 HTML5 的文档声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="页面语言LANG"><a href="#页面语言LANG" class="headerlink" title="页面语言LANG"></a>页面语言LANG</h3><p>lang属性：HTML语言声明属性，用来定义当前文档显示的语言。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang=&quot;zh-cn&quot; xml:lang=&quot;zh-cn&quot;&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="CHARSET"><a href="#CHARSET" class="headerlink" title="CHARSET"></a>CHARSET</h3><p>统一使用 “UTF-8” 编码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="元素及标签闭合"><a href="#元素及标签闭合" class="headerlink" title="元素及标签闭合"></a>元素及标签闭合</h3><p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;我是h1标题&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;我是一段文字，我有始有终，浏览器能正确解析&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">	</span><br><span class="line">&lt;br&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="书写风格"><a href="#书写风格" class="headerlink" title="书写风格"></a>书写风格</h3><p><strong>HTML代码小写</strong></p>
-<p>HTML标签名、类名、标签属性和大部分属性值统一用小写</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="类型属性"><a href="#类型属性" class="headerlink" title="类型属性"></a>类型属性</h3><p>不需要为 CSS、JS 指定类型属性，HTML5 中默认已包含</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;&quot; &gt;</span><br><span class="line">&lt;script src=&quot;&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&quot; &gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;&quot; &gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="元素属性"><a href="#元素属性" class="headerlink" title="元素属性"></a>元素属性</h3><ul>
-<li>元素属性值使用双引号语法</li>
-<li>元素属性值可以写上的都写上</li>
-</ul>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot;&gt;</span><br><span class="line">	</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;name&quot; checked=&quot;checked&quot; &gt;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=text&gt;	</span><br><span class="line">&lt;input type=&apos;text&apos;&gt;</span><br><span class="line">	</span><br><span class="line">&lt;input type=&quot;radio&quot; name=&quot;name&quot; checked &gt;</span><br></pre></td></tr></table></figure>
-<h3 id="代码缩进"><a href="#代码缩进" class="headerlink" title="代码缩进"></a>代码缩进</h3><p>统一使用四个空格进行代码缩进，使得各编辑器表现一致（各编辑器有相关配置）</p>
-<p>React项目使用两个空格进行缩进</p>
-<h3 id="代码嵌套"><a href="#代码嵌套" class="headerlink" title="代码嵌套"></a>代码嵌套</h3><p>元素嵌套规范，每个块状元素独立一行，内联元素可选</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;p&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h1&gt;&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;	</span><br><span class="line">&lt;p&gt; </span><br><span class="line">    &lt;span&gt;&lt;/span&gt;</span><br><span class="line">    &lt;span&gt;&lt;/span&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="代码注释"><a href="#代码注释" class="headerlink" title="代码注释"></a>代码注释</h3><p>标准写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--Comment Text--&gt;</span><br></pre></td></tr></table></figure>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Comment Text --&gt;</span><br><span class="line">&lt;div&gt;...&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;...&lt;/div&gt;&lt;!-- Comment Text --&gt;	</span><br><span class="line">	</span><br><span class="line">&lt;div&gt;&lt;!-- Comment Text --&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="注释模块"><a href="#注释模块" class="headerlink" title="注释模块"></a>注释模块</h3><p>一般用于描述模块的名称以及模块开始与结束的位置</p>
-<p>注释内容前后各一个空格字符，<code>&lt;!-- S Comment Text --&gt;</code> 表示模块开始，<code>&lt;!-- E Comment Text --&gt;</code> 表示模块结束，模块与模块之间相隔一行</p>
-<p><em>推荐写法：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- S Comment Text A --&gt;	</span><br><span class="line">&lt;div class=&quot;mod_a&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- E Comment Text A --&gt;</span><br><span class="line">	</span><br><span class="line">&lt;!-- S Comment Text B --&gt;	</span><br><span class="line">&lt;div class=&quot;mod_b&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- E Comment Text B --&gt;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐写法：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- S Comment Text A --&gt;</span><br><span class="line">&lt;div class=&quot;mod_a&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- E Comment Text A --&gt;</span><br><span class="line">&lt;!-- S Comment Text B --&gt;	</span><br><span class="line">&lt;div class=&quot;mod_b&quot;&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- E Comment Text B --&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="嵌套模块注释"><a href="#嵌套模块注释" class="headerlink" title="嵌套模块注释"></a>嵌套模块注释</h5><p>当模块注释内再出现模块注释的时候，为了突出主要模块，嵌套模块不再使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- S Comment Text --&gt;</span><br><span class="line">&lt;!-- E Comment Text --&gt;</span><br></pre></td></tr></table></figure>
-<p>而改用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- /Comment Text --&gt;</span><br></pre></td></tr></table></figure>
-<p>注释写在模块结尾标签底部，单独一行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- S Comment Text A --&gt;</span><br><span class="line">&lt;div class=&quot;mod_a&quot;&gt;</span><br><span class="line">		</span><br><span class="line">    &lt;div class=&quot;mod_b&quot;&gt;</span><br><span class="line">        ...</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- /mod_b --&gt;</span><br><span class="line">    	</span><br><span class="line">    &lt;div class=&quot;mod_c&quot;&gt;</span><br><span class="line">    	...</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- /mod_c --&gt;</span><br><span class="line">		</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;!-- E Comment Text A --&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="css规范"><a href="#css规范" class="headerlink" title="css规范"></a>css规范</h2><h3 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h3><p>样式书写一般有两种：一种是紧凑格式 (Compact)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.jdc&#123; display: block;width: 50px;&#125;</span><br></pre></td></tr></table></figure>
-<p>一种是展开格式（Expanded）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.jdc&#123;</span><br><span class="line">    display: block;</span><br><span class="line">    width: 50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>统一使用展开格式书写样式</p>
-<h3 id="代码大小写"><a href="#代码大小写" class="headerlink" title="代码大小写"></a>代码大小写</h3><p>样式选择器，属性名，属性值关键字全部使用小写字母书写，属性字符串允许使用大小写。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* 推荐 */</span><br><span class="line">.jdc&#123;</span><br><span class="line">	display:block;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">/* 不推荐 */</span><br><span class="line">.JDC&#123;</span><br><span class="line">	DISPLAY:BLOCK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><ul>
-<li>尽量少用通用选择器 <code>*</code></li>
-<li>不使用 ID 选择器</li>
-<li>不使用无具体语义定义的标签选择器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* 推荐 */</span><br><span class="line">.jdc &#123;&#125;</span><br><span class="line">.jdc li &#123;&#125;</span><br><span class="line">.jdc li p&#123;&#125;</span><br><span class="line"></span><br><span class="line">/* 不推荐 */</span><br><span class="line">*&#123;&#125;</span><br><span class="line">#jdc &#123;&#125;</span><br><span class="line">.jdc div&#123;&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="代码缩进-1"><a href="#代码缩进-1" class="headerlink" title="代码缩进"></a>代码缩进</h3><p>统一使用四个空格进行代码缩进，使得各编辑器表现一致（各编辑器有相关配置）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h3><p>每个属性声明末尾都要加分号；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    width: 100%;</span><br><span class="line">    height: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="代码易读性"><a href="#代码易读性" class="headerlink" title="代码易读性"></a>代码易读性</h3><p>左括号与类名之间一个空格，冒号与属性值之间一个空格</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123; </span><br><span class="line">    width: 100%; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>逗号分隔的取值，逗号之后一个空格</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    box-shadow: 1px 1px 1px #333, 2px 2px 2px #ccc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为单个css选择器或新申明开启新行</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.jdc, </span><br><span class="line">.jdc_logo, </span><br><span class="line">.jdc_hd &#123;</span><br><span class="line">    color: #ff0;</span><br><span class="line">&#125;</span><br><span class="line">.nav&#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.jdc,jdc_logo,.jdc_hd &#123;</span><br><span class="line">    color: #ff0;</span><br><span class="line">&#125;.nav&#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>颜色值 <code>rgb()</code> <code>rgba()</code> <code>hsl()</code> <code>hsla()</code> <code>rect()</code> 中不需有空格，且取值不要带有不必要的 0</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    color: rgba(255,255,255,.5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    color: rgba( 255, 255, 255, 0.5 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>属性值十六进制数值能用简写的尽量用简写</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    color: #fff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    color: #ffffff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不要为 <code>0</code> 指明单位</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    margin: 0 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="属性值引号"><a href="#属性值引号" class="headerlink" title="属性值引号"></a>属性值引号</h3><p>css属性值需要用到引号时，统一使用单引号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* 推荐 */</span><br><span class="line">.jdc &#123; </span><br><span class="line">	font-family: &apos;Hiragino Sans GB&apos;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 不推荐 */</span><br><span class="line">.jdc &#123; </span><br><span class="line">	font-family: &quot;Hiragino Sans GB&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="属性书写顺序"><a href="#属性书写顺序" class="headerlink" title="属性书写顺序"></a>属性书写顺序</h3><p>建议遵循以下顺序：</p>
-<ol>
-<li>布局定位属性：display / position / float / clear / visibility / overflow</li>
-<li>自身属性：width / height / margin / padding / border / background</li>
-<li>文本属性：color / font / text-decoration / text-align / vertical-align / white- space / break-word</li>
-<li>其他属性（CSS3）：content / cursor / border-radius / box-shadow / text-shadow / background:linear-gradient …</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    display: block;</span><br><span class="line">    position: relative;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 100px;</span><br><span class="line">    height: 100px;</span><br><span class="line">    margin: 0 10px;</span><br><span class="line">    padding: 20px 0;</span><br><span class="line">    font-family: Arial, &apos;Helvetica Neue&apos;, Helvetica, sans-serif;</span><br><span class="line">    color: #333;</span><br><span class="line">    background: rgba(0,0,0,.5);</span><br><span class="line">    -webkit-border-radius: 10px;</span><br><span class="line">    -moz-border-radius: 10px;</span><br><span class="line">    -o-border-radius: 10px;</span><br><span class="line">    -ms-border-radius: 10px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.mozilla.org/css/base/content.css" target="_blank" rel="noopener">mozilla官方属性顺序推荐</a></p>
-<h3 id="CSS3浏览器私有前缀写法"><a href="#CSS3浏览器私有前缀写法" class="headerlink" title="CSS3浏览器私有前缀写法"></a>CSS3浏览器私有前缀写法</h3><p>CSS3 浏览器私有前缀在前，标准前缀在后</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    -webkit-border-radius: 10px;</span><br><span class="line">    -moz-border-radius: 10px;</span><br><span class="line">    -o-border-radius: 10px;</span><br><span class="line">    -ms-border-radius: 10px;</span><br><span class="line">    border-radius: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>更多关于浏览器私有前辍写法：<a href="http://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#vendor-keywords" target="_blank" rel="noopener">#Vendor-specific extensions</a></p>
-<h3 id="css注释"><a href="#css注释" class="headerlink" title="css注释"></a>css注释</h3><p><strong>单行注释</strong></p>
-<p>注释内容第一个字符和最后一个字符都是一个空格字符，单独占一行，行与行之间相隔一行</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* Comment Text */</span><br><span class="line">.jdc&#123;&#125;</span><br><span class="line"></span><br><span class="line">/* Comment Text */</span><br><span class="line">.jdc&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*Comment Text*/</span><br><span class="line">.jdc&#123;</span><br><span class="line">	display: block;</span><br><span class="line">&#125;</span><br><span class="line">.jdc&#123;</span><br><span class="line">	display: block;/*Comment Text*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>模块注释</strong></p>
-<p>注释内容第一个字符和最后一个字符都是一个空格字符，<code>/*</code> 与 模块信息描述占一行，多个横线分隔符<code>-</code>与<code>*/</code>占一行，行与行之间相隔两行</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/* Module A</span><br><span class="line">---------------------------------------------------------------- */</span><br><span class="line">.mod_a &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/* Module B</span><br><span class="line">---------------------------------------------------------------- */</span><br><span class="line">.mod_b &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* Module A ---------------------------------------------------- */</span><br><span class="line">.mod_a &#123;&#125;</span><br><span class="line">/* Module B ---------------------------------------------------- */</span><br><span class="line">.mod_b &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>文件信息注释</strong></p>
-<p>在样式文件编码声明 <code>@charset</code> 语句下面注明页面名称、作者、创建日期等信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@charset &quot;UTF-8&quot;;</span><br><span class="line">/**</span><br><span class="line"> * @desc File Info</span><br><span class="line"> * @author Author Name</span><br><span class="line"> * @date 2015-10-10</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
-<h3 id="重置样式"><a href="#重置样式" class="headerlink" title="重置样式"></a>重置样式</h3><p>使用<code>normalize.css</code>；<a href="https://github.com/necolas/normalize.css" target="_blank" rel="noopener">github地址</a></p>
-<h2 id="javascript规范："><a href="#javascript规范：" class="headerlink" title="javascript规范："></a>javascript规范：</h2><p>遵循Airbnb规则；</p>
-<p><a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">github相关地址</a></p>
-<h2 id="图片规范："><a href="#图片规范：" class="headerlink" title="图片规范："></a>图片规范：</h2><p><strong>内容层</strong></p>
-<p>内容图多以商品图等照片类图片形式存在，颜色较为丰富，文件体积较大</p>
-<ul>
-<li>优先考虑 JPEG 格式，条件允许的话优先考虑 WebP 格式</li>
-<li>尽量不使用PNG格式，PNG8 色位太低，PNG24 压缩率低，文件体积大</li>
-</ul>
-<p><strong>背景图</strong></p>
-<p>背景图多为图标等颜色比较简单、文件体积不大、起修饰作用的图片</p>
-<ul>
-<li>PNG 与 GIF 格式，优先考虑使用 PNG 格式,PNG格式允许更多的颜色并提供更好的压缩率</li>
-<li>图像颜色比较简单的，如纯色块线条图标，优先考虑使用 PNG8 格式，避免不使用 JPEG 格式</li>
-<li>图像颜色丰富而且图片文件不太大的（40KB 以下）或有半透明效果的优先考虑 PNG24 格式</li>
-<li>图像颜色丰富而且文件比较大的（40KB - 200KB）优先考虑 JPEG 格式</li>
-<li>条件允许的，优先考虑 WebP 代替 PNG 和 JPEG 格式</li>
-</ul>
-<h3 id="图片大小"><a href="#图片大小" class="headerlink" title="图片大小"></a>图片大小</h3><p>中国普通家庭的宽带基本能达到8Mbps，实际速率大约为500—900KB/s，全国3G/4G用户占有比超过了50%，为了保证图片能更好地加载展示给用户看，约定：</p>
-<ul>
-<li>PC平台单张的图片的大小不应大于 200KB</li>
-</ul>
-<ul>
-<li>移动平台单张的图片的大小不应大于 100K</li>
-</ul>
-<h3 id="图片引入"><a href="#图片引入" class="headerlink" title="图片引入"></a>图片引入</h3><p>HTML 中图片引入不需添加 width、height 属性，alt 属性应该写上</p>
-<p><em>推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;&quot; alt=&quot;&quot; &gt;</span><br></pre></td></tr></table></figure>
-<p><em>不推荐：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;&quot; width=&quot;&quot; height=&quot;&quot; &gt;</span><br></pre></td></tr></table></figure>
-<p>CSS 中图片引入不需要引号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.jdc &#123;</span><br><span class="line">    background-image: url(icon.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="CSS-Sprites-使用建议"><a href="#CSS-Sprites-使用建议" class="headerlink" title="CSS Sprites 使用建议"></a>CSS Sprites 使用建议</h3><ul>
-<li>适合使用频率高更新频率低的小图标</li>
-<li>尽量不留太多的空白</li>
-<li>体积较大的图片不合并</li>
-<li>确保要合并的小图坐标数值和合并后的 Sprites 图尺寸均为偶数</li>
-</ul>
-<h3 id="Data-URIs（base64编码）使用建议"><a href="#Data-URIs（base64编码）使用建议" class="headerlink" title="Data URIs（base64编码）使用建议"></a>Data URIs（base64编码）使用建议</h3><ul>
-<li>适合更新频率高的小图片，如某些具备自定义功能的标题icon等</li>
-<li>转换成 Base64 编码的图片应小于 2KB</li>
-<li>移动端不使用 Base64 编码</li>
-<li>要兼容 IE6/IE7 的不使用</li>
-</ul>
-<h2 id="命名规范："><a href="#命名规范：" class="headerlink" title="命名规范："></a>命名规范：</h2><h3 id="目录命名"><a href="#目录命名" class="headerlink" title="目录命名"></a>目录命名</h3><p>使用小驼峰命名方式：<code>programName</code></p>
-<h3 id="HTML-CSS-js文件命名"><a href="#HTML-CSS-js文件命名" class="headerlink" title="HTML/CSS/js文件命名"></a>HTML/CSS/js文件命名</h3><p>确保文件命名总是以字母开头而不是数字，且字母一律小写，以下划线连接且不带其他标点符号，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">jdc.html</span><br><span class="line">jdc_list.html</span><br><span class="line">jdc_detail.html</span><br><span class="line"></span><br><span class="line">&lt;!-- SASS --&gt;</span><br><span class="line">jdc.scss</span><br><span class="line">jdc_list.scss</span><br><span class="line">jdc_detail.scss</span><br><span class="line"></span><br><span class="line">/* js */</span><br><span class="line">jdc.js</span><br><span class="line">jdc_list.js</span><br><span class="line">jdc_detail.js</span><br></pre></td></tr></table></figure>
-<h3 id="js命名规范"><a href="#js命名规范" class="headerlink" title="js命名规范"></a>js命名规范</h3><p><strong>命名方法</strong>：小驼峰式命名法。</p>
-<p><strong>命名规范</strong>：前缀应当为动词。</p>
-<p><strong>命名建议</strong>：可使用常见动词约定</p>
-<table>
-<thead>
 <tr>
-<th>动 词</th>
-<th>含义</th>
-<th>返回值</th>
+<td style="text-align:center">(?:pattern)</td>
+<td>匹配pattern但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用或字符“`(</td>
+<td>)<code>”来组合一个模式的各个部分是很有用。例如“</code>industr(?:y</td>
+<td>ies)<code>”就是一个比“</code>industry</td>
+<td>industries`”更简略的表达式。</td>
 </tr>
-</thead>
-<tbody>
 <tr>
-<td>can</td>
-<td>判断是否可执行某个动作(权限)</td>
-<td>函数返回一个布尔值。true：可执行；false：不可执行</td>
+<td style="text-align:center">(?=pattern)</td>
+<td>正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，“`Windows(?=95</td>
+<td>98</td>
+<td>NT</td>
+<td>2000)<code>”能匹配“</code>Windows2000<code>”中的“</code>Windows<code>”，但不能匹配“</code>Windows3.1<code>”中的“</code>Windows`”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td>
 </tr>
 <tr>
-<td>has</td>
-<td>判断是否含有某个值</td>
-<td>函数返回一个布尔值。true：含有此值；false：不含有此值</td>
+<td style="text-align:center">(?!pattern)</td>
+<td>正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如“`Windows(?!95</td>
+<td>98</td>
+<td>NT</td>
+<td>2000)<code>”能匹配“</code>Windows3.1<code>”中的“</code>Windows<code>”，但不能匹配“</code>Windows2000<code>”中的“</code>Windows`”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始</td>
 </tr>
 <tr>
-<td>is</td>
-<td>判断是否为某个值</td>
-<td>函数返回一个布尔值。true：为某个值；false：不为某个值</td>
+<td style="text-align:center">(?&lt;=pattern)</td>
+<td>反向肯定预查，与正向肯定预查类拟，只是方向相反。例如，“`(?&lt;=95</td>
+<td>98</td>
+<td>NT</td>
+<td>2000)Windows<code>”能匹配“</code>2000Windows<code>”中的“</code>Windows<code>”，但不能匹配“</code>3.1Windows<code>”中的“</code>Windows`”。</td>
 </tr>
 <tr>
-<td>get</td>
-<td>获取某个值</td>
-<td>函数返回一个非布尔值</td>
-</tr>
-<tr>
-<td>set</td>
-<td>设置某个值</td>
-<td>无返回值、返回是否设置成功或者返回链式对象</td>
-</tr>
-<tr>
-<td>load</td>
-<td>加载某些数据</td>
-<td>无返回值或者返回是否加载完成的结果</td>
-</tr>
-</tbody>
-</table>
-<h3 id="常量命名"><a href="#常量命名" class="headerlink" title="常量命名"></a>常量命名</h3><p><strong>命名方法</strong>：名称全部大写。</p>
-<p><strong>命名规范</strong>：使用大写字母和下划线来组合命名，下划线用以分割单词。</p>
-<h3 id="构造函数命名"><a href="#构造函数命名" class="headerlink" title="构造函数命名"></a>构造函数命名</h3><p><strong>命名方法</strong>：大驼峰式命名法，首字母大写。</p>
-<h3 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h3><p><strong>类的成员包含：</strong></p>
-<p>① 公共属性和方法：跟变量和函数的命名一样。</p>
-<p>② 私有属性和方法：前缀为_(下划线)，后面跟公共属性和方法一样的命名方式。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Student(name) &#123;</span><br><span class="line"> var _name = name; // 私有成员</span><br><span class="line"> </span><br><span class="line"> // 公共方法</span><br><span class="line"> this.getName = function () &#123;</span><br><span class="line"> return _name;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> // 公共方式</span><br><span class="line"> this.setName = function (value) &#123;</span><br><span class="line"> _name = value;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">var st = new Student(&apos;tom&apos;);</span><br><span class="line">st.setName(&apos;jerry&apos;);</span><br><span class="line">console.log(st.getName()); // =&gt; jerry：输出_name私有变量的值</span><br></pre></td></tr></table></figure>
-<h3 id="js命名规范-1"><a href="#js命名规范-1" class="headerlink" title="js命名规范"></a>js命名规范</h3><table>
-<thead>
-<tr>
-<th>结构</th>
-<th>规范</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>类</td>
-<td>大驼峰</td>
-<td>ModuleClass()</td>
-</tr>
-<tr>
-<td>共有方法</td>
-<td>小驼峰</td>
-<td>getPosition()</td>
-</tr>
-<tr>
-<td>共有变量</td>
-<td>小驼峰</td>
-<td>frameStyle</td>
-</tr>
-<tr>
-<td>常量</td>
-<td>全大写</td>
-<td>APPLE_CASE</td>
-</tr>
-<tr>
-<td>共有方法和属性</td>
-<td>小驼峰</td>
-<td>mixedCase</td>
-</tr>
-<tr>
-<td>私有方法和属性</td>
-<td>小驼峰</td>
-<td>_mixedCase</td>
-</tr>
-<tr>
-<td>方法参数</td>
-<td>小驼峰</td>
-<td>mixedCase</td>
-</tr>
-<tr>
-<td>本地变量</td>
-<td>小驼峰</td>
-<td>mixedCase</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>所有语句结束后，必须使用 ; 号结束</li>
-<li>所有变量必须是有意义的英文，严厉禁止拼音</li>
-<li>变量允许使用公认英文缩写</li>
-<li>“on”只能用作事件的命名</li>
-<li>函数开头必须是有意义的动词或动词短语</li>
-<li>私有类的变量属性成员 建议 使用混合式命名，并前面下下划线</li>
-<li>临时的全局变量放到一个全局的哈希表里，方便变量回收</li>
-<li>所有全局变量必须初始化，尽量少用全局变量</li>
-<li>大括号前面不能有换行符</li>
-<li>保留字以及特有的dom属性不能作为变量名</li>
-</ul>
-<h4 id="函数命名"><a href="#函数命名" class="headerlink" title="函数命名"></a>函数命名</h4><p><strong>命名方法</strong>：小驼峰式命名法。</p>
-<p><strong>命名规范</strong>：前缀应当为动词。</p>
-<p><strong>命名建议</strong>：可使用常见动词约定</p>
-<table>
-<thead>
-<tr>
-<th>动 词</th>
-<th>含义</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>can</td>
-<td>判断是否可执行某个动作(权限)</td>
-<td>函数返回一个布尔值。true：可执行；false：不可执行</td>
-</tr>
-<tr>
-<td>has</td>
-<td>判断是否含有某个值</td>
-<td>函数返回一个布尔值。true：含有此值；false：不含有此值</td>
-</tr>
-<tr>
-<td>is</td>
-<td>判断是否为某个值</td>
-<td>函数返回一个布尔值。true：为某个值；false：不为某个值</td>
-</tr>
-<tr>
-<td>get</td>
-<td>获取某个值</td>
-<td>函数返回一个非布尔值</td>
-</tr>
-<tr>
-<td>set</td>
-<td>设置某个值</td>
-<td>无返回值、返回是否设置成功或者返回链式对象</td>
-</tr>
-<tr>
-<td>load</td>
-<td>加载某些数据</td>
-<td>无返回值或者返回是否加载完成的结果</td>
-</tr>
-</tbody>
-</table>
-<h4 id="常量命名-1"><a href="#常量命名-1" class="headerlink" title="常量命名"></a>常量命名</h4><p><strong>命名方法</strong>：名称全部大写。</p>
-<p><strong>命名规范</strong>：使用大写字母和下划线来组合命名，下划线用以分割单词。</p>
-<h4 id="构造函数命名-1"><a href="#构造函数命名-1" class="headerlink" title="构造函数命名"></a>构造函数命名</h4><p><strong>命名方法</strong>：大驼峰式命名法，首字母大写。</p>
-<h4 id="类的成员-1"><a href="#类的成员-1" class="headerlink" title="类的成员"></a>类的成员</h4><p><strong>类的成员包含：</strong></p>
-<p>① 公共属性和方法：跟变量和函数的命名一样。</p>
-<p>② 私有属性和方法：前缀为_(下划线)，后面跟公共属性和方法一样的命名方式。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Student(name) &#123;</span><br><span class="line">	var _name = name; // 私有成员</span><br><span class="line"> </span><br><span class="line">    // 公共方法</span><br><span class="line">    this.getName = function () &#123;</span><br><span class="line">     	return _name;</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line">    // 公共方式</span><br><span class="line">    this.setName = function (value) &#123;</span><br><span class="line">        _name = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var st = new Student(&apos;tom&apos;);</span><br><span class="line">st.setName(&apos;jerry&apos;);</span><br><span class="line">console.log(st.getName()); // =&gt; jerry：输出_name私有变量的值</span><br></pre></td></tr></table></figure>
-<h3 id="ClassName命名"><a href="#ClassName命名" class="headerlink" title="ClassName命名"></a>ClassName命名</h3><p>ClassName的命名应该尽量精短、明确，必须以<strong>字母开头命名</strong>，且<strong>全部字母为小写</strong>，单词之间<strong>统一使用下划线</strong> “_” 连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod_caption、title_description</span><br></pre></td></tr></table></figure>
-<h3 id="常用命名推荐"><a href="#常用命名推荐" class="headerlink" title="常用命名推荐"></a>常用命名推荐</h3><table>
-<thead>
-<tr>
-<th>ClassName</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>about</td>
-<td>关于</td>
-</tr>
-<tr>
-<td>account</td>
-<td>账户</td>
-</tr>
-<tr>
-<td>arrow</td>
-<td>箭头图标</td>
-</tr>
-<tr>
-<td>article</td>
-<td>文章</td>
-</tr>
-<tr>
-<td>aside</td>
-<td>边栏</td>
-</tr>
-<tr>
-<td>audio</td>
-<td>音频</td>
-</tr>
-<tr>
-<td>avatar</td>
-<td>头像</td>
-</tr>
-<tr>
-<td>bg,background</td>
-<td>背景</td>
-</tr>
-<tr>
-<td>bar</td>
-<td>栏（工具类）</td>
-</tr>
-<tr>
-<td>branding</td>
-<td>品牌化</td>
-</tr>
-<tr>
-<td>crumb,breadcrumbs</td>
-<td>面包屑</td>
-</tr>
-<tr>
-<td>btn,button</td>
-<td>按钮</td>
-</tr>
-<tr>
-<td>caption</td>
-<td>标题，说明</td>
-</tr>
-<tr>
-<td>category</td>
-<td>分类</td>
-</tr>
-<tr>
-<td>chart</td>
-<td>图表</td>
-</tr>
-<tr>
-<td>clearfix</td>
-<td>清除浮动</td>
-</tr>
-<tr>
-<td>close</td>
-<td>关闭</td>
-</tr>
-<tr>
-<td>col,column</td>
-<td>列</td>
-</tr>
-<tr>
-<td>comment</td>
-<td>评论</td>
-</tr>
-<tr>
-<td>community</td>
-<td>社区</td>
-</tr>
-<tr>
-<td>container</td>
-<td>容器</td>
-</tr>
-<tr>
-<td>content</td>
-<td>内容</td>
-</tr>
-<tr>
-<td>copyright</td>
-<td>版权</td>
-</tr>
-<tr>
-<td>current</td>
-<td>当前态，选中态</td>
-</tr>
-<tr>
-<td>default</td>
-<td>默认</td>
-</tr>
-<tr>
-<td>description</td>
-<td>描述</td>
-</tr>
-<tr>
-<td>details</td>
-<td>细节</td>
-</tr>
-<tr>
-<td>disabled</td>
-<td>不可用</td>
-</tr>
-<tr>
-<td>entry</td>
-<td>文章，博文</td>
-</tr>
-<tr>
-<td>error</td>
-<td>错误</td>
-</tr>
-<tr>
-<td>even</td>
-<td>偶数，常用于多行列表或表格中</td>
-</tr>
-<tr>
-<td>fail</td>
-<td>失败（提示）</td>
-</tr>
-<tr>
-<td>feature</td>
-<td>专题</td>
-</tr>
-<tr>
-<td>fewer</td>
-<td>收起</td>
-</tr>
-<tr>
-<td>field</td>
-<td>用于表单的输入区域</td>
-</tr>
-<tr>
-<td>figure</td>
-<td>图</td>
-</tr>
-<tr>
-<td>filter</td>
-<td>筛选</td>
-</tr>
-<tr>
-<td>first</td>
-<td>第一个，常用于列表中</td>
-</tr>
-<tr>
-<td>footer</td>
-<td>页脚</td>
-</tr>
-<tr>
-<td>forum</td>
-<td>论坛</td>
-</tr>
-<tr>
-<td>gallery</td>
-<td>画廊</td>
-</tr>
-<tr>
-<td>group</td>
-<td>模块，清除浮动</td>
-</tr>
-<tr>
-<td>header</td>
-<td>页头</td>
-</tr>
-<tr>
-<td>help</td>
-<td>帮助</td>
-</tr>
-<tr>
-<td>hide</td>
-<td>隐藏</td>
-</tr>
-<tr>
-<td>hightlight</td>
-<td>高亮</td>
-</tr>
-<tr>
-<td>home</td>
-<td>主页</td>
-</tr>
-<tr>
-<td>icon</td>
-<td>图标</td>
-</tr>
-<tr>
-<td>info,information</td>
-<td>信息</td>
-</tr>
-<tr>
-<td>last</td>
-<td>最后一个，常用于列表中</td>
-</tr>
-<tr>
-<td>links</td>
-<td>链接</td>
-</tr>
-<tr>
-<td>login</td>
-<td>登录</td>
-</tr>
-<tr>
-<td>logout</td>
-<td>退出</td>
-</tr>
-<tr>
-<td>logo</td>
-<td>标志</td>
-</tr>
-<tr>
-<td>main</td>
-<td>主体</td>
-</tr>
-<tr>
-<td>menu</td>
-<td>菜单</td>
-</tr>
-<tr>
-<td>meta</td>
-<td>作者、更新时间等信息栏，一般位于标题之下</td>
-</tr>
-<tr>
-<td>module</td>
-<td>模块</td>
-</tr>
-<tr>
-<td>more</td>
-<td>更多（展开）</td>
-</tr>
-<tr>
-<td>msg,message</td>
-<td>消息</td>
-</tr>
-<tr>
-<td>nav,navigation</td>
-<td>导航</td>
-</tr>
-<tr>
-<td>next</td>
-<td>下一页</td>
-</tr>
-<tr>
-<td>nub</td>
-<td>小块</td>
-</tr>
-<tr>
-<td>odd</td>
-<td>奇数，常用于多行列表或表格中</td>
-</tr>
-<tr>
-<td>off</td>
-<td>鼠标离开</td>
-</tr>
-<tr>
-<td>on</td>
-<td>鼠标移过</td>
-</tr>
-<tr>
-<td>output</td>
-<td>输出</td>
-</tr>
-<tr>
-<td>pagination</td>
-<td>分页</td>
-</tr>
-<tr>
-<td>pop,popup</td>
-<td>弹窗</td>
-</tr>
-<tr>
-<td>preview</td>
-<td>预览</td>
-</tr>
-<tr>
-<td>previous</td>
-<td>上一页</td>
-</tr>
-<tr>
-<td>primary</td>
-<td>主要</td>
-</tr>
-<tr>
-<td>progress</td>
-<td>进度条</td>
-</tr>
-<tr>
-<td>promotion</td>
-<td>促销</td>
-</tr>
-<tr>
-<td>rcommd,recommendations</td>
-<td>推荐</td>
-</tr>
-<tr>
-<td>reg,register</td>
-<td>注册</td>
-</tr>
-<tr>
-<td>save</td>
-<td>保存</td>
-</tr>
-<tr>
-<td>search</td>
-<td>搜索</td>
-</tr>
-<tr>
-<td>secondary</td>
-<td>次要</td>
-</tr>
-<tr>
-<td>section</td>
-<td>区块</td>
-</tr>
-<tr>
-<td>selected</td>
-<td>已选</td>
-</tr>
-<tr>
-<td>share</td>
-<td>分享</td>
-</tr>
-<tr>
-<td>show</td>
-<td>显示</td>
-</tr>
-<tr>
-<td>sidebar</td>
-<td>边栏，侧栏</td>
-</tr>
-<tr>
-<td>slide</td>
-<td>幻灯片，图片切换</td>
-</tr>
-<tr>
-<td>sort</td>
-<td>排序</td>
-</tr>
-<tr>
-<td>sub</td>
-<td>次级的，子级的</td>
-</tr>
-<tr>
-<td>submit</td>
-<td>提交</td>
-</tr>
-<tr>
-<td>subscribe</td>
-<td>订阅</td>
-</tr>
-<tr>
-<td>subtitle</td>
-<td>副标题</td>
-</tr>
-<tr>
-<td>success</td>
-<td>成功（提示）</td>
-</tr>
-<tr>
-<td>summary</td>
-<td>摘要</td>
-</tr>
-<tr>
-<td>tab</td>
-<td>标签页</td>
-</tr>
-<tr>
-<td>table</td>
-<td>表格</td>
-</tr>
-<tr>
-<td>txt,text</td>
-<td>文本</td>
-</tr>
-<tr>
-<td>thumbnail</td>
-<td>缩略图</td>
-</tr>
-<tr>
-<td>time</td>
-<td>时间</td>
-</tr>
-<tr>
-<td>tips</td>
-<td>提示</td>
-</tr>
-<tr>
-<td>title</td>
-<td>标题</td>
-</tr>
-<tr>
-<td>video</td>
-<td>视频</td>
-</tr>
-<tr>
-<td>wrap</td>
-<td>容器，包，一般用于最外层</td>
-</tr>
-<tr>
-<td>wrapper</td>
-<td>容器，包，一般用于最外层</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/移动端自适应相关设置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/18/移动端自适应相关设置/" itemprop="url">移动端自适应学习&&关于各种长度单位的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
-                2018-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>由于网页会根据屏幕宽度调整布局，所以不能使用绝对宽度的布局，也不能使用具有绝对宽度的元素。这一条非常重要。</code></p>
-<p><a href="https://github.com/jawil/blog/issues/21" target="_blank" rel="noopener">各种像素、Viewport介绍</a></p>
-<p><a href="https://github.com/iuap-design/blog/issues/212" target="_blank" rel="noopener">像素，分辨率，像素密度PPI 的介绍</a></p>
-<p><a href="https://segmentfault.com/a/1190000005656849" target="_blank" rel="noopener">window.devicePixelRatio 独立像素比</a></p>
-<p>我们是不是应该以一个顺序来研究一个东西呢；</p>
-<p>首先我们拿到一个手机，对于屏幕而言，最直观的概念是什么？</p>
-<p>肯定是屏幕的大小啊，而屏幕的大小有一个专业的单位：英寸（inch） 1inch = 2.54cm</p>
-<p>所以我们可以看出英寸并不是指的屏幕的面积，因为它是一个长度单位；</p>
-<blockquote>
-<p>比如拿到一个手机显示 为4.7英寸（inch）；</p>
-<p>这个4.7英寸指的是什么呢？</p>
-<p>实际上是指 手机屏幕对角线长度。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>屏幕</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>屏幕大小</td>
-<td>4.7英寸</td>
-</tr>
-<tr>
-<td>屏幕分辨率 (个人标注：这里更准确的叫法是 - 物理分辨率)</td>
-<td>1334×750像素</td>
-</tr>
-<tr>
-<td>像素密度</td>
-<td>326ppi</td>
-</tr>
-</tbody>
-</table>
-<p><strong>上表是一个手机的屏幕的部分信息</strong></p>
-<ul>
-<li><p>屏幕大小我们上面已经解释了</p>
-</li>
-<li><p>屏幕分辨率又是指的什么呢？</p>
-<blockquote>
-<p><strong>暂时的理解是：</strong>买手机时，手机信息上显示的<code>屏幕分辨率:1334*750像素</code>指的是在这个4.7英寸的屏幕上有1334*750个单元（屏幕<code>能</code>显示颜色的最小单位）；这是一个固定的值，屏幕生产出来之后就不能改变的值；</p>
-<p>这个应该就是指的手机屏幕的 <strong>设备像素（物理像素）DP（device pixels）</strong> </p>
-</blockquote>
-<p>注意，我们通常所说的<strong>显示器分辨率</strong>，其实是指<strong>桌面设定的分辨率</strong>，而不是显示器的<strong>物理分辨率</strong>。只不过现在液晶显示器成为主流，由于液晶的显示原理与<code>CRT</code>不同，只有在桌面分辨率与物理分辨率一致的情况下，显示效果最佳，所以现在我们的桌面分辨率几乎总是与显示器的物理分辨率一致了。</p>
-</li>
-<li><p>像素密度</p>
-<p><img src="https://camo.githubusercontent.com/fa2dfe97784d291aefce2ca84103d0e853b42d4e/687474703a2f2f75706c6f61642e6368696e617a2e636f6d2f323031352f303930322f313434313136373732393537392e6a7067" alt=""></p>
-</li>
-</ul>
-<p><code>从上面我们了解了：屏幕尺寸、物理分辨率、物理像素、物理像素密度(dpi\ppi) 等概念</code></p>
-<p><strong>个人感觉不要单独使用像素这个词，应为这样很容易迷惑人，像素这个词包括的含义并不是唯一的</strong></p>
-<h3 id="css像素"><a href="#css像素" class="headerlink" title="css像素"></a>css像素</h3><p>接下来了解一下作为一名前端工程师，我们最熟悉的单位之一，px</p>
-<p>我们在编写页面时使用的<code>px</code>其实指的是 <strong>css像素（css pixels）</strong>；</p>
-<p><strong>它是图像显示的基本单元，既不是一个确定的物理量，也不是一个点或者小方块，而是一个抽象概念</strong>。所以在谈论像素时一定<strong>要清楚它的上下文</strong>！一定要清楚它的上下文！一定要清楚它的上下文！</p>
-<blockquote>
-<p>css像素永远是一个相对的值；</p>
-</blockquote>
-<p><strong>那么这个相对的值到底是怎么计算出来的呢？</strong></p>
-<p><code>这里就需要了解到 设备像素(DP) 与 CSS像素之间的关系</code></p>
-<p><strong>获得设备像素比（dpr）后（我们是如何获取这个dpr值的呢？）</strong>，便可得知设备像素与CSS像素之间的比例。当这个比率为1:1时，使用1个设备像素显示1个CSS像素。当这个比率为2:1时，使用4个设备像素显示1个CSS像素，当这个比率为3:1时，使用9（3*3）个设备像素显示1个CSS像素。<br>所以，有如下公式：</p>
-<blockquote>
-<p><strong>DPR = 设备像素/CSS像素</strong></p>
-<p>// 这里像素都是长度单位，所以最终面积会平方</p>
-<p><code>CSS像素</code> 名称又叫 <code>设备独立像素(device-independent pixels (dips))</code></p>
-</blockquote>
-<p><code>问题：我们如何获取这个 dpr值呢？ 这个 dpr 取名也是醉了，好多地方都不同；</code></p>
-<p>dpr准确叫法 设备像素比</p>
-<p>这个 dpr 可以通过<code>window.devicePixelRatio</code> 这接获取；</p>
-<p><strong>viewport</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p><code>width</code>属性控制视口的宽度。可以像width=600这样设为确切的像素数，或者设为device-width这一特殊值来指代比例为100%时屏幕宽度的CSS像素数值。（相应有<code>height</code>及<code>device-height</code>属性，可能对包含基于视口高度调整大小及位置的元素的页面有用。）</p>
-<p>initial-scale属性控制页面最初加载时的缩放等级。</p>
-<p>maximum-scale、minimum-scale 最大最小比例设置</p>
-<p>user-scalable属性控制允许用户以怎样的方式放大或缩小页面。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/命名规则/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/18/命名规则/" itemprop="url">命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
-                2018-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://guide.aotu.io/docs/css/code.html" target="_blank" rel="noopener">命名规范相关文章一</a></p>
-<p><a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">airbnb命名规则</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2017/02/filename-should-be-lowercase.html" target="_blank" rel="noopener">阮一峰-文件名小写</a></p>
-<p>命名：表现了一个程序员对自己工作的态度，修养，是否是一个追求完美的人；</p>
-<p>###变量</p>
-<p><strong>命名方法</strong>：小驼峰式命名法。</p>
-<p><strong>命名规范</strong>：前缀应当是名词。(函数的名字前缀为动词，以此区分变量和函数)</p>
-<h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><ol>
-<li><p><code>建议文件名，采用小写，why</code></p>
-<p>首先个人遇到的一个问题，git上传代码，不会区分文件名的大小写</p>
-<p>跨平台会出现问题；应为linux对大小写敏感，window、mac不敏感</p>
-</li>
-</ol>
-<p><strong>html、css文件命名：</strong></p>
-<p>确保文件命名总是以字母开头而不是数字，且字母一律小写，以下划线连接且不带其他标点符号，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">jdc.html</span><br><span class="line">jdc_detail.html</span><br><span class="line"></span><br><span class="line">&lt;!-- SASS --&gt;</span><br><span class="line">jdc.scss</span><br><span class="line">jdc_detail.scss</span><br></pre></td></tr></table></figure>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><strong>命名方法</strong>：小驼峰式命名法。</p>
-<p><strong>命名规范</strong>：前缀应当为动词。</p>
-<p><strong>命名建议</strong>：可使用常见动词约定</p>
-<table>
-<thead>
-<tr>
-<th>动 词</th>
-<th>含义</th>
-<th>返回值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>can</td>
-<td>判断是否可执行某个动作(权限)</td>
-<td>函数返回一个布尔值。true：可执行；false：不可执行</td>
-</tr>
-<tr>
-<td>has</td>
-<td>判断是否含有某个值</td>
-<td>函数返回一个布尔值。true：含有此值；false：不含有此值</td>
-</tr>
-<tr>
-<td>is</td>
-<td>判断是否为某个值</td>
-<td>函数返回一个布尔值。true：为某个值；false：不为某个值</td>
-</tr>
-<tr>
-<td>get</td>
-<td>获取某个值</td>
-<td>函数返回一个非布尔值</td>
-</tr>
-<tr>
-<td>set</td>
-<td>设置某个值</td>
-<td>无返回值、返回是否设置成功或者返回链式对象</td>
-</tr>
-<tr>
-<td>load</td>
-<td>加载某些数据</td>
-<td>无返回值或者返回是否加载完成的结果</td>
-</tr>
-</tbody>
-</table>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p><strong>命名方法</strong>：名称全部大写。</p>
-<p><strong>命名规范</strong>：使用大写字母和下划线来组合命名，下划线用以分割单词。</p>
-<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p><strong>命名方法</strong>：大驼峰式命名法，首字母大写。</p>
-<h3 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h3><p><strong>类的成员包含：</strong></p>
-<p>① 公共属性和方法：跟变量和函数的命名一样。</p>
-<p>② 私有属性和方法：前缀为_(下划线)，后面跟公共属性和方法一样的命名方式。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Student(name) &#123;</span><br><span class="line"> var _name = name; // 私有成员</span><br><span class="line"> </span><br><span class="line"> // 公共方法</span><br><span class="line"> this.getName = function () &#123;</span><br><span class="line"> return _name;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> // 公共方式</span><br><span class="line"> this.setName = function (value) &#123;</span><br><span class="line"> _name = value;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">var st = new Student(&apos;tom&apos;);</span><br><span class="line">st.setName(&apos;jerry&apos;);</span><br><span class="line">console.log(st.getName()); // =&gt; jerry：输出_name私有变量的值</span><br></pre></td></tr></table></figure>
-<h2 id="js命名规范"><a href="#js命名规范" class="headerlink" title="js命名规范"></a>js命名规范</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">结构</th>
-<th style="text-align:center">规范</th>
-<th style="text-align:center">例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">类</td>
-<td style="text-align:center">大驼峰</td>
-<td style="text-align:center">ModuleClass()</td>
-</tr>
-<tr>
-<td style="text-align:center">共有方法</td>
-<td style="text-align:center">小驼峰</td>
-<td style="text-align:center">getPosition()</td>
-</tr>
-<tr>
-<td style="text-align:center">共有变量</td>
-<td style="text-align:center">小驼峰</td>
-<td style="text-align:center">frameStyle</td>
-</tr>
-<tr>
-<td style="text-align:center">常量</td>
-<td style="text-align:center">全大写</td>
-<td style="text-align:center">APPLE_CASE</td>
+<td style="text-align:center">(?&lt;!pattern)</td>
+<td>反向否定预查，与正向否定预查类拟，只是方向相反。例如“`(?&lt;!95</td>
+<td>98</td>
+<td>NT</td>
+<td>2000)Windows<code>”能匹配“</code>3.1Windows<code>”中的“</code>Windows<code>”，但不能匹配“</code>2000Windows<code>”中的“</code>Windows`”。</td>
 </tr>
 <tr>
 <td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:center">共有方法和属性</td>
-<td style="text-align:center">小驼峰</td>
-<td style="text-align:center">mixedCase</td>
+<td style="text-align:center">x\</td>
+<td>y</td>
+<td>匹配x或y。例如，“`z</td>
+<td>food<code>”能匹配“</code>z<code>”或“</code>food<code>”。“</code>(z</td>
+<td>f)ood<code>”则匹配“</code>zood<code>”或“</code>food`”。</td>
 </tr>
 <tr>
-<td style="text-align:center">私有方法和属性</td>
-<td style="text-align:center">小驼峰</td>
-<td style="text-align:center">_mixedCase</td>
+<td style="text-align:center">[xyz]</td>
+<td>字符集合。匹配所包含的任意一个字符。例如，“<code>[abc]</code>”可以匹配“<code>plain</code>”中的“<code>a</code>”。</td>
 </tr>
 <tr>
-<td style="text-align:center">方法参数</td>
-<td style="text-align:center">小驼峰</td>
-<td style="text-align:center">mixedCase</td>
+<td style="text-align:center">[^xyz]</td>
+<td>负值字符集合。匹配未包含的任意字符。例如，“<code>[^abc]</code>”可以匹配“<code>plain</code>”中的“<code>p</code>”。</td>
 </tr>
 <tr>
-<td style="text-align:center">本地变量</td>
-<td style="text-align:center">小驼峰</td>
-<td style="text-align:center">mixedCase</td>
+<td style="text-align:center">[a-z]</td>
+<td>字符范围。匹配指定范围内的任意字符。例如，“<code>[a-z]</code>”可以匹配“<code>a</code>”到“<code>z</code>”范围内的任意小写字母字符。</td>
+</tr>
+<tr>
+<td style="text-align:center">[^a-z]</td>
+<td>负值字符范围。匹配任何不在指定范围内的任意字符。例如，“<code>[^a-z]</code>”可以匹配任何不在“<code>a</code>”到“<code>z</code>”范围内的任意字符。</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td>匹配一个单词边界，也就是指单词和空格间的位置。例如，“<code>er\b</code>”可以匹配“<code>never</code>”中的“<code>er</code>”，但不能匹配“<code>verb</code>”中的“<code>er</code>”。</td>
+</tr>
+<tr>
+<td style="text-align:center">\B</td>
+<td>匹配非单词边界。“<code>er\B</code>”能匹配“<code>verb</code>”中的“<code>er</code>”，但不能匹配“<code>never</code>”中的“<code>er</code>”。</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td>匹配一个数字字符。等价于[0-9]。</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td>匹配一个非数字字符。等价于[^0-9]。</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td>匹配包括下划线的任何单词字符。等价于“<code>[A-Za-z0-9_]</code>”。</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>匹配任何非单词字符。等价于“<code>[^A-Za-z0-9_]</code>”。</td>
+</tr>
+<tr>
+<td style="text-align:center">\f</td>
+<td>匹配一个换页符。等价于\x0c和\cL。</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>匹配一个换行符。等价于\x0a和\cJ。</td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td>匹配一个回车符。等价于\x0d和\cM。</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td>匹配任何非空白字符。等价于[^ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td>匹配一个制表符。等价于\x09和\cI。</td>
+</tr>
+<tr>
+<td style="text-align:center">\v</td>
+<td>匹配一个垂直制表符。等价于\x0b和\cK。</td>
+</tr>
+<tr>
+<td style="text-align:center">\xn</td>
+<td>匹配n，其中n为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，“<code>\x41</code>”匹配“<code>A</code>”。“<code>\x041</code>”则等价于“<code>\x04&amp;1</code>”。正则表达式中可以使用ASCII编码。</td>
+</tr>
+<tr>
+<td style="text-align:center">\num</td>
+<td>匹配num，其中num是一个正整数。对所获取的匹配的引用。例如，“<code>(.)\1</code>”匹配两个连续的相同字符。</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>标识一个八进制转义值或一个向后引用。如果\n之前至少n个获取的子表达式，则n为向后引用。否则，如果n为八进制数字（0-7），则n为一个八进制转义值。</td>
+</tr>
+<tr>
+<td style="text-align:center">\nm</td>
+<td>标识一个八进制转义值或一个向后引用。如果\nm之前至少有nm个获得子表达式，则nm为向后引用。如果\nm之前至少有n个获取，则n为一个后跟文字m的向后引用。如果前面的条件都不满足，若n和m均为八进制数字（0-7），则\nm将匹配八进制转义值nm。</td>
+</tr>
+<tr>
+<td style="text-align:center">\nml</td>
+<td>如果n为八进制数字（0-3），且m和l均为八进制数字（0-7），则匹配八进制转义值nml。</td>
+</tr>
+<tr>
+<td style="text-align:center">\un</td>
+<td>匹配n，其中n是一个用四个十六进制数字表示的Unicode字符。例如，\u00A9匹配版权符号（©）。</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>所有语句结束后，必须使用 ; 号结束</li>
-<li>所有变量必须是有意义的英文，严厉禁止拼音</li>
-<li>变量允许使用公认英文缩写</li>
-<li>“on”只能用作事件的命名</li>
-<li>函数开头必须是有意义的动词或动词短语</li>
-<li>私有类的变量属性成员 建议 使用混合式命名，并前面下下划线</li>
-<li>临时的全局变量放到一个全局的哈希表里，方便变量回收</li>
-<li>所有全局变量必须初始化，尽量少用全局变量</li>
-<li>大括号前面不能有换行符</li>
-<li>保留字以及特有的dom属性不能作为变量名</li>
-</ul>
-<p><strong>特殊命名约定</strong></p>
-<ol>
-<li>前面加 “is” 的变量名应该为布尔值，亦可使用 “can” “has” “should”</li>
-<li>前面加 ”str” 的变量名应该为字符串</li>
-<li>前面加 “arr” 的变量名应该为数组</li>
-<li>前面加 “num” 或 “count” 的变量名应该为数字</li>
-<li>“o” 作为局部变量或参数，表示为Object</li>
-<li>“e” 作为局部变量或参数，表示为Element</li>
-<li>“evt” 作为局部变量或参数，表示为event</li>
-<li>“err” 作为局部变量或参数，表示为error</li>
-<li>重复变量建议使用 “i”, “j”, “k” （依次类推）等名称的变量(全世界公认)</li>
-<li>能缩写的单词尽量缩写</li>
-<li>避免产生令人误解的布尔值 isNotNumber isNan</li>
-<li>处理错误的变量，必须在后面跟着 “Error”</li>
-<li>初始化用的函数 必须使用 “init” 开头，如果一个页面只有初始化可以单独使用 init()</li>
-<li>尽量做有意义的代码折行，不要让一行代码过长。(HTML 字符串除外)</li>
-<li>操作符 建议 使用空格隔开</li>
-<li>函数调用和方法 避免 使用空白</li>
-<li>逗号（,） 建议 使用空白隔开。</li>
-<li>不允许频繁使用 previousSibling 和 nextSibling</li>
-</ol>
-<ol>
-<li><strong>注释规范</strong></li>
-</ol>
-<ol>
-<li>一些你不打算给其他人使用的函数，建议添加 @ignore 让文档输出时可以忽略这段注释</li>
-</ol>
-<ol>
-<li>一些相关的功能相关的函数，建议加上@see Function 来对上下文做索引</li>
-<li>对于一些函数不建议或则需要注意的使用方法，必须加上 @deprecated作为提醒</li>
-<li>每个js文件的文件头都必须包含 @fileoverview @author, 建议加上@version</li>
-<li>每个函数都必须使用JsDoc 来注释他的用意</li>
-<li>每个带参数的函数必须包含 @param</li>
-<li>每个有返回值的函数必须包含 @return</li>
-<li>构造函数必须加上 @constructor</li>
-<li>继承函数建议加上 @base 表示其继承于哪个类</li>
-<li>常用全局变量建议使用 JsDoc 的注释方式</li>
-<li>一般的变量及局部变量才用 // 方式进行注释，建议在需要做注释的语句的上一行</li>
-<li>其他详情请参考 JsDoc 注释方法</li>
-</ol>
-<p><strong>其他</strong></p>
-<ol>
-<li>String 优化</li>
-</ol>
-<p>循环体内的字符串累加使用join方式。 例如:</p>
-<p>var r= [];<br>for (var i=0;i&lt;100;i++){<br>​    r.push(“hello”);<br>}<br>var k= r.join(“”);</p>
-<ol>
-<li>Switch 建议采用hash-table</li>
-</ol>
-<p>switch 可以才用 Object代替 例如:</p>
-<p>var a= {<br>​    “1”:doAction1,<br>​    “2”:doAction2,<br>}<br>function doAction1(){<br>}<br>function doAction2(){<br>}<br>a<a href="">1</a>;</p>
-<ol>
-<li>不建议使用eval</li>
-</ol>
-<p>不推荐使用eval来执行脚本。除非用来解释已经确定安全的json数据。</p>
-<ol>
-<li>不要使用Function构造器。</li>
-</ol>
-<ol>
-<li>不要给setTimeout或者setInterval传递字符串参数。</li>
-<li>注意 IE 的内存泄露问题</li>
-<li>JavaScript代码独立</li>
-</ol>
-<p>Javascript不应该被包含在HTML文件中,除非这是段特定只属于此部分的代码。在HTML中的JavaScript代码会明显增加文件大小，而且也不能对其进行缓存和压缩。</p>
-<p>##CSS命名规范</p>
-<ol>
-<li>id和class命名采用该版块的英文单词或组合命名，并第一个单词小写，第二个单词首个字母大写，如：newRelease（最新产品/new+Release)</li>
-<li>CSS样式表各区块用注释说明</li>
-<li>尽量不缩写，除非一看就明白的单词</li>
-</ol>
-<p>经过组员激烈的讨论后，大家都比较偏向的命名方法如下：</p>
-<p><strong>ID：</strong>统一采用驼峰式，单字之间不以：空格断开（例：camel case）、连接号（-，例：camel-case）、底线（_，例：camel_case）连结。</p>
-<p><strong>Class 命名法：</strong>  驼峰式或下划线 <code>个人比较喜欢下划线吧</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod_caption、title_description</span><br></pre></td></tr></table></figure>
-<p><strong>常见的CSS命名规则如下：</strong></p>
-<p>主要的 mian.css</p>
-<p>模块 module.css</p>
-<p>基本共用 base.css</p>
-<p>布局，版面 layout.css</p>
-<p>主题 themes.css</p>
-<p>专栏 columns.css</p>
-<p>文字 font.css</p>
-<p>表单 forms.css</p>
-<p>补丁 mend.css</p>
-<p>打印 print.css</p>
-<p>头：header</p>
-<p>内容：content/container</p>
-<p>尾：footer</p>
-<p>导航：nav</p>
-<p>侧栏：sidebar</p>
-<p>栏目：column</p>
-<p>页面外围控制整体布局宽度：wrapper</p>
-<p>左右中：left right center</p>
-<p>登录条：loginbar</p>
-<p>标志：logo</p>
-<p>广告：banner</p>
-<p>页面主体：main</p>
-<p>热点：hot</p>
-<p>新闻：news</p>
-<p>下载：download</p>
-<p>子导航：subnav</p>
-<p>菜单：menu</p>
-<p>子菜单：submenu</p>
-<p>搜索：search</p>
-<p>友情链接：friendlink</p>
-<p>页脚：footer</p>
-<p>版权：copyright</p>
-<p>滚动：scroll</p>
-<p>内容：content</p>
-<p>标签页：tab</p>
-<p>文章列表：list</p>
-<p>提示信息：msg</p>
-<p>小技巧：tips</p>
-<p>栏目标题：title、caption</p>
-<p>加入：joinus</p>
-<p>指南：guild</p>
-<p>服务：service</p>
-<p>注册：regsiter</p>
-<p>状态：status</p>
-<p>投票：vote</p>
-<p>合作伙伴：partner</p>
-<h2 id="react项目的命名："><a href="#react项目的命名：" class="headerlink" title="react项目的命名："></a>react项目的命名：</h2><p>目录、js、jsx、css、less、scss 的命名都使用小驼峰；</p>
+<h1 id="常用正则表达式"><a href="#常用正则表达式" class="headerlink" title="常用正则表达式"></a>常用正则表达式</h1><table>
+<thead>
+<tr>
+<th>用户名</th>
+<th>/^[a-z0-9_-]{3,16}$/</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>密码</td>
+<td>/^[a-z0-9_-]{6,18}$/</td>
+</tr>
+<tr>
+<td>十六进制值</td>
+<td>/^#?([a-f0-9]{6}\</td>
+<td>[a-f0-9]{3})$/</td>
+</tr>
+<tr>
+<td>电子邮箱</td>
+<td>/^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$//^[a-z\d]+(.[a-z\d]+)*@(<a href="-[\da-z]">\da-z</a>?)+(.{1,2}[a-z]+)+$/</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>/^(https?:\/\/)?([\da-z.-]+).([a-z.]{2,6})([\/\w .-]<em>)</em>\/?$/</td>
+</tr>
+<tr>
+<td>IP 地址</td>
+<td>/((2[0-4]\d\</td>
+<td>25[0-5]\</td>
+<td>[01]?\d\d?).){3}(2[0-4]\d\</td>
+<td>25[0-5]\</td>
+<td>[01]?\d\d?)//^(?:(?:25[0-5]\</td>
+<td>2[0-4][0-9]\</td>
+<td>[01]?[0-9][0-9]?).){3}(?:25[0-5]\</td>
+<td>2[0-4][0-9]\</td>
+<td>[01]?[0-9][0-9]?)$/</td>
+</tr>
+<tr>
+<td>HTML 标签</td>
+<td>/^&lt;([a-z]+)([^&lt;]+)<em>(?:&gt;(.</em>)&lt;\/\1&gt;\</td>
+<td>\s+\/&gt;)$/</td>
+</tr>
+<tr>
+<td>删除代码\注释</td>
+<td>(?&lt;!http:\</td>
+<td>\S)//.*$</td>
+</tr>
+<tr>
+<td>Unicode编码中的汉字范围</td>
+<td>/^[\u2E80-\u9FFF]+$/</td>
+</tr>
+</tbody>
+</table>
 
           
         
@@ -3004,7 +757,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/前端开发需要考虑哪些问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/DOM事件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="songxx">
@@ -3023,7 +776,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/18/前端开发需要考虑哪些问题/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/08/05/DOM事件/" itemprop="url">Untitled</a></h1>
         
 
         <div class="post-meta">
@@ -3035,8 +788,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
-                2018-01-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
               </time>
             
 
@@ -3075,257 +828,1075 @@
       
         
           
-            <h1 id="前端开发需要考虑哪些问题？"><a href="#前端开发需要考虑哪些问题？" class="headerlink" title="前端开发需要考虑哪些问题？"></a>前端开发需要考虑哪些问题？</h1><ul>
-<li>组件库、模块化  - 提升开发效率</li>
-<li>运行效率</li>
-<li>可维护性</li>
-<li>体验优化</li>
-</ul>
-<p>组件化，模块化的区别</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/18/web缓存机制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="songxx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songxx's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/18/web缓存机制/" itemprop="url">浏览器缓存机制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-18T13:40:03+08:00">
-                2018-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>浏览器是如何知道使用<a href="http://caibaojian.com/t/%e7%bc%93%e5%ad%98" target="_blank" rel="noopener">缓存</a>的，其实这都是通过http中，浏览器将最后修改时间发送请求给<a href="http://caibaojian.com/c/web" target="_blank" rel="noopener">web</a>服务器，web服务器收到请求后跟服务器上的文档最后修改的时间对比，如果web服务器上最新文档修改时间小于或者等于浏览器发送过来的，则发送304给浏览器，使用<a href="http://caibaojian.com/t/%e7%bc%93%e5%ad%98" target="_blank" rel="noopener">缓存</a>版本。</p>
-<h3 id="cache策略"><a href="#cache策略" class="headerlink" title="cache策略"></a>cache策略</h3><ul>
-<li>浏览器缓存（http缓存机制）<ul>
-<li>协商缓存</li>
-<li>本地缓存（强制缓存）</li>
-</ul>
+            <h2 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h2><h3 id="基本概念：DOM事件的级别"><a href="#基本概念：DOM事件的级别" class="headerlink" title="基本概念：DOM事件的级别"></a>基本概念：DOM事件的级别</h3><ol>
+<li><p>DOM0      element.onclick = function() {}</p>
 </li>
-<li>服务器缓存<ul>
-<li>CDN缓存</li>
-<li>Combo缓存</li>
-</ul>
-</li>
-<li>HTML5缓存思路<ul>
-<li>离线存储manifest</li>
-<li>本地存储LocalStorage</li>
-</ul>
-</li>
-</ul>
-<p><a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">缓存机制文章</a></p>
-<table>
-<thead>
-<tr>
-<th><strong>获取资源形式</strong></th>
-<th><strong>状态码</strong></th>
-<th><strong>发送请求到服务器</strong></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>强缓存</strong></td>
-<td>从缓存取</td>
-<td>200（from cache）</td>
-<td>否，直接从缓存取</td>
-</tr>
-<tr>
-<td><strong>协商缓存</strong></td>
-<td>从缓存取</td>
-<td>304（not modified）</td>
-<td>是，正如其名，通过服务器来告知缓存是否可用</td>
-</tr>
-</tbody>
-</table>
-<p><strong>关于http缓存的头信息：</strong></p>
-<p><a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">http://caibaojian.com/http-cache.html</a></p>
-<p>Request<a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">·</a></p>
-<table>
-<thead>
-<tr>
-<th>Cache-Control: max-age=0</th>
-<th>以秒为单位</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>If-Modified-Since: Mon, 19 Nov 2012 08:38:01 GMT</td>
-<td>缓存文件的最后修改时间。</td>
-</tr>
-<tr>
-<td>If-None-Match: “0693f67a67cc1:0”</td>
-<td>缓存文件的Etag值</td>
-</tr>
-<tr>
-<td>Cache-Control: no-cache</td>
-<td>不使用缓存</td>
-</tr>
-<tr>
-<td>Pragma: no-cache</td>
-<td>不使用缓存</td>
-</tr>
-</tbody>
-</table>
-<p>Response<a href="http://caibaojian.com/http-cache.html" target="_blank" rel="noopener">·</a></p>
-<table>
-<thead>
-<tr>
-<th>Cache-Control: public</th>
-<th>响应被缓存，并且在多用户间共享，  （公有缓存和私有缓存的区别，请看另一节）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cache-Control: private</td>
-<td>响应只能作为私有缓存，不能在用户之间共享</td>
-</tr>
-<tr>
-<td>Cache-Control:no-cache</td>
-<td>提醒浏览器要从服务器提取文档进行验证</td>
-</tr>
-<tr>
-<td>Cache-Control:no-store</td>
-<td>绝对禁止缓存（用于机密，敏感文件）</td>
-</tr>
-<tr>
-<td>Cache-Control: max-age=60</td>
-<td>60秒之后缓存过期（相对时间）</td>
-</tr>
-<tr>
-<td>Date: Mon, 19 Nov 2012 08:39:00 GMT</td>
-<td>当前response发送的时间</td>
-</tr>
-<tr>
-<td>Expires: Mon, 19 Nov 2012 08:40:01 GMT</td>
-<td>缓存过期的时间（绝对时间）</td>
-</tr>
-<tr>
-<td>Last-Modified: Mon, 19 Nov 2012 08:38:01 GMT</td>
-<td>服务器端文件的最后修改时间</td>
-</tr>
-<tr>
-<td>ETag: “20b1add7ec1cd1:0”</td>
-<td>服务器端文件的Etag值</td>
-</tr>
-</tbody>
-</table>
-<p>如果同时存在cache-control和Expires怎么办呢？</p>
+<li><p>DOM2.     Element.addEventListener(‘click’, function(){}, false)</p>
 <blockquote>
-<p>浏览器总是优先使用cache-control，如果没有cache-control才考虑Expires</p>
 </blockquote>
-<p>协商缓存是通过什么来判断， 使用缓存？</p>
-<p>浏览器如何命中 强制缓存和协商缓存？</p>
-<p><a href="http://www.cnblogs.com/wonyun/p/5524617.html" target="_blank" rel="noopener">讲解</a></p>
-<p>强制缓存：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cache-control:max-age=2592000,s-maxage=3600</span><br><span class="line"></span><br><span class="line">Status Code:200  (from memory cache)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Status Code:200  (from disk cache)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DOM3.     Element.addEventListener(‘keyup’, function() {}, false)</p>
+<blockquote>
+<p>新增了很多事件，鼠标、键盘事件等</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="DOM事件类"><a href="#DOM事件类" class="headerlink" title="DOM事件类"></a>DOM事件类</h3><p><strong>一、事件模型：</strong></p>
+<blockquote>
+<p>捕获</p>
+<p>冒泡</p>
+</blockquote>
+<p><strong>二、事件流</strong></p>
+<blockquote>
+<p>当用户点击按钮，事件流的过程：</p>
+<ol>
+<li>捕获阶段：事件从上往下传递</li>
+<li>目标阶段：事件传递到目标元素</li>
+<li>冒泡阶段：事件从目标元素向上传递</li>
+</ol>
+</blockquote>
+<p><strong>描述DOM事件捕获的具体流程</strong></p>
+<p>window - document - html - body - ………….目标元素</p>
+<p><strong>Event对象的常见应用：</strong></p>
+<p>enent.preventDefault() //组织默认事件</p>
+<p>event.stopPropagation() // 阻止冒泡</p>
+<p>event.stopImmediatePropagation() // 事件享有优先级</p>
+<p>event.currentTarget // 事件代理中使用，</p>
+<p>event.target // 事件代理中使用，当前被点击的元素</p>
+<p><strong>自定义事件：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var eve = new Event(&apos;custome&apos;);</span><br><span class="line"></span><br><span class="line">// ev 是一个dom节点</span><br><span class="line">ev.addEventListener(&apos;&apos;, function() &#123;</span><br><span class="line">    console.log(&apos;custome&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">ev.dispatchEvent(eve);</span><br></pre></td></tr></table></figure>
+<p><code>CustomEvent</code>相对于event它可以多设置一个参数，用法是相同的；</p>
+<h2 id="延伸问题："><a href="#延伸问题：" class="headerlink" title="延伸问题："></a>延伸问题：</h2><p>如何获取html标签？</p>
+<p>document.documentElement</p>
+<ol>
+<li>document.getElementsByTagName(“html”)[0]</li>
+<li>document.querySelector(“html”);</li>
+<li>document.body.parentNode;</li>
+<li>$(‘html’).outerHTML()</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/js运行机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/js运行机制/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="js运行机制"><a href="#js运行机制" class="headerlink" title="js运行机制"></a>js运行机制</h2><h4 id="js是单线程的"><a href="#js是单线程的" class="headerlink" title="js是单线程的"></a>js是单线程的</h4><p>js同一时间，只做一件事情；</p>
+<h4 id="什么是任务队列"><a href="#什么是任务队列" class="headerlink" title="什么是任务队列"></a>什么是任务队列</h4><p>同步任务，异步任务</p>
+<p>同步任务完成之后，再执行异步队列中的任务</p>
+<h4 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h4><ul>
+<li>setTimeout和setInterval</li>
+<li>DOM事件</li>
+<li>ES6中的Promise</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(1);</span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">    console.log(3);</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(2);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/通信/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/通信/" itemprop="url">前端通信</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="什么是通源策略及限制"><a href="#什么是通源策略及限制" class="headerlink" title="什么是通源策略及限制"></a>什么是通源策略及限制</h3><p>协议、域名、端口相同</p>
+<ul>
+<li>Cookie、LocalStorage和IndexDB 无法读取</li>
+<li>DOM无法获取</li>
+<li>AJAX请求不能发送</li>
+</ul>
+<h3 id="前后端如何通信"><a href="#前后端如何通信" class="headerlink" title="前后端如何通信"></a>前后端如何通信</h3><ul>
+<li>Ajax</li>
+<li>WebSocket  // 没有同源策略的影响</li>
+<li>CORS</li>
+<li>Jsonp</li>
+</ul>
+<h3 id="如何创建一个Ajax"><a href="#如何创建一个Ajax" class="headerlink" title="如何创建一个Ajax"></a>如何创建一个Ajax</h3><ul>
+<li>XMLHttpRequest对象的工作流程</li>
+<li>兼容性处理</li>
+<li>事件的触发条件</li>
+<li>事件的触发顺序</li>
+</ul>
+<h3 id="跨域通信方式"><a href="#跨域通信方式" class="headerlink" title="跨域通信方式"></a>跨域通信方式</h3><ul>
+<li>JSONP</li>
+<li>Hash</li>
+<li>postMessage</li>
+<li>WebSocket</li>
+<li>CORS</li>
+<li>服务端代理</li>
+<li>window.name</li>
+</ul>
+<p><strong>jsonp</strong></p>
+<p>1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；</p>
+<p>2、Web页面上调用js文件时则不受是否跨域的影响（不仅如此，凡是拥有”src”这个属性的标签都拥有跨域的能力，比如<code>&lt;script&gt;</code>、<code>&lt;img&gt;</code>、<code>&lt;iframe&gt;</code>）</p>
+<p>3、web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。</p>
+<p>4、这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。</p>
+<p>5、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP。</p>
+<p>6、该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。</p>
+<p><strong>jsonp的原理：</strong></p>
+<p><strong>jsonp缺点:</strong></p>
+<ol>
+<li><p>jsonp只支持get请求而不支持post请求,也即是说如果想传给后台一个json格式的数据,此时问题就来了,浏览器会报一个http状态码415错误,告诉你请求格式不正确,这让我很蛋疼(在登录注册中需要给后台传一大串数据),如果都用参数的形式拼接在url后面的话不太现实,后台取值也会显得繁琐,</p>
+</li>
+<li><p>在登录模块中需要用到session来判断当前用户的登录状态,这时候由于是跨域的原因,前后台的取到的session是不一样的,那么就不能就行session来判断.</p>
+</li>
+<li><p>由于jsonp存在安全性问题(不知qq空间的跨域是怎么解决的,还是另有高招?) </p>
+<p><strong>jsonp有什么安全问题？</strong></p>
+<p>JSONP漏洞点主要有：callback参数注入、资源访问授权设置！</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/操作符、变量、作用域/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/操作符、变量、作用域/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="操作符、变量、作用域"><a href="#操作符、变量、作用域" class="headerlink" title="操作符、变量、作用域"></a>操作符、变量、作用域</h1><h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&apos;1&apos; - -&apos;1&apos;; // 2</span><br><span class="line"></span><br><span class="line">从左往右执行：</span><br><span class="line">&apos;1&apos; - (-1);</span><br><span class="line">// 减回隐式转换 1 - -1 = 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&apos;1&apos; - -&apos;1&apos;+&apos;1&apos;; // ‘21’</span><br><span class="line"></span><br><span class="line">从左往右执行：</span><br><span class="line">2 + ‘1’；</span><br><span class="line">// 加会把数字转换为字符串处理</span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>js中变量分为基本类型、引用类型；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">var b = a;</span><br><span class="line">b = 2;</span><br><span class="line">console.log(a, b); // 1, 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123; n: 1 &#125;;</span><br><span class="line">var b = a;</span><br><span class="line">a.x = 2;</span><br><span class="line">b.x = &apos;3&apos;;</span><br><span class="line">console.log(a, b); // &#123; n: 1, x: &apos;3&apos; &#125;, &#123; n: 1, x: &apos;3&apos; &#125;</span><br><span class="line"></span><br><span class="line">// a,b操作的都是同一个对象</span><br></pre></td></tr></table></figure>
+<p>ECMAScript中所有函数的参数都是按值传递；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function addTen(num) &#123;</span><br><span class="line">    num += 10;</span><br><span class="line">    return num;</span><br><span class="line">&#125;</span><br><span class="line">var count = 20;</span><br><span class="line">var result = addTen(count);</span><br><span class="line">alter(count); // 20</span><br><span class="line">alert(result); // 30</span><br></pre></td></tr></table></figure>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>javascript采用的是词法作用域 （静态作用域）；</p>
+<p><strong>词法作用域：</strong>函数的作用域在函数定义的时候就决定了</p>
+<p><strong>动态作用域：</strong>函数的作用域是在函数调用的时候才决定的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var value = 1;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">    console.log(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function bar() &#123;</span><br><span class="line">    var value = 2;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar();</span><br><span class="line">// 1</span><br><span class="line"></span><br><span class="line">// 这里可以理解为，函数在那里定义，它的作用域就已经确定了</span><br><span class="line">更准确的描述：当执行一个函数时，要确定函数的作用域，就去看函数是在哪里定义的；</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function testOrder(arg) &#123;</span><br><span class="line">    console.log(arg); // arg是形参，不会被重新定义</span><br><span class="line">    console.log(a); // 因为函数声明比变量声明优先级高，所以这里a是函数</span><br><span class="line">    var arg = &apos;hello&apos;; // var arg;变量声明被忽略， arg = &apos;hello&apos;被执行</span><br><span class="line">    var a = 10; // var a;被忽视; a = 10被执行，a变成number</span><br><span class="line">    function a() &#123;</span><br><span class="line">        console.log(&apos;fun&apos;);</span><br><span class="line">    &#125; // 被提升到作用域顶部</span><br><span class="line">    console.log(a); // 输出10</span><br><span class="line">    console.log(arg); // 输出hello</span><br><span class="line">&#125;; </span><br><span class="line">testOrder(&apos;hi&apos;);</span><br><span class="line">/* 输出：</span><br><span class="line">hi </span><br><span class="line">function a() &#123;</span><br><span class="line">        console.log(&apos;fun&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">10 </span><br><span class="line">hello </span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/读你不知道的js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/读你不知道的js/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="读你不知道的js-记录"><a href="#读你不知道的js-记录" class="headerlink" title="读你不知道的js 记录"></a>读你不知道的js 记录</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/宋小旭 web简历/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/宋小旭 web简历/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="宋小旭-web简历"><a href="#宋小旭-web简历" class="headerlink" title="宋小旭 web简历"></a>宋小旭 web简历</h2><table>
+<thead>
+<tr>
+<th>邮箱</th>
+<th>电话</th>
+<th>学历</th>
+<th>工作经验</th>
+<th>出生年月</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>913581148@qq.com</td>
+<td>18382210583</td>
+<td>本科（攀枝花学院-冶金工程）</td>
+<td>3.5</td>
+<td>1990.02</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get技能："><a href="#get技能：" class="headerlink" title="get技能："></a>get技能：</h3><ol>
+<li>熟练掌握html，css，js；</li>
+<li>熟悉react+redux+webpack+antd，以及react相关的一整套生态圈有一定的研究；</li>
+<li>熟悉vue+vuex+webpack+elementUI，有项目经验；</li>
+<li>对前端自动化工具webpack，gulp有一定的研究和实践；</li>
+<li>熟悉npm的应用；nodejs有项目经验；</li>
+<li>熟悉linux基本操作，shell脚本(expect)；</li>
+<li>熟练使用svn、git，如github、gitlab、gerrit；</li>
+<li>小程序开发经验</li>
+</ol>
+<h3 id="项目经验（时间倒序）："><a href="#项目经验（时间倒序）：" class="headerlink" title="项目经验（时间倒序）："></a>项目经验（时间倒序）：</h3><h4 id="一、斐讯-AI数据管理平台（ADP-AI-Data-Platform）（2018-05～2018-07）"><a href="#一、斐讯-AI数据管理平台（ADP-AI-Data-Platform）（2018-05～2018-07）" class="headerlink" title="一、斐讯 AI数据管理平台（ADP - AI Data Platform）（2018-05～2018-07）"></a>一、斐讯 AI数据管理平台（ADP - AI Data Platform）（2018-05～2018-07）</h4><p><strong>介绍：</strong> 这个项目是为上一个<code>AI菜品识别</code>服务；菜品识别项目需要通过菜名到网上爬大量的图片，然后人工筛选出准确的图片，最后将准确的图片移交给算法进行训练生成模型，通过模型识别训练过的菜品；菜品项目第一期这整个流程都是人工完成，工作量太大；所以立项了ADP项目来将整个流程自动化；项目采用<strong>敏捷开发模式</strong>，负责项目的推进兼职Scrum master；</p>
+<p><strong>技能：</strong></p>
+<p>整个项目都由前端负责开发；web端使用vue、后端用nodejs；</p>
+<p>vue前端部分和上一个菜品项目一样；项目中主要学习和实践了nodejs开发后台，使用express框架快速开发，数据库使用mongodb/mongoose；</p>
+<p>项目中需要和爬虫、算法团队对接：定义接口文档、讨论需求、实现方案等；</p>
+<h4 id="二、斐讯-AI菜品识别项目（2018-02～2018-04）"><a href="#二、斐讯-AI菜品识别项目（2018-02～2018-04）" class="headerlink" title="二、斐讯 AI菜品识别项目（2018-02～2018-04）"></a>二、斐讯 AI菜品识别项目（2018-02～2018-04）</h4><p><strong>介绍：</strong> 斐讯AI菜品识别项目中负责后台管理系统的开发并在期间参与了部分<code>小程序的开发</code>，在后台管理系统这个子项目中兼职Scrum master，对于敏捷开发流程有一定的实践经验；</p>
+<p><strong>技能：</strong> 负责整个前端项目的架构选型、搭建、开发、代码管理、部署；采用vue官方提供的脚手架vue-cli，节省了搭建项目脚手架的时间，开发过程中使用vue+vuex+webpack+elementUI+axios；代码管理使用git+gerrit；代码自动化部署使用jenkins，通过配置shell脚本；</p>
+<h4 id="三、斐讯健康app（2018-01～2018-02）"><a href="#三、斐讯健康app（2018-01～2018-02）" class="headerlink" title="三、斐讯健康app（2018-01～2018-02）"></a>三、斐讯健康app（2018-01～2018-02）</h4><p><strong>介绍：</strong> 参与斐讯健康Hybrid app开发；主要负责app内部页面编写（文章页面、活动页面）；</p>
+<p><strong>技能：</strong> 主要使用了flex、rem、gulp（gulp-nunjucks模版）、学习实践了一些常用的页面性能优化方案（减少ajax请求、cdn、图片按需加载、图片定宽高等）；</p>
+<h4 id="四、国美云-后台管理系统重构（2017-03～2018-12）"><a href="#四、国美云-后台管理系统重构（2017-03～2018-12）" class="headerlink" title="四、国美云-后台管理系统重构（2017-03～2018-12）"></a>四、国美云-后台管理系统重构（2017-03～2018-12）</h4><p><strong>介绍：</strong> 项目主要负责国美云后台管理系统的重构，之前老版本是使用python模版语言，前端技术主要使用jquery+bootstrap（后端开发）；根据项目的发展打算采用前后端分离的方式重构；</p>
+<p><strong>技能：</strong></p>
+<p>主要使用react+redux+antd+webpack+eslint；</p>
+<p>熟练webpack的配置、熟练使用redux，理解redux的整个工作流程； 对常用的中间件有一定的理解，如：redux-thunk, redux-promise, redux-logger;</p>
+<p>对项目的优化有一定的研究；减少render（理解生命周期、shoudComponentUpdate），使用immutablejs，将固定不变的依赖包打包为单独的js缓存，webpack打包时压缩代码，使用selectors等方法，当然还有一些web常用的优化技术（图片处理，缓存机制等）； </p>
+<h4 id="五、国美云-官网（2017-03～2017-05）"><a href="#五、国美云-官网（2017-03～2017-05）" class="headerlink" title="五、国美云 - 官网（2017-03～2017-05）"></a>五、国美云 - 官网（2017-03～2017-05）</h4><p><strong>介绍：</strong> </p>
+<p>开发还原UI高保真原型页面（pc端和移动端）；</p>
+<p>国美云官网地址：<a href="http://www.gomecloud.com/index.html" target="_blank" rel="noopener">http://www.gomecloud.com/index.html</a></p>
+<p><strong>技能：</strong></p>
+<p>项目使用gulp作为自动化工具，gulp-nunjucks作为模版语言；对于最基础的前端问题有了深一步的理解：目录结构的整理、命名、html语义化、渐进增强 等问题；</p>
+<p>开始学习使用linux系统的服务器、通过git将代码传递到服务器上；测试环境学习使用shell脚本将代码传递到服务器上；</p>
+<p>工作之余，自己申请了阿里云服务器学习从零搭建自己的网站，后台使用python-Django搭建了一个简单的服务器，学习安装配置nginx；</p>
+<h4 id="六、国美云资源使用率app-监控服务器资源使用情况的app-（2016-10～2017-02）"><a href="#六、国美云资源使用率app-监控服务器资源使用情况的app-（2016-10～2017-02）" class="headerlink" title="六、国美云资源使用率app - 监控服务器资源使用情况的app （2016-10～2017-02）"></a>六、国美云资源使用率app - 监控服务器资源使用情况的app （2016-10～2017-02）</h4><p><strong>介绍：</strong> 主要使用<code>RN</code>开发了一款内部使用的检测服务器使用情况的app </p>
+<p><strong>技能：</strong></p>
+<p>实践了react-native的开发流程，包括环境配置（android，ios）、react-native的基本语法（和react相差不大）、android版本的apk打包（ios相对复杂，找ios的同事完成）；</p>
+<p>整个项目下来完成了一款app，除配置环境遇到一些问题，整个开发过程还是比较流畅，使用react-native开发app开发时间成本也比传统app开发减少了很多，当然这个项目只是RN简单的使用，并没有深入的研究；</p>
+<h4 id="七、成都掌中全景-初识React，做过多个项目（2015-11～2016-09）"><a href="#七、成都掌中全景-初识React，做过多个项目（2015-11～2016-09）" class="headerlink" title="七、成都掌中全景 - 初识React，做过多个项目（2015-11～2016-09）"></a>七、成都掌中全景 - 初识React，做过多个项目（2015-11～2016-09）</h4><p><strong>介绍：</strong> 发了多款后台管理系统，比如<code>微信活动页面</code>和<code>其后台管理系统</code>、数据聚合的后台管理系统 </p>
+<p><strong>技能：</strong></p>
+<p>开发这些后台管理系统主要使用react+redux+webpack+antd+eslint，这也是最开始学习react；当时其实只是刚刚会用react，使用的脚手架也是antd提供的；开始学习使用react并学习其整个生态圈；从这些项目开始打开了react学习的大门；</p>
+<h4 id="八、成都掌中全景-Hybrid-app开发（2015-06～2015-10）"><a href="#八、成都掌中全景-Hybrid-app开发（2015-06～2015-10）" class="headerlink" title="八、成都掌中全景 - Hybrid app开发（2015-06～2015-10）"></a>八、成都掌中全景 - Hybrid app开发（2015-06～2015-10）</h4><p><strong>介绍：</strong> 公司开发的一款app，使用andriod、ios、web混合式开发；主要提供展示性的web页面、活动页面（砸箱子等）、问答抽奖页面；</p>
+<p><strong>技能：</strong> 使用原生js、html、css开发；</p>
+<h4 id="九、成都掌中全景-基于机顶盒开发EPG页面（2015-07～2015-09）"><a href="#九、成都掌中全景-基于机顶盒开发EPG页面（2015-07～2015-09）" class="headerlink" title="九、成都掌中全景 - 基于机顶盒开发EPG页面（2015-07～2015-09）"></a>九、成都掌中全景 - 基于机顶盒开发EPG页面（2015-07～2015-09）</h4><p><strong>介绍：</strong> 基于机顶盒开发web页面，公司与广电4k电影节目承包公司联合推送广告的项目，开始前端之路的第一个项目；</p>
+<p><strong>技能：</strong> 使用原生js、html、css开发；相应遥控器的点击处理页面逻辑，处理各种机顶盒的兼容问题；</p>
+<h3 id="自我评价"><a href="#自我评价" class="headerlink" title="自我评价"></a>自我评价</h3><ul>
+<li>热爱技术，喜欢研究学习使用新的知识和技术；</li>
+<li>聆听别人的意见，不喜欢争论，但是坚持做正确的事情；</li>
+<li>性格开朗、随和，总是能和大家相处得很好；</li>
+<li>异地办公经验较多，良好的沟通能力；</li>
+<li>热爱各种运动：特别足球；</li>
+<li>个人github账号，主要是做一些问题记录，知识点总结：<a href="https://github.com/songxx0209" target="_blank" rel="noopener">https://github.com/songxx0209</a></li>
+<li>基于github搭建的个人博客：<a href="https://songxx0209.github.io/" target="_blank" rel="noopener">https://songxx0209.github.io/</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/git使用分享/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/git使用分享/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="git使用分享"><a href="#git使用分享" class="headerlink" title="git使用分享"></a>git使用分享</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>首先理解一下remote（远程）；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:songxx0209/gitStudy.git</span><br><span class="line"></span><br><span class="line">git remote -v</span><br><span class="line">// origin	git@github.com:songxx0209/gitStudy.git (fetch)</span><br><span class="line">// origin	git@github.com:songxx0209/gitStudy.git (push)</span><br></pre></td></tr></table></figure>
+<p>其次理解一下工作流：</p>
+<p><img src="/var/folders/9q/2vzfvky96yzd7nx7htrh8l100000gp/T/abnerworks.Typora/image-20180501001819158.png" alt="image-20180501001819158"></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git clone</span><br><span class="line">git remote</span><br><span class="line">git branch </span><br><span class="line">git push</span><br><span class="line">git pull</span><br><span class="line">git checkout</span><br><span class="line">git fetch</span><br><span class="line">git merge</span><br></pre></td></tr></table></figure>
+<p>理解以上常用命令的含义、熟练使用</p>
+<h3 id="分支的理解"><a href="#分支的理解" class="headerlink" title="分支的理解"></a>分支的理解</h3><p><img src="/var/folders/9q/2vzfvky96yzd7nx7htrh8l100000gp/T/abnerworks.Typora/image-20180501004025365.png" alt="image-20180501004025365"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br></pre></td></tr></table></figure>
+<p><img src="/var/folders/9q/2vzfvky96yzd7nx7htrh8l100000gp/T/abnerworks.Typora/image-20180501004044375.png" alt="image-20180501004044375"></p>
+<p><img src="/var/folders/9q/2vzfvky96yzd7nx7htrh8l100000gp/T/abnerworks.Typora/image-20180501004504676.png" alt="image-20180501004504676"></p>
+<p><img src="/var/folders/9q/2vzfvky96yzd7nx7htrh8l100000gp/T/abnerworks.Typora/image-20180501004536942.png" alt="image-20180501004536942"></p>
+<p><strong>关于分支常用操作：</strong></p>
+<p>创建分支、切换分支、删除分支、合并分支</p>
+<h3 id="常见使用场景"><a href="#常见使用场景" class="headerlink" title="常见使用场景"></a>常见使用场景</h3><ol>
+<li><p>多人协作开发如何来管理git</p>
+<p>最重要的一点是你每次想要向远端仓库提交代码时，都先拉一下（pull）一下远端代码</p>
+<p>具体操作步骤如下：</p>
+<p><strong>无冲突操作：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 当你完成本地开发</span><br><span class="line">git add .   || git add -A</span><br><span class="line"></span><br><span class="line">git commit -m &quot;你的提交日志信息&quot;</span><br><span class="line"></span><br><span class="line">git pull --rebase &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line"></span><br><span class="line">// 如果没有冲突，万事大吉；直接push就好了</span><br><span class="line">git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>存在冲突的情况：</strong></p>
+</li>
+</ol>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 当你完成本地开发</span><br><span class="line">git add .   || git add -A</span><br><span class="line"></span><br><span class="line">git commit -m &quot;你的提交日志信息&quot;</span><br><span class="line"></span><br><span class="line">git pull --rebase &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line"></span><br><span class="line">// 此时出现冲突的情况：</span><br></pre></td></tr></table></figure>
+<p>   <img src="/var/folders/9q/2vzfvky96yzd7nx7htrh8l100000gp/T/abnerworks.Typora/image-20180501011310078.png" alt="image-20180501011310078"></p>
+<p>到代码里去解决冲突，然后执行：</p>
+<p><img src="/var/folders/9q/2vzfvky96yzd7nx7htrh8l100000gp/T/abnerworks.Typora/image-20180501011721501.png" alt="image-20180501011721501"></p>
+<ol>
+<li><p>备份代码问题</p>
+<p>使用新建分支的方法来备份代码</p>
+</li>
+</ol>
+<h3 id="推荐学习网站："><a href="#推荐学习网站：" class="headerlink" title="推荐学习网站："></a>推荐学习网站：</h3><p><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰git</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="noopener">阮一峰 - Git远程操作详解</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">阮一峰 - git命令清单</a></p>
+<h3 id="最后分享一张图："><a href="#最后分享一张图：" class="headerlink" title="最后分享一张图："></a>最后分享一张图：</h3><p><img src="/Users/sxx/Documents/成长/WechatIMG175.jpeg" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/CI:CD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="songxx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.qlogo.cn/mmhead/Q3auHgzwzM5hqV8USe1miaeMoNLFEU8HtdlJzVGribpKiby4nNsR3Z4YA/132">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songxx's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/CI:CD/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T21:35:31+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="jenkins-CI-CD"><a href="#jenkins-CI-CD" class="headerlink" title="jenkins/CI/CD"></a>jenkins/CI/CD</h2><p><a href="http://www.infoq.com/cn/news/2017/01/alibaba-yunxiao-cicd-devops" target="_blank" rel="noopener">http://www.infoq.com/cn/news/2017/01/alibaba-yunxiao-cicd-devops</a></p>
+<h3 id="持续集成（Continuous-integration，简称CI）"><a href="#持续集成（Continuous-integration，简称CI）" class="headerlink" title="持续集成（Continuous integration，简称CI）"></a>持续集成（Continuous integration，简称CI）</h3><ol>
+<li><p>什么叫CI？</p>
+<p><strong>持续集成指的是，频繁地（一天多次）将代码集成到主干。</strong></p>
+<p>它的好处主要有两个。</p>
+<blockquote>
+<p><strong>（1）快速发现错误。</strong>每完成一点更新，就集成到主干，可以快速发现错误，定位错误也比较容易。</p>
+<p><strong>（2）防止分支大幅偏离主干。</strong>如果不是经常集成，主干又在不断更新，会导致以后集成的难度变大，甚至难以集成。</p>
+</blockquote>
+<p><strong>持续集成的目的，就是让产品可以快速迭代，同时还能保持高质量。</strong>它的核心措施是，代码集成到主干之前，必须通过自动化测试。只要有一个测试用例失败，就不能集成。</p>
+<p>​</p>
+</li>
+</ol>
+<h3 id="持续交付-Continuous-Delivery"><a href="#持续交付-Continuous-Delivery" class="headerlink" title="持续交付(Continuous Delivery)"></a>持续交付(Continuous Delivery)</h3><p>持续交付并不是指软件每一个改动都要尽快的部署到产品环境中，而是指任何的修改都被证明可以在任何时候实施部署。</p>
+<p>持续交付(Continuous Delivery)是一系列的开发实践方法，用来确保让代码能够快速、安全的部署到产品环境中，它通过将每一次改动都提交到一个模拟产品环境中，使用严格的<code>自动化测试</code>，确保业务应用和服务能符合预期。</p>
+<h3 id="持续部署（continuous-deployment）"><a href="#持续部署（continuous-deployment）" class="headerlink" title="持续部署（continuous deployment）"></a>持续部署（continuous deployment）</h3><h3 id="自动化测试"><a href="#自动化测试" class="headerlink" title="自动化测试"></a>自动化测试</h3><p>什么叫自动化测试？</p>
+<p>前端自动化测试，后台自动化测试</p>
 
           
         
@@ -3365,7 +1936,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -3411,7 +1982,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">40</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
